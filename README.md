@@ -1,7 +1,7 @@
 # Law Advisor 
 
 
-Gulzat Umetalieva Project Manager(PM), Front-End Developer gulzat.umetaliev@iaau.edu.kg
+Gulzat Umetalieva Project Manager(PM), Front-End Developer gulzat.umetaliev@iaau.edu.kg <br>
 Kalzira Sabytakunova Requirement Engineer                  kalzira.sabytakunova@iaau.edu.kg
 Alina Zhakypova Tester                                     alina.zhakypova@iaau.edu.kg
 Zhamiila Kartanbaeva Tester                                zhamiila.kartanbaeva@iaau.edu.kg
