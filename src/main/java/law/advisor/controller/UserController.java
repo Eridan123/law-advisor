@@ -112,4 +112,10 @@ public class UserController {
         return "redirect : /user/"+user.getId()+"/view";
     }
 
+    @RequestMapping("/questions")
+    public String openQuestionsPage(){
+        return "questions";
+    }
+
+
 }
