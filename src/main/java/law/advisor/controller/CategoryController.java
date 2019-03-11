@@ -22,7 +22,7 @@ public class CategoryController {
     CategoryRepository categoryRepository;
 
     @RequestMapping("/category")
-    public String signup(ModelMap model){
+    public String category(ModelMap model){
         model.addAttribute("category",new User());
 
         return "/category";
