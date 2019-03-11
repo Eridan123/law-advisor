@@ -29,7 +29,7 @@ public class CategoryController {
 
     }
 
-    @RequestMapping(value = "/newPlace", method = RequestMethod.GET)
+    @RequestMapping(value = "/newCategory", method = RequestMethod.GET)
     public String newCategory(Model model) {
         Category form = new Category();
         model.addAttribute("category", form);
