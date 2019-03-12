@@ -100,7 +100,6 @@ public class UserController {
         else if(user.getId()>0){
 
             User user1=userRepository.getOne(user.getId());
-            user1.setAvatar(user.getAvatar());
             user1.setEmail(user.getEmail());
             user1.setName(user.getName());
             user1.setPhone_number(user.getPhone_number());
@@ -110,6 +109,16 @@ public class UserController {
         }
 
         return "redirect : /user/"+user.getId()+"/view";
+    }
+
+    @PostMapping("/user/{id}/delete")
+    public String deleteUser(@PathVariable("id") Long id,ModelMap model){
+        User user=userRepository.getOne(id);
+
+        userRepository.delete(user);
+
+        model.addAttribute("success","Account successfully deleted");
+        return "/";
     }
 
     @RequestMapping("/questions")

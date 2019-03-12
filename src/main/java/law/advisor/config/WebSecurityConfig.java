@@ -42,16 +42,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-
+    protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable();
 
         // The pages does not require login
-        http.authorizeRequests().antMatchers("/", "/login", "/logout","/signup").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login","/forgot","/reset/**","/logout").permitAll();
 
         // /userInfo page requires login as ROLE_USER or ROLE_ADMIN.
         // If no login, it will redirect to /login page.
-        http.authorizeRequests().antMatchers("/user/profile").access("hasAnyRole('ROLE_USER','ROLE_LAWYER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/user/**").access("hasAnyRole('ROLE_USER','ROLE_LAWYER', 'ROLE_ADMIN')");
 
         // For ADMIN only.
         http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
@@ -60,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // But access a page that requires role YY,
         // AccessDeniedException will be thrown.
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+        http.authorizeRequests().anyRequest().authenticated();
 
         // Config for Login Form
         http.authorizeRequests().and().formLogin()//
@@ -70,9 +70,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")
+
                 // Config for Logout Page
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
+//      OAUTH2 config
+//        http.authorizeRequests()
+//                .anyRequest().authenticated()
+//                .and()
+//                .oauth2Login();
         // Config Remember Me.
         http.authorizeRequests().and() //
                 .rememberMe().tokenRepository(this.persistentTokenRepository()) //

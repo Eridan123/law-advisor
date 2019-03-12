@@ -10,6 +10,7 @@ public class MainController {
     @RequestMapping("/")
     public String  index(ModelMap model){
 
-        return "/hello";
+
+        return "/home";
     }
 }

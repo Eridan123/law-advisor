@@ -24,13 +24,18 @@ public class User {
 
     private String phone_number;
 
-    private String avatar;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="lawyer_degree_id")
     private Content lawyer_degree_id;
 
     private boolean enabled;
+
+    private String token;
+
+    @Column(columnDefinition = "varchar(20) default 'USER'")
+    @Enumerated(EnumType.STRING)
+    private UserType userType= UserType.USER;
 
     public Long getId() {
         return id;
@@ -88,13 +93,6 @@ public class User {
         this.phone_number = phone_number;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
 
     public Content getLawyer_degree_id() {
         return lawyer_degree_id;
@@ -110,5 +108,21 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

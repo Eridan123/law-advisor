@@ -4,16 +4,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.CacheControl;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
@@ -27,6 +23,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
@@ -85,8 +82,10 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 //        registry.addResourceHandler("/assets/**").addResourceLocations("/static/assets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-//        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
-//        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+//        registry.addResourceHandler("/javascripts/**").addResourceLocations("/static/assets/javascripts/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+//        registry.addResourceHandler("/ajax/**").addResourceLocations("/static/assets/ajax/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+//        registry.addResourceHandler("/vendor/**").addResourceLocations("/static/assets/vendor/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+//        registry.addResourceHandler("/stylesheets/**").addResourceLocations("/static/assets/stylesheets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 //        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 //    }
 
