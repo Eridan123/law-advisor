@@ -61,6 +61,8 @@ public class CategoryController {
             categoryRepository.save(category1);
         }
         
+        return "redirect: /category/list";
+        
     }
 
     @RequestMapping(value = {"/category/{id}/delete"},method = RequestMethod.POST)
