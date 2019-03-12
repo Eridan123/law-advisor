@@ -19,22 +19,14 @@ public class CategoryController {
 
     @RequestMapping(value = {"/category","/category/list"})
     public String list(ModelMap model){
-        
+
         List<Category> categories=categoryRepository.findAll();
-        
+
         model.addAttribute("categories",categories);
 
         return "/category/list";
-
     }
 
-    @RequestMapping(value = "/newCategory", method = RequestMethod.GET)
-    public String newCategory(Model model) {
-        Category form = new Category();
-        model.addAttribute("category", form);
-        return "newCategory";
-    }
-    
     @RequestMapping(value = {"/category/{id}/save"})
     public String getSave(ModelMap model, @PathVariable("id") Long id){
 
@@ -45,13 +37,13 @@ public class CategoryController {
             Category category=categoryRepository.getOne(id);
             model.addAttribute("category",category);
         }
-        
+
         return "/category/form";
     }
-    
+
     @RequestMapping(value = {"/category/save"},method = RequestMethod.POST)
     public String postSave(Category category){
-        
+
         if(category.getId()==0){
             categoryRepository.save(category);
         }
@@ -60,21 +52,20 @@ public class CategoryController {
             category1.setName(category.getName());
             categoryRepository.save(category1);
         }
-        
+
         return "redirect: /category/list";
-        
     }
 
     @RequestMapping(value = {"/category/{id}/delete"},method = RequestMethod.POST)
     public String delete(@PathVariable("id") Long id){
-        
+
         if(id==0){
         }
         else {
             Category category=categoryRepository.getOne(id);
             categoryRepository.delete(category);
         }
+
         return "redirect: /category/list";
     }
-
 }
