@@ -1,18 +1,13 @@
 package law.advisor.controller;
 
-import law.advisor.model.Role;
-import law.advisor.model.User;
-import law.advisor.model.UserRole;
+import law.advisor.model.Category;
 import law.advisor.repository.CategoryRepository;
-import law.advisor.repository.RoleRepository;
-import law.advisor.repository.UserRepository;
-import law.advisor.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 @Controller
