@@ -51,7 +51,15 @@ public class CategoryController {
     
     @RequestMapping(value = {"/category/save"},method = RequestMethod.POST)
     public String postSave(Category category){
-
+        
+        if(category.getId()==0){
+            categoryRepository.save(category);
+        }
+        else if(category.getId()>0) {
+            Category category1=categoryRepository.getOne(category.getId());
+            category1.setName(category.getName());
+            categoryRepository.save(category1);
+        }
         
     }
 
