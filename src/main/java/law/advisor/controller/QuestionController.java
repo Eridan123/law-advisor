@@ -16,7 +16,7 @@ public class QuestionController {
     @Autowired
     QuestionRepository questionRepository;
 
-
+    /* This function returns the page with list of questios */
     @RequestMapping(value = {"/question","/question/list"})
     public String list(ModelMap model){
 
@@ -27,7 +27,8 @@ public class QuestionController {
         return "/question/list";
 
     }
-
+    
+    /* This function returns the page with the list of questions of a particular category   */
     @RequestMapping(value = {"/question/{category_id}/list"})
     public String getByCategory(@PathVariable("category_id") Long category_id,ModelMap model){
 
