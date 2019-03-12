@@ -28,7 +28,7 @@
 
    #### Quick Start
 
-  >`link to website`  Website at <a href="http://lawconsultant.com" target="_blank">`lawconsultant.com`</a>
+  >`link to website`   <a href="" target="_blank"></a>
 
 ---
 
@@ -36,11 +36,11 @@
 
 **Main**
 
-- Ability to leave answers and ask quiestions on the site 
+- Ability to leave answers and ask questions on the site 
 - Ability to have two types of profiles: lawyer or user and customize it
 - View categories of questions
-- Search the quiestions with the search option
-- Ability to create / edit / delete quiestions posts
+- Search the questions with the search option
+- Ability to create / edit / delete questions posts
 
 **Other**
 
@@ -55,7 +55,7 @@
 ## Built With
 
 - Java EE, Spring Boot Framework, Maven dependencies
-- Spring Security, Thymleaf template engine
+- Spring Security, Thymeleaf template engine
 - MySQL 
 
   </br>
@@ -66,7 +66,7 @@
 
 
 ## How To Use?
->Some Screenshots wiil be here
+>Some Screenshots will be here
 
 ## Tests 
 
