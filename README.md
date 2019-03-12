@@ -1,15 +1,15 @@
 # Online Law Consultant
 
 
-## Descirption
+## Description
 
->Online Law Consulant is a web application that helps citizens easily get legal consulting from qualified lawyers, and for lawyers - find new clients and interact effectively with them. 
+>Online Law Consultant is a web application that helps for citizens easily get legal consulting from qualified lawyers, and for lawyers - find new clients and interact effectively with them. 
 ---
 
 ## Table of Contents 
 
 
-- [Desription](#description)
+- [Description](#description)
 - [Getting Start](#gettingstart)
   - [Prerequisites](#prerequisites)
   - [Quick Start](#quickstart)
@@ -46,8 +46,8 @@
 
 
 - View site news
-- Simple and clear user-friendly interface 
-- Multilanguage 
+- User-friendly interface 
+- Multilanguage site 
 - Like posts
 
 ---
@@ -56,13 +56,13 @@
 
 - Java EE, Spring Boot Framework, Maven dependencies
 - Spring Security, Thymleaf template engine
-- MySQL DataBase Server
+- MySQL 
 
   </br>
  
 - HTML5 and CSS3
 - Bootstrap 3
-- JavaScipt
+- JavaScript
 
 
 ## How To Use?
@@ -78,7 +78,7 @@
 
 
 - Gulzat Umetalieva - <font color="darkred">**Project Manager**</font>                     <font color="green"> 
-	- *gulzat.umetaliev@iaau.edu.kg*</font>
+	- *gulzat.umetalieva@iaau.edu.kg*</font>
 
 - Kalzira Sabytakunova - <font color="darkred">**Requirement Engineer**</font>                 <font color="green">
 	- *kalzira.sabytakunova@iaau.edu.kg*</font>
@@ -95,6 +95,8 @@
 	- *ababakri.ibragimov@iaau.edu.kg*</font>
 - Abdygany Isaev - <font color="darkred">**Back-End Developer**</font>                 <font color="green">
 	- *abdygany.isaev@iaau.edu.kg*</font>
+- Alina Zhakypova - <font color="darkred">**Tester**</font>                 <font color="green">
+	- *alina.zhakypova@iaau.edu.kg*</font>
 
 
 ---
