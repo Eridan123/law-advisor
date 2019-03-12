@@ -17,7 +17,7 @@ public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping("/category")
+    @RequestMapping(value = {"/category","/category/list"})
     public String category(ModelMap model){
         model.addAttribute("category",new User());
 
