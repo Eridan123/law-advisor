@@ -48,5 +48,17 @@ public class CategoryController {
         
         return "/category/form";
     }
+    
+    @RequestMapping(value = {"/category/save"},method = RequestMethod.POST)
+    public String postSave(Category category){
+
+        
+    }
+
+    @RequestMapping(value = {"/category/{id}/delete"},method = RequestMethod.POST)
+    public String delete(@PathVariable("id") Long id){
+
+        
+    }
 
 }
