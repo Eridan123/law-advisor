@@ -74,7 +74,7 @@ public class CategoryController {
             Category category=categoryRepository.getOne(id);
             categoryRepository.delete(category);
         }
-        
+        return "redirect: /category/list";
     }
 
 }
