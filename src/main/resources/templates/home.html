@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="fixed">
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <!-- Basic -->
@@ -220,7 +220,52 @@
             </header>
 
             <!-- start: page -->
+            <ul style="list-style-type: none;" th:each="question:${questions}">
+                <li>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12" >
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    <div class="panel-actions">
+                                        <a href="#" class="fa fa-caret-down"></a>
+                                        <a href="#" class="fa fa-times"></a>
+                                    </div>
 
+                                    <h2 class="panel-title" th:text="${question.title}">Lorem ipsum dolor sit amet, consectetur</h2>
+                                </header>
+                                <div>
+                                    <div class="panel-body ">
+                                        <p th:text="${content.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                        <div class="container">
+                                            <div class="row justify-content-around">
+                                                <div class="col-xs-3 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-thumbs-o-up"></i>
+                                                    </button>
+                                                    <label>1325</label>
+                                                </div>
+                                                <div class="col-xs-3 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-thumbs-o-down"></i>
+                                                    </button>
+                                                    <label>232</label>
+                                                </div>
+                                                <div class="col-xs-3 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </button>
+                                                    <label>53 Answers</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
             <!-- end: page -->
         </section>
     </div>
