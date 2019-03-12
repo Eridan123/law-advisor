@@ -20,6 +20,7 @@ public class CategoryController {
     @RequestMapping(value = {"/category","/category/list"})
     public String list(ModelMap model){
         
+        List<Category> categories=categoryRepository.findAll();
 
         return "/category/list";
 
