@@ -67,7 +67,13 @@ public class CategoryController {
 
     @RequestMapping(value = {"/category/{id}/delete"},method = RequestMethod.POST)
     public String delete(@PathVariable("id") Long id){
-
+        
+        if(id==0){
+        }
+        else {
+            Category category=categoryRepository.getOne(id);
+            categoryRepository.delete(category);
+        }
         
     }
 
