@@ -34,5 +34,11 @@ public class CategoryController {
         model.addAttribute("category", form);
         return "newCategory";
     }
+    
+    @RequestMapping(value = {"/category/{id}/save"})
+    public String getSave(ModelMap model, @PathVariable("id") Long id){
+
+        
+    }
 
 }
