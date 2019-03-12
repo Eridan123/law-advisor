@@ -21,6 +21,8 @@ public class CategoryController {
     public String list(ModelMap model){
         
         List<Category> categories=categoryRepository.findAll();
+        
+        model.addAttribute("categories",categories);
 
         return "/category/list";
 
