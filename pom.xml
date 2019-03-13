@@ -77,6 +77,13 @@
             <!--<groupId>org.springframework.security</groupId>-->
             <!--<artifactId>spring-security-oauth2-jose</artifactId>-->
         <!--</dependency>-->
+
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
