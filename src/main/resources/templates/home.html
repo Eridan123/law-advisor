@@ -93,31 +93,37 @@
             <span class="separator"></span>
 
             <div id="userbox" class="userbox">
-                <a href="#" data-toggle="dropdown">
-                    <figure class="profile-picture">
-                        <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-                    </figure>
-                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                        <span class="name">John Doe Junior</span>
-                        <span class="role">administrator</span>
+                <div th:if="${user}!=null">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                        </figure>
+                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                            <span class="name" th:text="${user.name}+' '+${user.surname}"></span>
+                            <span class="role" th:text="${user.userType}"></span>
+                        </div>
+
+                        <i class="fa custom-caret"></i>
+                    </a>
+
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" th:href="@{/user/__${user.id}__/view}"><i class="fa fa-user"></i> My Profile</a>
+                            </li>
+                            <!--<li>-->
+                                <!--<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>-->
+                            <!--</li>-->
+                            <li>
+                                <a role="menuitem" tabindex="-1" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
+                            </li>
+                        </ul>
                     </div>
-
-                    <i class="fa custom-caret"></i>
-                </a>
-
-                <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                        <li class="divider"></li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
-                        </li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-                        </li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
-                        </li>
-                    </ul>
+                </div>
+                <div th:unless="${user}!=null">
+                    <a th:href="@{/login}" type="button" class="btn btn-success" >Login</a>
+                    <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a>
                 </div>
             </div>
         </div>
@@ -143,19 +149,19 @@
                     <nav id="menu" class="nav-main" role="navigation">
                         <ul class="nav nav-main">
                             <li>
-                                <a href="index.html">
+                                <a th:href="@{/}">
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <span>Главное</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a th:href="@{/news}">
                                     <i class="fa fa-book" aria-hidden="true"></i>
                                     <span>Новости</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="questions.html">
+                                <a th:href="@{/question/list}">
                                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                     <span>Вопросы</span>
                                 </a>
@@ -166,33 +172,33 @@
                                     <i class="fa fa-th-list" aria-hidden="true"></i>
                                     <span>Категории</span>
                                 </a>
-                                <ul class="nav nav-children">
+                                <ul class="nav nav-children" th:each="category:${categories}">
                                     <li>
-                                        <a href="forms-basic.html">
+                                        <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
                                             Административное право
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="forms-advanced.html">
-                                            Уголовное право
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Гражданское право
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Налоговое право
-                                        </a>
-                                    </li>
+                                    <!--<li>-->
+                                        <!--<a href="forms-advanced.html">-->
+                                            <!--Уголовное право-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="forms-validation.html">-->
+                                            <!--Гражданское право-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="forms-validation.html">-->
+                                            <!--Налоговое право-->
+                                        <!--</a>-->
+                                    <!--</li>-->
                                 </ul>
                             </li>
                             <li>
-                                <a href="questions.html">
+                                <a th:href="@{/aboutus}">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>Контакты</span>
+                                    <span>О нас</span>
                                 </a>
                             </li>
 
