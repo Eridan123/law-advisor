@@ -1,27 +1,56 @@
 package law.advisor.controller;
 
-import law.advisor.model.Content;
+import law.advisor.model.Category;
 import law.advisor.model.Question;
+import law.advisor.model.User;
+import law.advisor.repository.CategoryRepository;
+import law.advisor.repository.QuestionRepository;
+import law.advisor.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MainController {
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
     @RequestMapping("/")
     public String  index(ModelMap model){
-        Long l = Long.valueOf(1);
-        Question question = new Question();
-        question.setId(l);
-        question.setTitle("First title");
-        Content content = new Content();
-        content.setId(Long.valueOf(1));
-        content.setText("Hello world  how are you");
-        model.addAttribute("questions",question);
-        model.addAttribute("content", content);
-        return "home";
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=null;
+        try{
+
+            user= userRepository.findUserByUsername(auth.getName());
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        if(user!=null){
+            model.addAttribute("user",user);
+        }
+        else{
+            model.addAttribute("user",null);
+        }
+
+        List<Question> questions=questionRepository.findAll();
+        List<Category> categories=categoryRepository.findAll();
+
+        model.addAttribute("questions",questions);
+        model.addAttribute("categories",categories);
+        return "/home";
     }
 }
