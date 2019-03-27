@@ -9,6 +9,7 @@ import law.advisor.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,6 +33,9 @@ public class UserController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @RequestMapping("/signup")
     public String signup(ModelMap model){
@@ -87,19 +91,26 @@ public class UserController {
             model.addAttribute("user",user);
         }
 
-        return "/user/form";
+        return "user/form";
     }
 
     @PostMapping("/user/save")
-    public String  save(ModelMap model,User user){
+    public String  save(ModelMap model,User user,String optionsRadios){
 
-        if(user.getId()==0){
+        if (optionsRadios.equals("option1")){
+            user.setGender(1);
+        }
+        else{
+            user.setGender(2);
+        }
+        if(user.getId()==null){
+            user.setEncryted_password(bCryptPasswordEncoder.encode(user.getEncryted_password()));
             Role role=roleRepository.getOne(Long.valueOf(3));
             UserRole userRole=new UserRole();
             userRole.setRole(role);
             userRole.setUser(user);
-            userRoleRepository.save(userRole);
             userRepository.save(user);
+            userRoleRepository.save(userRole);
 
         }
 

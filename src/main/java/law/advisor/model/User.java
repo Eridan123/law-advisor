@@ -2,6 +2,7 @@ package law.advisor.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -36,6 +37,8 @@ public class User {
     @Column(columnDefinition = "varchar(20) default 'USER'")
     @Enumerated(EnumType.STRING)
     private UserType userType= UserType.USER;
+
+    private int gender;
 
     public Long getId() {
         return id;
@@ -124,5 +127,13 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }
