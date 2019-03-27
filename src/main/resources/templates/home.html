@@ -241,26 +241,26 @@
                                 </header>
                                 <div>
                                     <div class="panel-body ">
-                                        <p th:text="${content.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                        <p th:text="${question?.content?.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
                                         <div class="container">
                                             <div class="row justify-content-around">
                                                 <div class="col-xs-3 col-md-2">
                                                     <button>
                                                         <i class="fa fa-thumbs-o-up"></i>
                                                     </button>
-                                                    <label>1325</label>
+                                                    <label th:text="like"></label>
                                                 </div>
                                                 <div class="col-xs-3 col-md-2">
                                                     <button>
                                                         <i class="fa fa-thumbs-o-down"></i>
                                                     </button>
-                                                    <label>232</label>
+                                                    <label th:text="like">232</label>
                                                 </div>
                                                 <div class="col-xs-3 col-md-2">
                                                     <button>
                                                         <i class="fa fa-check-square-o"></i>
                                                     </button>
-                                                    <label>53 Answers</label>
+                                                    <label></label>
                                                 </div>
                                             </div>
                                         </div>

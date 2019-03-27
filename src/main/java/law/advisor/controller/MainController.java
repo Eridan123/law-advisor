@@ -53,4 +53,22 @@ public class MainController {
         model.addAttribute("categories",categories);
         return "/home";
     }
+
+//    return news page
+    @RequestMapping("/news")
+    public String getNewsPage(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/news";
+    }
+
+    //    return about us page
+    @RequestMapping("/aboutus")
+    public String getAboutUsPage(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/aboutus";
+}
 }
