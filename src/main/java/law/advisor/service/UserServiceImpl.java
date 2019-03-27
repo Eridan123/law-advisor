@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<LawyerRateModel> findTopLawyers(int first) {
-        String baseQuery="select answer.user_id,count(1) as num_answers\n" +
-                "from answer,user u where u.user_type='LAWYER' group by user_id order by num_answers desc limit "+first;
+        String baseQuery="select u.name, u.surname, answer.user_id,count(1) as num_answers\n" +
+                "from answer,user u where u.user_type='LAWYER' and u.id=answer.user_id group by user_id order by num_answers desc limit "+first;
         Query query=entityManager.createNativeQuery(baseQuery,LawyerRateModel.class);
         List<LawyerRateModel> lawyerRateModels=query.getResultList();
         return lawyerRateModels;
