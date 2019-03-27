@@ -78,15 +78,15 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return new StandardServletMultipartResolver();
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-//        registry.addResourceHandler("/assets/**").addResourceLocations("/static/assets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-//        registry.addResourceHandler("/javascripts/**").addResourceLocations("/static/assets/javascripts/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
-//        registry.addResourceHandler("/ajax/**").addResourceLocations("/static/assets/ajax/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
-//        registry.addResourceHandler("/vendor/**").addResourceLocations("/static/assets/vendor/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
-//        registry.addResourceHandler("/stylesheets/**").addResourceLocations("/static/assets/stylesheets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
-//    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+        registry.addResourceHandler("/assets/**").addResourceLocations("/static/assets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+        registry.addResourceHandler("/javascripts/**").addResourceLocations("/static/assets/javascripts/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+        registry.addResourceHandler("/ajax/**").addResourceLocations("/static/assets/ajax/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+        registry.addResourceHandler("/vendor/**").addResourceLocations("/static/assets/vendor/").setCacheControl(CacheControl.maxAge(1, TimeUnit.DAYS));
+        registry.addResourceHandler("/stylesheets/**").addResourceLocations("/static/assets/stylesheets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+    }
 
 }
