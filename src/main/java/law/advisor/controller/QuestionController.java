@@ -2,8 +2,11 @@ package law.advisor.controller;
 
 import law.advisor.model.Answer;
 import law.advisor.model.Question;
+import law.advisor.model.Role;
 import law.advisor.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +22,7 @@ public class QuestionController {
     @Autowired
     QuestionRepository questionRepository;
 
-    /* This function returns the page with list of questios */
+    /* This function returns the page with list of questions */
     @RequestMapping(value = {"/question","/question/list"})
     public String list(ModelMap model){
 
@@ -44,7 +47,9 @@ public class QuestionController {
 
     @RequestMapping("/question/{id}/view")
     public String viewQuestion(ModelMap model,@PathVariable("id") long id){
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Role role = (Role) auth.getAuthorities();
+        model.addAttribute("role", role);
 
         return "/question/form";
     }
