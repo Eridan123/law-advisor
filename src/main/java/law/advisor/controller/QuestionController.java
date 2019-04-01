@@ -72,4 +72,13 @@ public class QuestionController {
         }
         return "redirect: /question/"+question.getId()+"/view";
     }
+
+    @PostMapping("/question/{id}/delete")
+    public String delete(@PathVariable("id") Long id){
+
+        Question question=questionRepository.getOne(id);
+        questionRepository.delete(question);
+
+        return "redirect: /";
+    }
 }
