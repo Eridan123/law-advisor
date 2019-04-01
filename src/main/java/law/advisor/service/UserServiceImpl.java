@@ -22,6 +22,11 @@ public class UserServiceImpl implements UserService {
     EntityManager entityManager;
 
     @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }

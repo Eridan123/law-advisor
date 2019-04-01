@@ -2,133 +2,15 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <!-- Basic -->
-    <meta charset="UTF-8">
-
     <title>Online Law Consultant</title>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" th:href="@{/assets/vendor/bootstrap/css/bootstrap.css}" />
-    <link rel="stylesheet" th:href="@{/assets/vendor/font-awesome/css/font-awesome.css}" />
-    <link rel="stylesheet" th:href="@{/assets/vendor/magnific-popup/magnific-popup.css}" />
-    <link rel="stylesheet" th:href="@{/assets/vendor/bootstrap-datepicker/css/datepicker3.css}" />
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" th:href="@{/assets/stylesheets/theme.css}" />
-
-    <!-- Skin CSS -->
-    <link rel="stylesheet" th:href="@{/assets/stylesheets/skins/default.css}" />
-
-    <!-- Theme Custom CSS -->
-    <link rel="stylesheet" th:href="@{/assets/stylesheets/theme-custom.css}">
-
-    <!-- Head Libs -->
-    <script th:src="@{/assets/vendor/modernizr/modernizr.js}"></script>
+    <div th:replace="fragment/header :: header-css"/>
 
 </head>
 <body>
 <section class="body">
 
     <!-- start: header -->
-    <header class="header">
-        <div class="logo-container">
-            <a href="" class="logo">
-                <img th:src="@{/assets/images/logo2.png}" height="35" alt="Porto Admin" />
-            </a>
-            <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
-                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-            </div>
-        </div>
-
-        <!-- start: search & user box -->
-        <div class="header-right">
-
-            <form action="pages-search-results.html" class="search nav-form">
-                <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              </span>
-                </div>
-            </form>
-
-            <span class="separator"></span>
-
-            <button type="button" class="btn btn-success" data-toggle="modal"
-                    data-target="#askQuestionModal">Ask question</button>
-
-            <!-- Ask Question Modal -->
-            <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/action_page.php">
-                                Subject:<br>
-                                <input type="text" name="subject" class="form-control" placeholder="Type subject..." required/><br>
-                                Question:<br>
-                                <textarea rows="5" class="form-control" placeholder="Type your question..." required></textarea><br>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Ask Question Modal End -->
-
-            <span class="separator"></span>
-
-            <div id="userbox" class="userbox">
-                <div th:if="${user}!=null">
-                    <a href="#" data-toggle="dropdown">
-                        <figure class="profile-picture">
-                            <img th:src="@{/assets/images/!logged-user.jpg}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-                        </figure>
-                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                            <span class="name" th:text="${user.name}+' '+${user.surname}"></span>
-                            <span class="role" th:text="${user.userType}"></span>
-                        </div>
-
-                        <i class="fa custom-caret"></i>
-                    </a>
-
-                    <div class="dropdown-menu">
-                        <ul class="list-unstyled">
-                            <li class="divider"></li>
-                            <li>
-                                <a role="menuitem" tabindex="-1" th:href="@{/user/__${user.id}__/view}"><i class="fa fa-user"></i> My Profile</a>
-                            </li>
-                            <!--<li>-->
-                            <!--<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>-->
-                            <!--</li>-->
-                            <li>
-                                <a role="menuitem" tabindex="-1" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div th:unless="${user}!=null">
-                    <a th:href="@{/login}" type="button" class="btn btn-success" >Login</a>
-                    <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a>
-                </div>
-            </div>
-        </div>
-        <!-- end: search & user box -->
-    </header>
+    <div th:replace="layout/header"/>
     <!-- end: header -->
 
     <div class="inner-wrapper">

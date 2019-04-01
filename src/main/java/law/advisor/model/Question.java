@@ -2,10 +2,38 @@ package law.advisor.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "question")
 public class Question {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String title;
+
+    private Date date;
+
+    private int status;
+
+    @ManyToOne
+    @JoinColumn(name="category_id", nullable=true)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="content_id")
+    private Content content;
+
+    @OneToMany
+    @JoinColumn(name = "question_id") // we need to duplicate the physical information
+    private Set<Answer> answers;
 
     public Long getId() {
         return id;
@@ -55,21 +83,19 @@ public class Question {
         this.user = user;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    public Content getContent() {
+        return content;
+    }
 
-    private String title;
+    public void setContent(Content content) {
+        this.content = content;
+    }
 
-    private Date date;
+    public Set<Answer> getAnswers() {
+        return answers;
+    }
 
-    private int status;
-
-    @ManyToOne
-    @JoinColumn(name="category_id", nullable=true)
-    private Category category;
-
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
+    public void setAnswers(Set<Answer> answers) {
+        this.answers = answers;
+    }
 }

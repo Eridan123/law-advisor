@@ -1,0 +1,63 @@
+<!-- start: sidebar -->
+<aside id="sidebar-left" class="sidebar-left" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            Navigation
+        </div>
+        <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+            <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li>
+                        <a th:href="@{/}">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <span>Главное</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/news}">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <span>Новости</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="@{/question/list}">
+                            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                            <span>Вопросы</span>
+                        </a>
+                    </li>
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa fa-th-list" aria-hidden="true"></i>
+                            <span>Категории</span>
+                        </a>
+                        <ul class="nav nav-children" th:each="category:${@categoryService.findAll()}">
+                            <li>
+                                <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
+                                    Административное право
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a th:href="@{/aboutus}">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span>О нас</span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+        </div>
+    </div>
+</aside>
+<!-- end: sidebar -->
