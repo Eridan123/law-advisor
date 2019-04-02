@@ -55,7 +55,7 @@
         <span class="separator"></span>
 
         <div id="userbox" class="userbox">
-            <div th:if="${user}!=null">
+            <div th:if="${@userService.findUserByUsername(#authentication.name)}!=null">
                 <a href="#" data-toggle="dropdown">
                     <figure class="profile-picture">
                         <img th:src="@{/assets/images/!logged-user.jpg}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
@@ -85,7 +85,7 @@
                     </ul>
                 </div>
             </div>
-            <div th:unless="${user}!=null">
+            <div th:unless="${@userService.findUserByUsername(#authentication.name)}!=null">
                 <a th:href="@{/login}" type="button" class="btn btn-success" >Login</a>
                 <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a>
             </div>
