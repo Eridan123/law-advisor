@@ -51,8 +51,9 @@ public class QuestionController {
         Role role = (Role) auth.getAuthorities();
         model.addAttribute("role", role);
 
-        return "/question/form";
+        return "/question/view";
     }
+
 
     @RequestMapping("/question/{id}/save")
     public String addQuestion(ModelMap model,@PathVariable("id") long id){
