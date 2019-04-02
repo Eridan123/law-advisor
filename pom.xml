@@ -52,8 +52,8 @@
             <scope>test</scope>
             <exclusions>
               <exclusion>
-                       <artifactId></artifactId>
-                       <groupId>junit</groupId>
+                       <artifactId>hamcrest-core</artifactId>
+                       <groupId>org.hamcrest</groupId>
               </exclusion>
             </exclusions>
         </dependency>
