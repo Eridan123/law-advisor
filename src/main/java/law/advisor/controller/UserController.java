@@ -125,7 +125,7 @@ public class UserController {
             userRepository.save(user1);
         }
 
-        return "redirect : /user/"+user.getId()+"/view";
+        return "redirect:/user/"+user.getId()+"/view";
     }
 
     @PostMapping("/user/{id}/delete")
@@ -135,6 +135,6 @@ public class UserController {
         userRepository.delete(user);
 
         model.addAttribute("success","Account successfully deleted");
-        return "redirect: /";
+        return "redirect:/";
     }
 }

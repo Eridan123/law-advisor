@@ -126,7 +126,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                    <input name="username" type="text" class="form-control" placeholder="Username">
+                                    <input name="username" type="text" class="form-control" placeholder="Username" th:value="${user.username}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
@@ -144,30 +144,30 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input name="email" type="email" class="form-control" placeholder="Email">
+                                    <input name="email" type="email" class="form-control" placeholder="Email" th:value="${user.email}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                    <input name="name" type="text" class="form-control" placeholder="Name">
+                                    <input name="name" type="text" class="form-control" placeholder="Name" th:value="${user.name}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                    <input name="surname" type="text" class="form-control" placeholder="Surname">
+                                    <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="${user.name}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-mobile"></i>
                                     </span>
-                                    <input name="phone_number" type="text" class="form-control" placeholder="Phone number">
+                                    <input name="phone_number" type="text" class="form-control" placeholder="Phone number" th:value="${user.phone_number}" >
                                 </div>
                                 <div class="col-md-6">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"  checked="">
                                             Male
                                         </label>
                                     </div>

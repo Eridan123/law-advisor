@@ -16,86 +16,171 @@
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-        <aside id="sidebar-left" class="sidebar-left">
-
-            <div class="sidebar-header">
-                <div class="sidebar-title">
-                    Navigation
-                </div>
-                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
-
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
-                        <ul class="nav nav-main">
-                            <li>
-                                <a th:href="@{/}">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Главное</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a th:href="@{/news}">
-                                    <i class="fa fa-book" aria-hidden="true"></i>
-                                    <span>Новости</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a th:href="@{/question/list}">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    <span>Вопросы</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-th-list" aria-hidden="true"></i>
-                                    <span>Категории</span>
-                                </a>
-                                <ul class="nav nav-children" th:each="category:${categories}">
-                                    <li>
-                                        <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
-                                            Административное право
-                                        </a>
-                                    </li>
-                                    <!--<li>-->
-                                    <!--<a href="forms-advanced.html">-->
-                                    <!--Уголовное право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                    <!--<a href="forms-validation.html">-->
-                                    <!--Гражданское право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                    <!--<a href="forms-validation.html">-->
-                                    <!--Налоговое право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                </ul>
-                            </li>
-                            <li>
-                                <a th:href="@{/aboutus}">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>О нас</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </nav>
-
-                    <hr class="separator" />
-                </div>
-            </div>
-        </aside>
+        <div th:replace="layout/sidebar"/>
         <!-- end: sidebar -->
+        <!--start content-->
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>Widgets</h2>
 
-        <form th:action="@{/user/__${user.id}__/delete}" method="post"><button class="btn btn-danger">Delete my account</button></form>
+                <div class="right-wrapper pull-right">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a href="index.html">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li><span>UI Elements</span></li>
+                        <li><span>Widgets</span></li>
+                    </ol>
+
+                    <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <h3 class="mt-none" th:text="${user.username}"></h3>
+            <p th:text="${user.userType}"></p>
+
+            <div class="row">
+                <!--<div class="col-md-6 col-lg-6 col-xl-6">-->
+                    <h5 class="text-semibold text-dark text-uppercase mb-md mt-lg">User Profile</h5>
+
+
+                    <section class="panel panel-featured-left panel-featured-quartenary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-quartenary">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <h4 class="title">Name Surname:</h4>
+                                        <div class="info">
+                                            <strong class="amount" th:text="${user.name}+' '+${user.surname}"></strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary">
+                                        <h4 class="title">Email:</h4>
+                                        <div class="info">
+                                            <strong class="amount" th:text="${user.email}"></strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary">
+                                        <h4 class="title">Phone Number:</h4>
+                                        <div class="info">
+                                            <strong class="amount" th:text="${user.phone_number}"></strong>
+                                        </div>
+                                    </div>
+             <div class="summary-footer">
+                                        <a class="text-muted text-uppercase" th:href="@{/user/__${user.id}__/save}">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                <section class="panel panel-featured-left panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary widget-summary-md">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-life-ring"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h6 class="title">Support Questions</h6>
+                                    <div class="info">
+                                        <strong class="amount">1281</strong>
+                                        <span class="text-primary">(14 unread)</span>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="col-md-12 col-lg-12 col-xl-6">
+                    <div class="row">
+
+                        <div class="col-md-4 col-xl-3">
+                            <section class="panel">
+                                <form th:action="@{/user/__${user.id}__/delete}" METHOD="post">
+                                    <div class="widget-summary widget-summary-sm">
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-danger">DELETE ACCOUNT</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<h3 class="mt-lg">Content Widgets</h3>-->
+            <!--<p class="mb-lg">Content Widgets are perfect to show text information.</p>-->
+
+
+            <div class="row">
+                <!--<div class="col-md-12 col-lg-6">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-12">-->
+                            <!--<h3 class="mt-lg">User Widgets</h3>-->
+                            <!--<p class="mb-lg">Widgets for user actions.</p>-->
+
+                            <!--<section class="panel-group mb-xlg">-->
+                                <!--<div class="widget-twitter-profile">-->
+                                    <!--<div class="top-image">-->
+                                        <!--<img src="assets/images/widget-twitter-profile.jpg" alt="">-->
+                                    <!--</div>-->
+                                    <!--<div class="profile-info">-->
+                                        <!--<div class="profile-picture">-->
+                                            <!--<img src="assets/images/!logged-user.jpg" alt="">-->
+                                        <!--</div>-->
+                                        <!--<div class="profile-account">-->
+                                            <!--<h3 class="name text-semibold">John Doe</h3>-->
+                                            <!--<a href="#" class="account">@oklerthemes</a>-->
+                                        <!--</div>-->
+                                        <!--<ul class="profile-stats">-->
+                                            <!--<li>-->
+                                                <!--<h5 class="stat text-uppercase">Tweets</h5>-->
+                                                <!--<h4 class="count">60</h4>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<h5 class="stat text-uppercase">Following</h5>-->
+                                                <!--<h4 class="count">139</h4>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<h5 class="stat text-uppercase">Followers</h5>-->
+                                                <!--<h4 class="count">38</h4>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                    <!--<div class="profile-quote">-->
+                                        <!--<blockquote>-->
+                                            <!--<p>-->
+                                                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus consectetur aliquet. Curabitur tincidunt convallis mi, ac elementum purus bibendum vitae.-->
+                                            <!--</p>-->
+                                        <!--</blockquote>-->
+                                        <!--<div class="quote-footer">-->
+                                            <!--<span class="datetime">4:27 PM - 15 Jul 2014</span>-->
+                                            <!-- - -->
+                                            <!--<a href="#">Details</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</section>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <!-- end: page -->
+        </section>
+        <!--end content-->
     </div>
 
 
