@@ -190,7 +190,7 @@
     },
     map: { attrs: { name: null } },
     mark: s,
-    menu: { attrs: { label: null, type: ["list", "context", "toolbar"] } },
+    menu: { attrs: { label: null, type: ["templates.question.list", "context", "toolbar"] } },
     meta: {
       attrs: {
         content: null,

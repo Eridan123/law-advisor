@@ -192,7 +192,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
         state.taskList = true;
       }
       state.f = state.inline;
-      if (modeCfg.highlightFormatting) state.formatting = ["list", "list-" + listType];
+      if (modeCfg.highlightFormatting) state.formatting = ["templates.question.list", "list-" + listType];
       return getType(state);
     } else if (modeCfg.fencedCodeBlocks && stream.match(/^```([\w+#]*)/, true)) {
       // try switching mode
