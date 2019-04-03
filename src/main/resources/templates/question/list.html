@@ -7,198 +7,17 @@
 
     <title>Default Layout | Okler Themes | Porto-Admin</title>
     <div th:replace="fragment/header :: header-css"/>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
-    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
-
-    <!-- Skin CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
-
-    <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
-
-    <!-- Head Libs -->
-    <script src="assets/vendor/modernizr/modernizr.js"></script>
-
 </head>
 <body>
 <section class="body">
 
     <!-- start: header -->
     <div th:replace="layout/header"/>
-
-        <!-- start: search & user box -->
-        <div class="header-right">
-            <div th:replace="layout/sidebar"/>
-
-            <form action="pages-search-results.html" class="search nav-form">
-                <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
-                    <span class="input-group-btn">
-								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-							</span>
-                </div>
-            </form>
-
-            <span class="separator"></span>
-
-            <button type="button" class="btn btn-success" data-toggle="modal"
-                    data-target="#askQuestionModal">Ask question</button>
-
-            <!-- Ask Question Modal -->
-            <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/action_page.php">
-                                Subject:<br>
-                                <input type="text" name="subject" class="form-control" placeholder="Type subject..." required/><br>
-                                Question:<br>
-                                <textarea rows="5" class="form-control" placeholder="Type your question..." required></textarea><br>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Ask Question Modal End -->
-
-            <span class="separator"></span>
-
-            <div id="userbox" class="userbox">
-                <a href="#" data-toggle="dropdown">
-                    <figure class="profile-picture">
-                        <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-                    </figure>
-                    <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                        <span class="name">John Doe Junior</span>
-                        <span class="role">administrator</span>
-                    </div>
-
-                    <i class="fa custom-caret"></i>
-                </a>
-
-                <div class="dropdown-menu">
-                    <ul class="list-unstyled">
-                        <li class="divider"></li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a>
-                        </li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
-                        </li>
-                        <li>
-                            <a role="menuitem" tabindex="-1" href="pages-signin.html"><i class="fa fa-power-off"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- end: search & user box -->
-    </header>
     <!-- end: header -->
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-        <aside id="sidebar-left" class="sidebar-left">
-
-            <div class="sidebar-header">
-                <div class="sidebar-title">
-                    Navigation
-                </div>
-                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
-
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
-                        <ul class="nav nav-main">
-                            <li>
-                                <a href="index.html">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html">
-                                    <i class="fa fa-book" aria-hidden="true"></i>
-                                    <span>News</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="questions.html">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    <span>Questions</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-th-list" aria-hidden="true"></i>
-                                    <span>Categories</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        <a href="forms-basic.html">
-                                            Administrativnoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-advanced.html">
-                                            Ugolovnoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Grajdanskoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Nalogovoe pravo
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="questions.html">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>Contacts</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </nav>
-
-                    <hr class="separator" />
-                </div>
-            </div>
-
-        </aside>
+        <div th:replace="layout/sidebar"/>
         <!-- end: sidebar -->
 
         <section role="main" class="content-body">
@@ -218,7 +37,7 @@
             <ul style="list-style-type: none;">
                 <li>
                     <div class="row">
-                        <div class="col-xs-12 col-md-12" >
+                        <div class="col-xs-12 col-md-12" th:each="question:${questions}">
                             <section class="panel panel-featured panel-featured-primary">
                                 <header class="panel-heading">
                                     <div class="panel-actions">
@@ -226,11 +45,11 @@
                                         <a href="#" class="fa fa-times"></a>
                                     </div>
 
-                                    <h2 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
+                                    <h2 class="panel-title" th:text="${question.title}"></h2>
                                 </header>
                                 <div>
                                     <div class="panel-body ">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                        <p th:text="${question.content.text}"></p>
                                         <div class="container">
                                             <div class="row justify-content-around">
                                                 <div class="col-xs-3 col-md-2">
@@ -251,177 +70,11 @@
                                                     </button>
                                                     <label for="">53 Answers</label>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel panel-featured panel-featured-primary">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
-
-                                    <h2 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
                                                 <div class="col-xs-3 col-md-2">
                                                     <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
+                                                        <i class="fa fa-calendar-o"></i>
                                                     </button>
-                                                    <label for="">1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label for="">232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label for="">53 Answers</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel panel-featured panel-featured-primary">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
-
-                                    <h2 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                    <label for="">1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label for="">232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label for="">53 Answers</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel panel-featured panel-featured-primary">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
-
-                                    <h2 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                    <label for="">1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label for="">232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label for="">53 Answers</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel panel-featured panel-featured-primary">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
-
-                                    <h2 class="panel-title">Lorem ipsum dolor sit amet, consectetur adipisicing.</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                    <label for="">1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label for="">232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label for="">53 Answers</label>
+                                                    <label th:text="${#dates.format(question.date,'dd-MM-yyyy')}"></label>
                                                 </div>
                                             </div>
                                         </div>
