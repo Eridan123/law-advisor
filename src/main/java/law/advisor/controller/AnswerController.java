@@ -1,13 +1,23 @@
 package law.advisor.controller;
 
 import law.advisor.model.Answer;
+import law.advisor.model.Content;
+import law.advisor.model.Question;
+import law.advisor.model.User;
 import law.advisor.repository.AnswerRepository;
+import law.advisor.repository.ContentRepository;
+import law.advisor.repository.QuestionRepository;
+import law.advisor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Date;
 
 @Controller
 public class AnswerController {
@@ -15,14 +25,31 @@ public class AnswerController {
     @Autowired
     AnswerRepository answerRepository;
 
-    @RequestMapping("/answer/{id}/save")
-    public String addAnswer(ModelMap model, @PathVariable("id") Long id){
+    @Autowired
+    QuestionRepository questionRepository;
 
-        if(id==0 || id==null){
-            model.addAttribute("answer",new Answer());
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    ContentRepository contentRepository;
+
+    @RequestMapping("/question/{questionId}/answer/{answerId}/save")
+    public String addAnswer(ModelMap model, @PathVariable("questionId") Long questionId,
+                            @PathVariable("answerId") Long answerId){
+
+        if(answerId==0 || answerId==null){
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user=userRepository.findUserByUsername(auth.getName());
+            Question question=questionRepository.getOne(questionId);
+            Answer answer=new Answer();
+            answer.setQuestion(question);
+            answer.setDate(new Date());
+            answer.setUser(user);
+            model.addAttribute("answer",answer);
         }
-        else if(id>0){
-            Answer answer=answerRepository.getOne(id);
+        else if(answerId>0){
+            Answer answer=answerRepository.getOne(answerId);
             model.addAttribute("answer",answer);
         }
 
@@ -31,12 +58,19 @@ public class AnswerController {
     }
 
     @PostMapping("/answer/save")
-    public String saveAnswer(Answer answer){
+    public String saveAnswer(Answer answer,String content){
+
 
         if(answer.getId()==null||answer.getId()==0){
+            Content content1=new Content();
+            content1.setText(content);
+            answer.setContent(content1);
             answerRepository.save(answer);
         }
         else if(answer.getId()>0){
+            Content content1=answer.getContent();
+            content1.setText(content);
+            contentRepository.save(content1);
             answerRepository.save(answer);
         }
 

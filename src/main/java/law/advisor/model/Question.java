@@ -1,5 +1,7 @@
 package law.advisor.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -15,6 +17,9 @@ public class Question {
 
     private String title;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @Column(nullable=false)
     private Date date;
 
     private int status;
@@ -34,6 +39,10 @@ public class Question {
     @OneToMany
     @JoinColumn(name = "question_id") // we need to duplicate the physical information
     private Set<Answer> answers;
+
+//    @OneToOne
+//    @JoinColumn(name="like_id")
+//    Like like;
 
     public Long getId() {
         return id;
@@ -98,4 +107,12 @@ public class Question {
     public void setAnswers(Set<Answer> answers) {
         this.answers = answers;
     }
+
+//    public Like getLike() {
+//        return like;
+//    }
+//
+//    public void setLike(Like like) {
+//        this.like = like;
+//    }
 }

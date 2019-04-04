@@ -1,5 +1,7 @@
 package law.advisor.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,9 @@ public class Comment {
     @JoinColumn(name="content_id")
     private Content content;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    @Column(nullable=false)
     private Date date;
 
     @ManyToOne

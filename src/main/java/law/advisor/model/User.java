@@ -2,6 +2,9 @@ package law.advisor.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,6 +42,9 @@ public class User {
     private UserType userType= UserType.USER;
 
     private int gender;
+
+//    @OneToMany(mappedBy = "usera")
+//    private List<Like> likes;
 
     public Long getId() {
         return id;
@@ -136,4 +142,12 @@ public class User {
     public void setGender(int gender) {
         this.gender = gender;
     }
+
+//    public List<Like> getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(List<Like> likes) {
+//        this.likes = likes;
+//    }
 }
