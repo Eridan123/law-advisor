@@ -296,7 +296,7 @@
                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-primary">Submit</button>
                 </div>
             </div>
-            <div class="m-none" id = "answerbutton" th:if="${}">
+            <div class="m-none" id = "answerbutton" th:if="${role == 'LAWYER'}">
                 <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-primary" onclick = "answerForm()">Give Answer</button>
             </div>
 
