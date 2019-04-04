@@ -1,0 +1,52 @@
+<ul style="list-style-type: none;" xmlns:th="http://www.w3.org/1999/xhtml">
+    <li>
+        <div class="row">
+            <div class="col-xs-12 col-md-12" th:each="question:${questions}">
+                <section class="panel panel-featured panel-featured-primary">
+                    <header class="panel-heading">
+                        <div class="panel-actions">
+                            <a href="#" class="fa fa-caret-down"></a>
+                            <a href="#" class="fa fa-times"></a>
+                        </div>
+
+                        <h2 class="panel-title" th:text="${question.title}"></h2>
+                    </header>
+                    <div>
+                        <div class="panel-body ">
+                            <p th:text="${question.content.text}"></p>
+                            <div class="container">
+                                <div class="row justify-content-around">
+                                    <div class="col-xs-3 col-md-2">
+                                        <button>
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                        </button>
+                                        <label for="">1325</label>
+                                    </div>
+                                    <div class="col-xs-3 col-md-2">
+                                        <button>
+                                            <i class="fa fa-thumbs-o-down"></i>
+                                        </button>
+                                        <label for="">232</label>
+                                    </div>
+                                    <div class="col-xs-3 col-md-2">
+                                        <button>
+                                            <i class="fa fa-check-square-o"></i>
+                                        </button>
+                                        <label for="">53 Answers</label>
+                                    </div>
+                                    <div class="col-xs-3 col-md-2">
+                                        <button>
+                                            <i class="fa fa-calendar-o"></i>
+                                        </button>
+                                        <label th:text="${#dates.format(question.date,'dd-MM-yyyy')}"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </li>
+
+</ul>

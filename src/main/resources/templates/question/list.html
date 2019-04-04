@@ -23,78 +23,22 @@
         <section role="main" class="content-body">
             <header class="page-header">
                 <h2>Questions</h2>
-
-                <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
-                    <button type="button" class="btn btn-secondary">All questions</button>
-                    <button type="button" class="btn btn-secondary">Most Liked</button>
-                    <button type="button" class="btn btn-secondary">Newest</button>
-                    <button type="button" class="btn btn-secondary">Unanswered</button>
+                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="catSearch" placeholder="Search...">
+                        <span class="input-group-btn">
+              </span>
+                    </div>
+                    <!--<button type="button" class="btn btn-secondary">Все вопросы</button>-->
+                    <!--<button type="button" class="btn btn-secondary">Most Liked</button>-->
+                    <!--<button type="button" class="btn btn-secondary">Newest</button>-->
+                    <!--<button type="button" class="btn btn-secondary">Unanswered</button>-->
 
                 </div>
             </header>
 
             <!-- start: page -->
-            <form action="pages-search-results.html" class="search nav-form">
-                <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              </span>
-                </div>
-            </form>
-            <div><span class="separator"><br></span></div>
-            <ul style="list-style-type: none;">
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" th:each="question:${questions}">
-                            <section class="panel panel-featured panel-featured-primary">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
-
-                                    <h2 class="panel-title" th:text="${question.title}"></h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p th:text="${question.content.text}"></p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                    <label for="">1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label for="">232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label for="">53 Answers</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-calendar-o"></i>
-                                                    </button>
-                                                    <label th:text="${#dates.format(question.date,'dd-MM-yyyy')}"></label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
+            <div id="content"></div>
             <!-- end: page -->
         </section>
     </div>
@@ -119,6 +63,40 @@
     <!-- Theme Initialization Files -->
     <script th:src="@{/assets/javascripts/theme.init.js}"></script>
 
+    <script th:inline="javascript">
+        var catId=[[${categoryId}]];
+        var str=$("#catSearch").val();
+        if($("#catSearch").val()==""){
+            str=" ";
+        }
+        var sUrl;
+        if(catId==null){
+            sUrl ="/question/"+str+"/search";
+        }
+        else {
+            sUrl ="/question/category/"+catId+"/"+str+"/search";
+        }
+
+        $("#catSearch").on("input",function () {
+            var str=$("#catSearch").val();
+            if($("#catSearch").val()==""){
+                str=" ";
+            }
+            if(catId==null){
+                sUrl ="/question/"+str+"/search";
+            }
+            else{
+                sUrl ="/question/category/"+catId+"/"+str+"/search";
+            }
+            $.get(sUrl, function(data) {
+                $('#content').html(data);
+            });
+        });
+
+        $.get(sUrl, function(data) {
+            $('#content').html(data);
+        });
+    </script>
 </section>
 </body>
 <!-- Footer -->
