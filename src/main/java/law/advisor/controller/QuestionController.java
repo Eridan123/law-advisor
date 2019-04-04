@@ -1,9 +1,9 @@
 package law.advisor.controller;
 
-import law.advisor.model.Answer;
-import law.advisor.model.Question;
-import law.advisor.model.Role;
+import law.advisor.model.*;
+import law.advisor.repository.ContentRepository;
 import law.advisor.repository.QuestionRepository;
+import law.advisor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,12 @@ public class QuestionController {
 
     @Autowired
     QuestionRepository questionRepository;
+
+    @Autowired
+    ContentRepository contentRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     /* This function returns the page with list of questions */
     @RequestMapping(value = {"/question","/question/list"})
@@ -59,7 +66,14 @@ public class QuestionController {
     public String addQuestion(ModelMap model,@PathVariable("id") long id){
 
         if(id==0){
-            model.addAttribute("question",new Question());
+
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user=userRepository.findUserByUsername(auth.getName());
+
+            Question question=new Question();
+            question.setDate(new Date());
+            question.setUser(user);
+            model.addAttribute("question",question);
         }
         else{
             model.addAttribute("question",questionRepository.getOne(id));
@@ -68,12 +82,17 @@ public class QuestionController {
     }
 
     @PostMapping("/question/save")
-    public String saveQuestion(Question question){
+    public String saveQuestion(Question question, Content content){
 
         if(question.getId()==null){
+            contentRepository.save(content);
+            question.setContent(content);
             questionRepository.save(question);
         }
         else if(question.getId()>0){
+            Content content1=contentRepository.getOne(content.getId());
+            content1.setText(content.getText());
+            contentRepository.save(content1);
             questionRepository.save(question);
         }
         return "redirect: /question/"+question.getId()+"/view";
