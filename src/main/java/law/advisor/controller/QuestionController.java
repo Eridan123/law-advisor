@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -52,12 +54,17 @@ public class QuestionController {
         return "/question/list";
     }
 
-    @RequestMapping("/question/{id}/view")
-    public String viewQuestion(ModelMap model,@PathVariable("id") long id){
+    @RequestMapping("/question/view")
+    public String viewQuestion(ModelMap model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Role role = (Role) auth.getAuthorities();
-        model.addAttribute("role", role);
+        Object principal = auth.getPrincipal();
+        String username = principal.toString();
 
+        User user = userRepository.findUserByUsername(username);
+
+        UserType userType = user.getUserType();
+        String role = userType.toString();
+        model.addAttribute("role", role);
         return "/question/view";
     }
 
