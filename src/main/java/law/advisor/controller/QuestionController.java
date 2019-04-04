@@ -64,6 +64,7 @@ public class QuestionController {
 
         UserType userType = user.getUserType();
         String role = userType.toString();
+
         model.addAttribute("role", role);
         return "/question/view";
     }
