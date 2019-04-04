@@ -58,18 +58,17 @@ public class AnswerController {
     }
 
     @PostMapping("/answer/save")
-    public String saveAnswer(Answer answer,String content){
+    public String saveAnswer(Answer answer,Content content){
 
 
         if(answer.getId()==null||answer.getId()==0){
-            Content content1=new Content();
-            content1.setText(content);
-            answer.setContent(content1);
+            contentRepository.save(content);
+            answer.setContent(content);
             answerRepository.save(answer);
         }
         else if(answer.getId()>0){
-            Content content1=answer.getContent();
-            content1.setText(content);
+            Content content1=contentRepository.getOne(content.getId());
+            content1.setText(content.getText());
             contentRepository.save(content1);
             answerRepository.save(answer);
         }
