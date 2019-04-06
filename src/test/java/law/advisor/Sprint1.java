@@ -200,4 +200,18 @@ public class Sprint1 {
             return false;
         }
     }
+    
+    /*Logout Test*/
+    public static boolean logout(WebDriver driver){
+        login(driver);
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[3]/a")).click();
+        if(driver.getCurrentUrl().contentEquals(baseURL)){
+            System.out.println(1);
+            return true;
+        } else {
+            System.out.println(0);
+            return false;
+        }
+    }
 }
