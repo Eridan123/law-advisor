@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Online Law Consultant Category/title>
+    <title>Online Law Consultant Category</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -214,7 +214,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Category</h2>
+                <h2>Top Lawyers</h2>
 
                 <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
                     <button type="button" class="btn btn-secondary">Все вопросы</button>
@@ -243,15 +243,19 @@
                                     <div class="panel-body ">
                                         <table>
                                             <tr>
-                                                <th>Category</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
-                                                <th>Add</th>
+                                                <th>Category Name </th>
+                                                <th><button style="padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px">Add</button></th>
+                                                <th><button style="padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px">Edit</button></th>
+                                                <th><button style="padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px">Delete</button></th>
+
                                             </tr>
                                             <tr th:each="lawyer:${lawyers}">
                                                 <td th:text="${lawyer.name}"><a th:href="@{/lawyer/__${lawyer.id}__/view}"></a></td>
-                                                <td th:text="${lawyer.surname}">Ibragimov</td>
-                                                <td th:text="${lawyer.num_answers}">ababakri.ibragimov@iaau.edu.kg</td>
+                                                <td th:text="${lawyer.surname}"></td>
+                                                <td th:text="${lawyer.num_answers}"></td>
 
                                             </tr>
                                         </table>
