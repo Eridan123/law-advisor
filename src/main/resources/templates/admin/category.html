@@ -250,10 +250,8 @@
                                                 <th><button style="padding-left:15px;padding-right:15px;
                                                 padding-bottom: 10px; padding-top: 10px">Delete</button></th>
                                             </tr>
-                                            <tr th:each="lawyer:${lawyers}">
-                                                <td th:text="${lawyer.name}"><a th:href="@{/lawyer/__${lawyer.id}__/view}"></a></td>
-                                                <td th:text="${lawyer.surname}"></td>
-                                                <td th:text="${lawyer.num_answers}"></td>
+                                            <tr th:each="category:${categories}">
+                                                <td th:text="${categories.name}"><a th:href="@{/category/__${category.id}__/view}"></a></td>
 
                                             </tr>
                                         </table>
