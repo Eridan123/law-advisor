@@ -68,9 +68,13 @@ public class QuestionController {
 
     @RequestMapping("/question/{id}/view")
     public String viewQuestion(ModelMap model,@PathVariable("id") Long id){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByUsername(auth.getName());
+        String role = user.getUserType().toString();
 
         Question question=questionRepository.getOne(id);
 
+        model.addAttribute("role", role);
         model.addAttribute("question",question);
         return "/question/view";
     }
