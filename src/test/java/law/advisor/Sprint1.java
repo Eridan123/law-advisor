@@ -168,4 +168,19 @@ public class Sprint1 {
             return false;
         }
     }
+    
+    /*Delete Account Test*/
+    public static boolean deleteAcc(WebDriver driver){
+        login(driver);
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[2]/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div[1]/div/div/div/section/form/div/button")).click();
+        if(driver.getCurrentUrl().contentEquals(baseURL)){
+            System.out.println(1);
+            return true;
+        } else {
+            System.out.println(0);
+            return false;
+        }
+    }
 }
