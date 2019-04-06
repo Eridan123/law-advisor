@@ -154,4 +154,18 @@ public class Sprint1 {
             return false;
         }
     }
+    
+    /*Copyright Test*/
+    public static boolean copyright(WebDriver driver, String url){
+        driver.get(url);
+        String expectedCopy = ":copyright: Copyright 2019 - All Rights Reserved";
+        String actualCopy = driver.findElement(By.xpath("/html/body/footer/div")).getText();
+        if(actualCopy.contentEquals(expectedCopy)){
+            System.out.println(1);
+            return true;
+        } else {
+            System.out.println(0);
+            return false;
+        }
+    }
 }
