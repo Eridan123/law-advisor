@@ -2,38 +2,8 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <!-- Basic -->
-    <meta charset="UTF-8">
-
-    <title>Default Layout | Okler Themes | Porto-Admin</title>
+    <title>Question View</title>
     <div th:replace="fragment/header :: header-css"/>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
-    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
-
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
-
-    <!-- Skin CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
-
-    <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
-
-    <!-- Head Libs -->
-    <script src="assets/vendor/modernizr/modernizr.js"></script>
 
     <script>
         function answerForm(){
@@ -55,8 +25,6 @@
 
     <!-- start: search & user box -->
     <div class="header-right">
-        <div th:replace="layout/sidebar"/>
-
         <form action="pages-search-results.html" class="search nav-form">
             <div class="input-group input-search">
                 <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
@@ -100,7 +68,7 @@
         <div id="userbox" class="userbox">
             <a href="#" data-toggle="dropdown">
                 <figure class="profile-picture">
-                    <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+                    <img th:src="@{/assets/images/!logged-user.jpg}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
                 </figure>
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                     <span class="name">John Doe Junior</span>
@@ -132,82 +100,7 @@
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-        <aside id="sidebar-left" class="sidebar-left">
-
-            <div class="sidebar-header">
-                <div class="sidebar-title">
-                    Navigation
-                </div>
-                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
-
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
-                        <ul class="nav nav-main">
-                            <li>
-                                <a href="index.html">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.html">
-                                    <i class="fa fa-book" aria-hidden="true"></i>
-                                    <span>News</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="questions.html">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    <span>Questions</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-th-list" aria-hidden="true"></i>
-                                    <span>Categories</span>
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        <a href="forms-basic.html">
-                                            Administrativnoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-advanced.html">
-                                            Ugolovnoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Grajdanskoe pravo
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            Nalogovoe pravo
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="questions.html">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>Contacts</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </nav>
-
-                    <hr class="separator" />
-
-        </aside>
+        <div th:replace="layout/sidebar"/>
         <!-- end: sidebar -->
 
         <section role="main" class="content-body">
@@ -215,10 +108,7 @@
                 <h2>Question</h2>
 
                 <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
-                    <button type="button" class="btn btn-secondary">All questions</button>
-                    <button type="button" class="btn btn-secondary">Most Liked</button>
-                    <button type="button" class="btn btn-secondary">Newest</button>
-                    <button type="button" class="btn btn-secondary">Unanswered</button>
+
 
                 </div>
             </header>
@@ -234,31 +124,42 @@
                                 <a href="#" class="fa fa-times"></a>
                             </div>
 
-                            <h2 class="panel-title">Question</h2>
+                            <h2 class="panel-title" th:text="${question.title}">Question</h2>
                         </header>
                         <div>
                             <div class="panel-body ">
-                                <h4>Lorem ipsum dolor sit amet.</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                <p th:text="${question.content.text}"></p>
                                 <div class="container">
                                     <div class="row justify-content-around">
-                                        <div class="col-xs-3 col-md-2">
+                                        <div class="col-xs-2 col-md-2">
                                             <button>
                                                 <i class="fa fa-thumbs-o-up"></i>
                                             </button>
-                                            <label >1325</label>
+                                            <label for="">1325</label>
                                         </div>
-                                        <div class="col-xs-3 col-md-2">
+                                        <div class="col-xs-2 col-md-2">
                                             <button>
                                                 <i class="fa fa-thumbs-o-down"></i>
                                             </button>
-                                            <label >232</label>
+                                            <label for="">232</label>
                                         </div>
-                                        <div class="col-xs-3 col-md-2">
+                                        <!--<div class="col-xs-2 col-md-2">-->
+                                        <!--<button>-->
+                                        <!--<i class="fa fa-check-square-o"></i>-->
+                                        <!--</button>-->
+                                        <!--<label for="">53 Answers</label>-->
+                                        <!--</div>-->
+                                        <div class="col-xs-2 col-md-2">
                                             <button>
-                                                <i class="fa fa-check-square-o"></i>
+                                                <i class="fa fa-user"></i>
                                             </button>
-                                            <label >53 Answers</label>
+                                            <label th:text="${question.user.username}">53 Answers</label>
+                                        </div>
+                                        <div class="col-xs-2 col-md-2">
+                                            <button>
+                                                <i class="fa fa-calendar-o"></i>
+                                            </button>
+                                            <label th:text="${#dates.format(question.date,'dd-MM-yyyy')}"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -296,7 +197,7 @@
                     <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-primary">Submit</button>
                 </div>
             </div>
-            <div class="m-none" id = "answerbutton" th:if="${role == 'LAWYER'}">
+            <div class="m-none" id = "answerbutton" th:if="${question.user.userType}=='LAWYER'">
                 <button type="button" class="mb-xs mt-xs mr-xs btn btn-lg btn-primary" onclick = "answerForm()">Give Answer</button>
             </div>
 
@@ -304,128 +205,17 @@
                 <div class="col-xs-12 col-md-12" >
                     <section class="panel-featured panel-featured-success">
                         <header class="panel-heading">
-                            <div class="panel-actions">
-                                <a href="#" class="fa fa-caret-down"></a>
-                                <a href="#" class="fa fa-times"></a>
-                            </div>
 
                             <h2 class="panel-title">Answers</h2>
+                            <br>
+                            <div class="input-group input-search">
+                                <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                                <span class="input-group-btn"></span>
+                            </div>
                         </header>
 
-                        <ul style="list-style-type: none;padding:0">
-                            <li>
-                                <div>
-                                    <div class="panel-body">
-                                        <div class="col-md-1 leftSideOfTab">
-                                            <div class="row justify-content-around">
-                                                <div class="row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >1325</label>
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-around">
-                                                <div class="row row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >143</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11 rightSideOfTab">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore aliquam totam illum ut quos, maiores rem tempora autem eveniet pariatur rerum! Non accusantium fugit odit magni ducimus saepe ea sint! Reiciendis architecto atque, ipsam repudiandae rerum fugiat cupiditate illo facere.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore fugiat facilis porro minus illo reiciendis deserunt alias magni ducimus. Possimus blanditiis nulla maxime quod sapiente voluptatibus explicabo, in, dignissimos quae nemo. Rerum consequuntur amet iste illum pariatur. Expedita porro eaque, aspernatur sit nulla voluptatem. Officia corporis repellat, totam incidunt quae.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr>
-                            <li>
-                                <div>
-                                    <div class="panel-body">
-                                        <div class="col-md-1 leftSideOfTab">
-                                            <div class="row justify-content-around">
-                                                <div class="row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >1325</label>
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-around">
-                                                <div class="row row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >143</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11 rightSideOfTab">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore aliquam totam illum ut quos, maiores rem tempora autem eveniet pariatur rerum! Non accusantium fugit odit magni ducimus saepe ea sint! Reiciendis architecto atque, ipsam repudiandae rerum fugiat cupiditate illo facere.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore fugiat facilis porro minus illo reiciendis deserunt alias magni ducimus. Possimus blanditiis nulla maxime quod sapiente voluptatibus explicabo, in, dignissimos quae nemo. Rerum consequuntur amet iste illum pariatur. Expedita porro eaque, aspernatur sit nulla voluptatem. Officia corporis repellat, totam incidunt quae.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr>
-                            <li>
-                                <div>
-                                    <div class="panel-body">
-                                        <div class="col-md-1 leftSideOfTab">
-                                            <div class="row justify-content-around">
-                                                <div class="row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >1325</label>
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-around">
-                                                <div class="row row center-block">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="row center-block">
-                                                    <label >143</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-11 rightSideOfTab">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore aliquam totam illum ut quos, maiores rem tempora autem eveniet pariatur rerum! Non accusantium fugit odit magni ducimus saepe ea sint! Reiciendis architecto atque, ipsam repudiandae rerum fugiat cupiditate illo facere.
-                                            </p>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore fugiat facilis porro minus illo reiciendis deserunt alias magni ducimus. Possimus blanditiis nulla maxime quod sapiente voluptatibus explicabo, in, dignissimos quae nemo. Rerum consequuntur amet iste illum pariatur. Expedita porro eaque, aspernatur sit nulla voluptatem. Officia corporis repellat, totam incidunt quae.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-
-
+                        <hr>
+                        <div id="content"></div>
                     </section>
                 </div>
             </div>
@@ -457,7 +247,30 @@
     <script th:src="@{/assets/javascripts/theme.init.js}"></script>
 
     <!-- Theme Initialization Files -->
-    <script src="assets/javascripts/theme.init.js"></script>
+    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+
+    <!--Search script for answers-->
+    <script>
+        var str=$("#search").val();
+        if($("#search").val()==""){
+            str=" ";
+        }
+        var sUrl ="/answer/"+str+"/search";
+        $("#search").on("input",function () {
+            var str=$("#search").val();
+            if($("#search").val()==""){
+                str=" ";
+            }
+            sUrl ="/answer/" +str+"/search";
+            $.get(sUrl, function(data) {
+                $('#content').html(data);
+            });
+        });
+
+        $.get(sUrl, function(data) {
+            $('#content').html(data);
+        });
+    </script>
 
 </section>
 </body>

@@ -1,0 +1,47 @@
+<ul th:each="answer:${answers}" style="list-style-type: none;padding:0"
+    xmlns:th="http://www.w3.org/1999/xhtml">
+    <li>
+        <div>
+            <div class="panel-body">
+                <div class="col-md-1 leftSideOfTab">
+                    <div class="row justify-content-around">
+                        <div class="row center-block">
+                            <button>
+                                <i class="fa fa-thumbs-o-up"></i>
+                            </button>
+                        </div>
+                        <div class="row center-block">
+                            <label >1325</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="row row center-block">
+                            <button>
+                                <i class="fa fa-thumbs-o-down"></i>
+                            </button>
+                        </div>
+                        <div class="row center-block">
+                            <label >143</label>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="row row center-block">
+                            <button>
+                                <i class="fa fa-child"></i>
+                            </button>
+                        </div>
+                        <div class="row center-block">
+                            <label th:text="${answer.user.username}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-11 rightSideOfTab">
+                    <h4 th:text="${answer.content.text}">
+
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </li>
+    <hr>
+</ul>

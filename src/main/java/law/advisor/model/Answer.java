@@ -20,11 +20,11 @@ public class Answer {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=true)
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="question_id", nullable=true)
+    @JoinColumn(name="question_id", nullable=false)
     private Question question;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
     EntityManager entityManager;
 
     @Override
+    public User findById(Long id) {
+        return userRepository.getOne(id);
+    }
+
+    @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }

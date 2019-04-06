@@ -13,14 +13,21 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AnswerController {
+
+    @Autowired
+    EntityManager entityManager;
 
     @Autowired
     AnswerRepository answerRepository;
@@ -83,6 +90,23 @@ public class AnswerController {
         Long questionId=answer.getQuestion().getId();
         answerRepository.delete(answer);
         return "redirect: /question/"+questionId+"/view";
+    }
+
+    @GetMapping("/answer/{searchStr}/search")
+    public String search(ModelMap model,@PathVariable("searchStr") String searchStr){
+
+        if(searchStr.equals(" ")){
+            searchStr="";
+        }
+
+        String baseQuery="select answer.*\n" +
+                "from answer, content c where c.text  like '%"+searchStr+"%'";
+        Query query=entityManager.createNativeQuery(baseQuery,Answer.class);
+        List<Answer> answers=query.getResultList();
+
+        model.addAttribute("answers",answers);
+
+        return "/question/answers";
     }
 
 }

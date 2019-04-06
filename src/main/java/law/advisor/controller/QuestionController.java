@@ -66,18 +66,12 @@ public class QuestionController {
         return "/question/list";
     }
 
-    @RequestMapping("/question/view")
-    public String viewQuestion(ModelMap model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = auth.getPrincipal();
-        String username = principal.toString();
+    @RequestMapping("/question/{id}/view")
+    public String viewQuestion(ModelMap model,@PathVariable("id") Long id){
 
-        User user = userRepository.findUserByUsername(username);
+        Question question=questionRepository.getOne(id);
 
-        UserType userType = user.getUserType();
-        String role = userType.toString();
-
-        model.addAttribute("role", role);
+        model.addAttribute("question",question);
         return "/question/view";
     }
 
