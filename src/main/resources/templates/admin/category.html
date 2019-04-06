@@ -243,12 +243,13 @@
                                         <table>
                                             <tr>
                                                 <th>Category Name </th>
-                                                <th><button style="padding-left:15px;padding-right:15px;
-                                                padding-bottom: 10px; padding-top: 10px"><a href="categoryAdd.html" style="text-decoration: none;">Add</a></button></th>
-                                                <th><button style="padding-left:15px;padding-right:15px;
-                                                padding-bottom: 10px; padding-top: 10px">Edit</button></th>
-                                                <th><button style="padding-left:15px;padding-right:15px;
-                                                padding-bottom: 10px; padding-top: 10px">Delete</button></th>
+                                                <th><button  style="font-size:15px;padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px; padding-left:20px;padding-right:20px; background-color: DodgerBlue; border-radius: 15px; color: white;"><a href="categoryAdd.html" style="text-decoration: none;color: white">Add</a></button></th>
+                                                
+                                                <th><button  style="font-size:15px;padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px; padding-left:20px;padding-right:20px; background-color: DodgerBlue; border-radius: 15px; color: white;">Edit</button></th>
+                                                <th><button  style="font-size:15px;padding-left:15px;padding-right:15px;
+                                                padding-bottom: 10px; padding-top: 10px; padding-left:20px;padding-right:20px; background-color: DodgerBlue; border-radius: 15px; color: white;">Delete</button></th>
                                             </tr>
                                             <tr th:each="category:${categories}">
                                                 <td th:text="${categories.name}"><a th:href="@{/category/__${category.id}__/view}"></a></td>
