@@ -183,4 +183,21 @@ public class Sprint1 {
             return false;
         }
     }
+    
+    /*Reset password Test*/
+    public static boolean resetPassword(WebDriver driver){
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
+        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[2]/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div[1]/section[1]/div/div/div[2]/div[4]/a")).click();
+        driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("newpassword");
+        driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("newpassword");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/user/31/view")){
+            System.out.println(1);
+            return true;
+        } else {
+            System.out.println(0);
+            return false;
+        }
+    }
 }
