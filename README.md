@@ -15,6 +15,7 @@
   - [Quick Start](#quick-start)
 - [Features](#features)
 - [Built With](#built-with)
+- [Tests](#tests)
 - [Contributors](#contributors)
 - [License](#license)
 
