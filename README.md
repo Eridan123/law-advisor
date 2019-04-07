@@ -10,11 +10,11 @@
 
 
 - [Description](#description)
-- [Getting Start](#gettingstart)
+- [Getting Start](#getting-start)
   - [Prerequisites](#prerequisites)
-  - [Quick Start](#quickstart)
+  - [Quick Start](#quick-start)
 - [Features](#features)
-- [Built With](#features)
+- [Built With](#built-with)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -65,10 +65,6 @@
 - JavaScript
 
 
-## How To Use?
->Some Screenshots will be here
-
-## Tests 
 
 
 
