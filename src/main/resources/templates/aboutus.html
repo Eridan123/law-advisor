@@ -32,31 +32,31 @@
                             <li>
                                 <a th:href="@{/}">
                                     <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Главное</span>
+                                    <span>Home</span>
                                 </a>
                             </li>
                             <li>
                                 <a th:href="@{/news}">
                                     <i class="fa fa-book" aria-hidden="true"></i>
-                                    <span>Новости</span>
+                                    <span>News</span>
                                 </a>
                             </li>
                             <li>
                                 <a th:href="@{/question/list}">
                                     <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    <span>Вопросы</span>
+                                    <span>Questions</span>
                                 </a>
                             </li>
 
                             <li class="nav-parent">
                                 <a>
                                     <i class="fa fa-th-list" aria-hidden="true"></i>
-                                    <span>Категории</span>
+                                    <span>Categories</span>
                                 </a>
                                 <ul class="nav nav-children" th:each="category:${categories}">
                                     <li>
                                         <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
-                                            Административное право
+                                            Administrativnoe pravo
                                         </a>
                                     </li>
                                     <!--<li>-->
@@ -79,7 +79,7 @@
                             <li>
                                 <a th:href="@{/aboutus}">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>О нас</span>
+                                    <span>About us</span>
                                 </a>
                             </li>
 
@@ -150,7 +150,20 @@
             <!-- end: page -->
             <div>
                 <h2>About us</h2>
-                <p>Lorem ipsum</p>
+                <p>The purpose of the Online Law Consultant website (OLC) is to create an online platform that helps citizens 
+                    easily get legal consulting from qualified lawyers, and as for lawyers they will be able to find new clients 
+                    and interact effectively with them. This will make the cooperation between both sides as comfortable and simple 
+                    as possible, which will allow to improve quality of the legal services in Kyrgyzstan.</p>
+                <p>Often only few citizens understand the law, their rights and sometimes even amendments to the laws contradict each
+                    other or have different interpretations. Therefore, amateurs can make many mistakes that can affect their business 
+                    for example. So they need providing of legal advice by thoroughly investigating their matters. They faced with the
+                    problems when they don't ensure if they are in right standing with the law. Therefore, Help of lawyer will save from
+                    unnecessary problems in disputes related to real estate, inheritance, contract development and much more. Anyway, 
+                    there are a number of factors that disturb free and comfortable communication between lawyers and citizens: Not all 
+                    people have enough time to search and visit a lawyer advisor. Many are not aware of this area and do not risk. 
+                    There are those who want to save money by underestimating the work of a lawyer and overestimating their capabilities.
+                    Quick and easy access to law services and information about them could significantly increase the number of people 
+                    who want to get advice, and therefore the number of people who have successfully resolved legal issues.</p>
             </div>
         </section>
     </div>
