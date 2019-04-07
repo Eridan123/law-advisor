@@ -143,83 +143,7 @@ td, th {
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-        <aside id="sidebar-left" class="sidebar-left">
-
-            <div class="sidebar-header">
-                <div class="sidebar-title">
-                    Navigation
-                </div>
-                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
-
-            <div class="nano">
-                <div class="nano-content">
-                    <nav id="menu" class="nav-main" role="navigation">
-                        <ul class="nav nav-main">
-                            <li>
-                                <a th:href="@{/}">
-                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                    <span>Главное</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a th:href="@{/news}">
-                                    <i class="fa fa-book" aria-hidden="true"></i>
-                                    <span>Новости</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a th:href="@{/question/list}">
-                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                    <span>Вопросы</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-parent">
-                                <a>
-                                    <i class="fa fa-th-list" aria-hidden="true"></i>
-                                    <span>Категории</span>
-                                </a>
-                                <ul class="nav nav-children" th:each="category:${categories}">
-                                    <li>
-                                        <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
-                                            Административное право
-                                        </a>
-                                    </li>
-                                    <!--<li>-->
-                                    <!--<a href="forms-advanced.html">-->
-                                    <!--Уголовное право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                    <!--<a href="forms-validation.html">-->
-                                    <!--Гражданское право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li>-->
-                                    <!--<a href="forms-validation.html">-->
-                                    <!--Налоговое право-->
-                                    <!--</a>-->
-                                    <!--</li>-->
-                                </ul>
-                            </li>
-                            <li>
-                                <a th:href="@{/aboutus}">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <span>О нас</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </nav>
-
-                    <hr class="separator" />
-                </div>
-            </div>
-        </aside>
+       <div th:replace="layout/sidebar"/>
         <!-- end: sidebar -->
 
         <section role="main" class="content-body">
@@ -227,7 +151,7 @@ td, th {
                 <h2>Rating Page</h2>
 
                 <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
-                    <button type="button" class="btn btn-secondary">Все вопросы</button>
+                    <button type="button" class="btn btn-secondary">All questions</button>
                     <button type="button" class="btn btn-secondary">Most Liked</button>
                     <button type="button" class="btn btn-secondary">Newest</button>
                     <button type="button" class="btn btn-secondary">Unanswered</button>
