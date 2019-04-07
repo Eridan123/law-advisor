@@ -17,30 +17,30 @@
                     <li>
                         <a th:href="@{/}">
                             <i class="fa fa-home" aria-hidden="true"></i>
-                            <span>Главное</span>
+                            <span>Home</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/news}">
                             <i class="fa fa-book" aria-hidden="true"></i>
-                            <span>Новости</span>
+                            <span>News</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/question/list}">
                             <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                            <span>Вопросы</span>
+                            <span>Questions</span>
                         </a>
                     </li>
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-th-list" aria-hidden="true"></i>
-                            <span>Категории</span>
+                            <span>Categories</span>
                         </a>
                         <ul class="nav nav-children" th:each="category:${@categoryService.findAll()}">
                             <li>
                                 <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">
-                                    Административное право
+                                    Administrativnoe pravo
                                 </a>
                             </li>
                         </ul>
@@ -48,13 +48,13 @@
                     <li>
                         <a th:href="@{/aboutus}">
                             <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span>О нас</span>
+                            <span>About us</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/reviews}">
                             <i class="fa fa-comments-o" aria-hidden="true"></i>
-                            <span>Отзывы</span>
+                            <span>Reviews</span>
                         </a>
                     </li>
 
