@@ -6,11 +6,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Sprint1 {
     static String baseURL = "http://localhost:8080/";
-    WebDriver driver=new ChromeDriver();
+    /*Open site Test*/
+    public static boolean open(WebDriver driver){
+        driver.get(baseURL);
+        if(!driver.getTitle().contentEquals("Online Law Consultant")){
+            System.out.println("title failed");
+            return false;
+        }
+        return true;
+    }
+
     /*Open Login page Test*/
     public static boolean openLogin(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
+        if(!driver.getTitle().contentEquals("Login")){
+            System.out.println("title failed");
+        }
         String expectedURL = "http://localhost:8080/login";
         String actualURL = "";
         actualURL = driver.getCurrentUrl();
@@ -19,7 +31,6 @@ public class Sprint1 {
             return true;
         } else {
             System.out.println("Failed :"+driver.getCurrentUrl());
-            System.out.println(0);
             return false;
         }
     }
@@ -30,6 +41,9 @@ public class Sprint1 {
         String actualURL = "";
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[2]")).click();
+        if(!driver.getTitle().contentEquals("Registration")){
+            System.out.println("title failed");
+        }
         actualURL = driver.getCurrentUrl();
         if (actualURL.contentEquals(expectedURL)){
             System.out.println(1);
@@ -98,8 +112,8 @@ public class Sprint1 {
     public static boolean login(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("selenium");
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("password");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("zhamiila.kartanbaeva");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("12345");
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if(driver.getCurrentUrl().contentEquals(baseURL)){
@@ -133,6 +147,9 @@ public class Sprint1 {
     public static boolean aboutUs(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[5]/a")).click();
+        if(!driver.getTitle().contentEquals("About Us")){
+            System.out.println("title failed");
+        }
         if(driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")){
             System.out.println(1);
             return true;
@@ -146,6 +163,9 @@ public class Sprint1 {
     public static boolean news(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[2]/a")).click();
+        if(!driver.getTitle().contentEquals("News")){
+            System.out.println("title failed");
+        }
         if(driver.getCurrentUrl().contentEquals("http://localhost:8080/news")){
             System.out.println(1);
             return true;
@@ -154,7 +174,23 @@ public class Sprint1 {
             return false;
         }
     }
-    
+
+    /*Open News page Test*/
+    public static boolean reviews(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
+        if(!driver.getTitle().contentEquals("reviews")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/news")){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println(0);
+            return false;
+        }
+    }
+
     /*Copyright Test*/
     public static boolean copyright(WebDriver driver, String url){
         driver.get(url);
@@ -192,7 +228,7 @@ public class Sprint1 {
         driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("newpassword");
         driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("newpassword");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
-        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/user/31/view")){
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/user/43/view")){
             System.out.println(1);
             return true;
         } else {
@@ -213,5 +249,9 @@ public class Sprint1 {
             System.out.println(0);
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
