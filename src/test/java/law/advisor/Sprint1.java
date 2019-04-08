@@ -301,23 +301,4 @@ public class Sprint1 {
         }
     }
 
-    public static void main(String[] args) {
-        WebDriver driver = new ChromeDriver();
-        open(driver);
-        openLogin(driver);
-        openReg(driver);
-        //copyright(driver, "http://localhost:8080/aboutus");
-        openLawyers(driver);
-        news(driver);
-        aboutUs(driver);
-        reviews(driver);
-        register(driver);
-        login(driver);
-        ask(driver);
-        //resetPassword(driver);
-        logout(driver);
-        login2(driver);
-        deleteAcc(driver);
-
-    }
 }
