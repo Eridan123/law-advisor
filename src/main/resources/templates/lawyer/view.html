@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Online Law Consultant</title>
+    <div th:replace="fragment/header :: header-css"/>
+
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <div th:replace="layout/header"/>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <div th:replace="layout/sidebar"/>
+        <!-- end: sidebar -->
+        <!--start content-->
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>User Profile</h2>
+
+                <div class="right-wrapper pull-right">
+                    <!--<ol class="breadcrumbs">-->
+                    <!--<li>-->
+                    <!--<a href="index.html">-->
+                    <!--<i class="fa fa-home"></i>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--<li><span>UI Elements</span></li>-->
+                    <!--<li><span>Widgets</span></li>-->
+                    <!--</ol>-->
+
+                    <!--<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>-->
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <h3 class="mt-none" th:text="${lawyer.username}"></h3>
+
+            <div class="row">
+                <!--<div class="col-md-6 col-lg-6 col-xl-6">-->
+                <h5 class="text-semibold text-dark text-uppercase mb-md mt-lg">Lawyer Profile</h5>
+
+
+                <section class="panel panel-featured-left panel-featured-quartenary">
+                    <div class="panel-body">
+                        <div class="widget-summary">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-quartenary">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h4 class="title">Name Surname:</h4>
+                                    <div class="info">
+                                        <strong class="amount" th:text="${lawyer.name}+' '+${lawyer.surname}"></strong>
+                                    </div>
+                                </div>
+                                <div class="summary">
+                                    <h4 class="title">Email:</h4>
+                                    <div class="info">
+                                        <strong class="amount" th:text="${lawyer.email}"></strong>
+                                    </div>
+                                </div>
+                                <div class="summary">
+                                    <h4 class="title">Phone Number:</h4>
+                                    <div class="info">
+                                        <strong class="amount" th:text="${lawyer.phone_number}"></strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase" th:href="@{/lawyer/__${lawyer.id}__/save}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel panel-featured-left panel-featured-primary">
+                    <div class="panel-body">
+                        <div class="widget-summary widget-summary-md">
+                            <div class="widget-summary-col widget-summary-col-icon">
+                                <div class="summary-icon bg-primary">
+                                    <i class="fa fa-life-ring"></i>
+                                </div>
+                            </div>
+                            <div class="widget-summary-col">
+                                <div class="summary">
+                                    <h6 class="title">Lawyer Information</h6>
+                                    <div class="info">
+                                        <strong class="amount" th:text="${lawyer.lawyer_degree_id.text}">1281</strong>
+                                    </div>
+                                </div>
+                                <div class="summary-footer">
+                                    <a class="text-muted text-uppercase">(view all)</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="col-md-12 col-lg-12 col-xl-6">
+                    <div class="row" th:if="${@userService.findUserByUsername(#authentication.name)}!=null">
+                        <div class="col-md-4 col-xl-3">
+                            <section class="panel">
+                                <form th:action="@{/changePassword}">
+                                    <div class="widget-summary widget-summary-sm">
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-warning">CHANGE PASSWORD</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                        <div class="col-md-4 col-xl-3" >
+                            <section class="panel">
+                                <form th:action="@{/lawyer/__${lawyer.id}__/delete}" METHOD="post">
+                                    <div class="widget-summary widget-summary-sm">
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-danger">DELETE ACCOUNT</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<h3 class="mt-lg">Content Widgets</h3>-->
+            <!--<p class="mb-lg">Content Widgets are perfect to show text information.</p>-->
+
+
+            <div class="row">
+                <!--<div class="col-md-12 col-lg-6">-->
+                <!--<div class="row">-->
+                <!--<div class="col-md-12">-->
+                <!--<h3 class="mt-lg">User Widgets</h3>-->
+                <!--<p class="mb-lg">Widgets for user actions.</p>-->
+
+                <!--<section class="panel-group mb-xlg">-->
+                <!--<div class="widget-twitter-profile">-->
+                <!--<div class="top-image">-->
+                <!--<img src="assets/images/widget-twitter-profile.jpg" alt="">-->
+                <!--</div>-->
+                <!--<div class="profile-info">-->
+                <!--<div class="profile-picture">-->
+                <!--<img src="assets/images/!logged-user.jpg" alt="">-->
+                <!--</div>-->
+                <!--<div class="profile-account">-->
+                <!--<h3 class="name text-semibold">John Doe</h3>-->
+                <!--<a href="#" class="account">@oklerthemes</a>-->
+                <!--</div>-->
+                <!--<ul class="profile-stats">-->
+                <!--<li>-->
+                <!--<h5 class="stat text-uppercase">Tweets</h5>-->
+                <!--<h4 class="count">60</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<h5 class="stat text-uppercase">Following</h5>-->
+                <!--<h4 class="count">139</h4>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<h5 class="stat text-uppercase">Followers</h5>-->
+                <!--<h4 class="count">38</h4>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="profile-quote">-->
+                <!--<blockquote>-->
+                <!--<p>-->
+                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dapibus consectetur aliquet. Curabitur tincidunt convallis mi, ac elementum purus bibendum vitae.-->
+                <!--</p>-->
+                <!--</blockquote>-->
+                <!--<div class="quote-footer">-->
+                <!--<span class="datetime">4:27 PM - 15 Jul 2014</span>-->
+                <!-- - -->
+                <!--<a href="#">Details</a>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</section>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+            <!-- end: page -->
+        </section>
+        <!--end content-->
+    </div>
+
+
+    <!-- Vendor -->
+    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/vendor/nanoscroller/nanoscroller.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/assets/vendor/magnific-popup/magnific-popup.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-placeholder/jquery.placeholder.js}"></script>
+
+    <!-- Specific Page Vendor -->
+
+    <!-- Theme Base, Components and Settings -->
+    <script th:src="@{/assets/javascripts/theme.js}"></script>
+
+    <!-- Theme Custom -->
+    <script th:src="@{/assets/javascripts/theme.custom.js}"></script>
+
+    <!-- Theme Initialization Files -->
+    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+
+</section>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© Copyright 2019 - All Rights Reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</html>

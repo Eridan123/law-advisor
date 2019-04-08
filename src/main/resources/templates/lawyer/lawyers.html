@@ -1,0 +1,39 @@
+<section class="panel" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <header class="panel-heading">
+
+        <h2 class="panel-title">Lawyers</h2>
+        <a th:if="${@userService.findUserByUsername(#authentication.name).userType}=='ADMIN'" th:href="@{/lawyer/0/save}" type="button" class="mb-xs mt-xs mr-xs btn btn-primary">Add Lawyer</a>
+    </header>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table mb-none">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user:${users}">
+                    <td th:text="${user.id}">1</td>
+                    <td th:text="${user.name}">Mark</td>
+                    <td th:text="${user.surname}">Otto</td>
+                    <td th:text="${user.username}">@mdo</td>
+                    <td class="actions" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{/user/__${user.id}__/save}"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="delete-row">
+                            <form th:action="@{/user/__${user.id}__/delete}" method="post">
+                                <input hidden="true" type="text" id="id" name="id" th:value="${user.id}" />
+                                <button type="submit" class="btn btn-reset" ><i class="fa fa-trash-o"></i></button>
+                            </form>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

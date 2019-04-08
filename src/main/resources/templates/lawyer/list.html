@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Online Law Consultant</title>
+    <div th:replace="fragment/header :: header-css"/>
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <div th:replace="layout/header"/>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <div th:replace="layout/sidebar"/>
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>LAWYERS</h2>
+
+                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                        <span class="input-group-btn">
+              </span>
+                    </div>
+
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <div id="content"></div>
+            <!-- end: page -->
+        </section>
+    </div>
+
+
+    <!-- Vendor -->
+    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/vendor/nanoscroller/nanoscroller.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/assets/vendor/magnific-popup/magnific-popup.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-placeholder/jquery.placeholder.js}"></script>
+
+    <!-- Specific Page Vendor -->
+
+    <!-- Theme Base, Components and Settings -->
+    <script th:src="@{/assets/javascripts/theme.js}"></script>
+
+    <!-- Theme Custom -->
+    <script th:src="@{/assets/javascripts/theme.custom.js}"></script>
+
+    <!-- Theme Initialization Files -->
+    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+    <script>
+        var str=$("#search").val();
+        if($("#search").val()==""){
+            str=" ";
+        }
+        var sUrl ="/lawyer/"+str+"/search";
+        $("#search").on("input",function () {
+            var str=$("#search").val();
+            if($("#search").val()==""){
+                str=" ";
+            }
+            sUrl ="/lawyer/" +str+"/search";
+            $.get(sUrl, function(data) {
+                $('#content').html(data);
+            });
+        });
+
+        $.get(sUrl, function(data) {
+            $('#content').html(data);
+        });
+    </script>
+
+</section>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© Copyright 2019 - All Rights Reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</html>
