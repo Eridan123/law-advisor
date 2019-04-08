@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Sprint1 {
+    Selenium selenium = new DefaultSelenium("nurik23", 4444, "*firefox", "http://my.test.site.org/");
     static String baseURL = "http://localhost:8080/";
     /*Open site Test*/
     public static boolean open(WebDriver driver){
