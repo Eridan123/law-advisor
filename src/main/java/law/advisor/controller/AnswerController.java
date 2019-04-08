@@ -53,6 +53,10 @@ public class AnswerController {
             answer.setQuestion(question);
             answer.setDate(new Date());
             answer.setUser(user);
+            Content content1=new Content();
+            contentRepository.save(content1);
+            answer.setContent(content1);
+            model.addAttribute("questionId",questionId);
             model.addAttribute("answer",answer);
         }
         else if(answerId>0){
@@ -65,22 +69,24 @@ public class AnswerController {
     }
 
     @PostMapping("/answer/save")
-    public String saveAnswer(Answer answer,Content content){
+    public String saveAnswer(Answer answer,String text){
 
 
         if(answer.getId()==null||answer.getId()==0){
+            Content content=answer.getContent();
+            content.setText(text);
             contentRepository.save(content);
             answer.setContent(content);
             answerRepository.save(answer);
         }
         else if(answer.getId()>0){
-            Content content1=contentRepository.getOne(content.getId());
-            content1.setText(content.getText());
+            Content content1=answer.getContent();
+            content1.setText(text);
             contentRepository.save(content1);
             answerRepository.save(answer);
         }
 
-        return "redirect: /question/"+answer.getQuestion().getId()+"/view";
+        return "redirect:/question/"+answer.getQuestion().getId()+"/view";
     }
 
     @PostMapping("/answer/{id}/delete")
