@@ -1,4 +1,4 @@
-/* By Zhamiila*/
+/* By Zhamiila
 package law.advisor;
 
 import org.openqa.selenium.*;
@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Sprint1 {
     static String baseURL = "http://localhost:8080/";
-    /*Open site Test*/
+    /*Open site Test
     public static boolean open(WebDriver driver){
         driver.get(baseURL);
         if(!driver.getTitle().contentEquals("Online Law Consultant")){
@@ -16,7 +16,7 @@ public class Sprint1 {
         return true;
     }
 
-    /*Open Login page Test*/
+    /*Open Login page Test
     public static boolean openLogin(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
@@ -35,7 +35,7 @@ public class Sprint1 {
         }
     }
 
-    /*Open Registration page Test*/
+    /*Open Registration page Test
     public static boolean openReg(WebDriver driver){
         String expectedURL = "http://localhost:8080/user/0/save";
         String actualURL = "";
@@ -54,7 +54,7 @@ public class Sprint1 {
         }
     }
 
-    /* Return to home page by clicking logo Test*/
+    /* Return to home page by clicking logo Test
     public static boolean homeLogo(WebDriver driver){
         String expectedURL = "http://localhost:8080/";
         String actualURL = "";
@@ -71,7 +71,7 @@ public class Sprint1 {
         }
     }
 
-    /* Registration Test*/
+    /* Registration Test
     public static boolean register(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[2]")).click();
@@ -93,7 +93,7 @@ public class Sprint1 {
         }
     }
 
-    /*Open register page from login page Test*/
+    /*Open register page from login page Test
     public static boolean openReg2(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/a[1]")).click();
@@ -108,7 +108,7 @@ public class Sprint1 {
 
     }
 
-    /*Login Test*/
+    /*Login Test
     public static boolean login(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
@@ -125,7 +125,7 @@ public class Sprint1 {
         }
     }
 
-    /*Login with Facebook Test*/
+    /*Login with Facebook Test
     public static boolean loginFacebook(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
@@ -134,7 +134,7 @@ public class Sprint1 {
         return false;
     }
 
-    /*Login with Tweeter Test*/
+    /*Login with Tweeter Test
     public static boolean loginTweeter(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
@@ -143,7 +143,7 @@ public class Sprint1 {
         return false;
     }
 
-    /*Open About Us page Test*/
+    /*Open About Us page Test
     public static boolean aboutUs(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[5]/a")).click();
@@ -159,7 +159,7 @@ public class Sprint1 {
         }
     }
 
-    /*Open News page Test*/
+    /*Open News page Test
     public static boolean news(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[2]/a")).click();
@@ -175,7 +175,7 @@ public class Sprint1 {
         }
     }
 
-    /*Open News page Test*/
+    /*Open News page Test
     public static boolean reviews(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
@@ -191,7 +191,7 @@ public class Sprint1 {
         }
     }
 
-    /*Copyright Test*/
+    /*Copyright Test
     public static boolean copyright(WebDriver driver, String url){
         driver.get(url);
         String expectedCopy = ":copyright: Copyright 2019 - All Rights Reserved";
@@ -205,7 +205,7 @@ public class Sprint1 {
         }
     }
     
-    /*Delete Account Test*/
+    /*Delete Account Test
     public static boolean deleteAcc(WebDriver driver){
         login(driver);
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
@@ -220,7 +220,7 @@ public class Sprint1 {
         }
     }
     
-    /*Reset password Test*/
+    /*Reset password Test
     public static boolean resetPassword(WebDriver driver){
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[2]/a")).click();
@@ -237,7 +237,7 @@ public class Sprint1 {
         }
     }
     
-    /*Logout Test*/
+    /*Logout Test
     public static boolean logout(WebDriver driver){
         login(driver);
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
@@ -255,3 +255,4 @@ public class Sprint1 {
 
     }
 }
+*/
