@@ -208,6 +208,8 @@
 
                             <h2 class="panel-title">Answers</h2>
                             <br>
+                            <a th:href="@{/question/__${question.id}__/answer/0/save}" type="button" class="btn btn-success">Answer</a>
+                            <br>
                             <div class="input-group input-search">
                                 <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
                                 <span class="input-group-btn"></span>
@@ -250,18 +252,19 @@
     <script th:src="@{/assets/javascripts/theme.init.js}"></script>
 
     <!--Search script for answers-->
-    <script>
+    <script th:inline="javascript">
+        var questionId=[[${question.id}]]
         var str=$("#search").val();
         if($("#search").val()==""){
             str=" ";
         }
-        var sUrl ="/answer/"+str+"/search";
+        var sUrl ="/question/"+questionId+"/answer/"+str+"/search";
         $("#search").on("input",function () {
             var str=$("#search").val();
             if($("#search").val()==""){
                 str=" ";
             }
-            sUrl ="/answer/" +str+"/search";
+            sUrl ="/question/"+questionId+"/answer/"+str+"/search";
             $.get(sUrl, function(data) {
                 $('#content').html(data);
             });
