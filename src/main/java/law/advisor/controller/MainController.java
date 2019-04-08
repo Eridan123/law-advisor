@@ -49,6 +49,15 @@ public class MainController {
         List<Question> questions=questionRepository.findAll();
         List<Category> categories=categoryRepository.findAll();
 
+        try{
+
+            User user1=userRepository.findUserByUsername(auth.getName());
+            model.addAttribute("role",user1.getUserType());
+        }
+        catch (Exception e){
+            model.addAttribute("role","none");
+        }
+
         model.addAttribute("questions",questions);
         model.addAttribute("categories",categories);
         return "/home";

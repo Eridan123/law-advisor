@@ -17,7 +17,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
+                <h2 th:if="${role}!='none'"><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
                 </h2>
                 <!-- Ask Question Modal -->
                 <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

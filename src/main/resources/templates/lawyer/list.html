@@ -17,7 +17,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2><a th:href="@{/lawyer/0/save}" type="button" class="btn btn-success">Add Lawyer</a></h2>
+                <h2 th:if="${role}=='ADMIN'"><a th:href="@{/lawyer/0/save}" type="button" class="btn btn-success">Add Lawyer</a></h2>
 
                 <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
                     <div class="input-group input-search">

@@ -56,6 +56,15 @@ public class LawyerController {
         UserType userType=UserType.LAWYER;
         List<User> lawyers=userService.findByUserType(userType);
 
+        Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+        try{
+
+            User user=userRepository.findUserByUsername(auth.getName());
+            model.addAttribute("role",user.getUserType().name());
+        }
+        catch (Exception e){
+            model.addAttribute("role","none");
+        }
         model.addAttribute("lawyers",lawyers);
 
         return "/lawyer/list";

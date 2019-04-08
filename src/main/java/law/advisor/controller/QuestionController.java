@@ -69,8 +69,16 @@ public class QuestionController {
     @RequestMapping("/question/{id}/view")
     public String viewQuestion(ModelMap model,@PathVariable("id") Long id){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user=userRepository.findUserByUsername(auth.getName());
-        String role = user.getUserType().toString();
+        User user;
+        String role;
+        try {
+
+            user=userRepository.findUserByUsername(auth.getName());
+            role = user.getUserType().toString();
+        }
+        catch (Exception e){
+            role="none";
+        }
 
         Question question=questionRepository.getOne(id);
 
