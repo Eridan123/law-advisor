@@ -92,15 +92,15 @@ public class AnswerController {
         return "redirect: /question/"+questionId+"/view";
     }
 
-    @GetMapping("/answer/{searchStr}/search")
-    public String search(ModelMap model,@PathVariable("searchStr") String searchStr){
+    @GetMapping("/question/{id}/answer/{searchStr}/search")
+    public String search(@PathVariable("id") long id,ModelMap model,@PathVariable("searchStr") String searchStr){
 
         if(searchStr.equals(" ")){
             searchStr="";
         }
 
         String baseQuery="select answer.*\n" +
-                "from answer, content c where c.text  like '%"+searchStr+"%'";
+                "from answer, content c where answer.question_id="+id+" and c.id=answer.content_id and c.text  like '%"+searchStr+"%'";
         Query query=entityManager.createNativeQuery(baseQuery,Answer.class);
         List<Answer> answers=query.getResultList();
 

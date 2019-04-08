@@ -13,11 +13,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -36,6 +35,9 @@ public class UserController {
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    EntityManager entityManager;
 
     @RequestMapping("/signup")
     public String signup(ModelMap model){
@@ -136,5 +138,24 @@ public class UserController {
 
         model.addAttribute("success","Account successfully deleted");
         return "redirect:/";
+    }
+
+    @GetMapping("/user/{searchStr}/search")
+    public String search(@PathVariable(value = "searchStr",required = false) String searchStr,ModelMap model){
+
+        if(searchStr.equals(" ")){
+            searchStr="";
+        }
+        String baseQuery="select *\n" +
+                "from user u where u.name like '%"+searchStr+"%' or \n" +
+                "                  u.surname like '%\"+searchStr+\"%' or \n" +
+                "                  u.username like '%\"+searchStr+\"%' or \n" +
+                "                  u.user_type like '%\"+searchStr+\"%'";
+        Query query=entityManager.createNativeQuery(baseQuery,User.class);
+        List<User> users=query.getResultList();
+
+        model.addAttribute("users",users);
+
+        return "/user/users";
     }
 }

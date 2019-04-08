@@ -89,6 +89,9 @@ public class QuestionController {
             User user=userRepository.findUserByUsername(auth.getName());
 
             Question question=new Question();
+            Content content=new Content();
+            contentRepository.save(content);
+            question.setContent(content);
             question.setDate(new Date());
             question.setUser(user);
             model.addAttribute("question",question);
@@ -96,24 +99,26 @@ public class QuestionController {
         else{
             model.addAttribute("question",questionRepository.getOne(id));
         }
+        model.addAttribute("categories",categoryRepository.findAll());
         return "/question/form";
     }
 
     @PostMapping("/question/save")
-    public String saveQuestion(Question question, Content content){
+    public String saveQuestion(Question question, String text){
 
         if(question.getId()==null){
-            contentRepository.save(content);
-            question.setContent(content);
-            questionRepository.save(question);
-        }
-        else if(question.getId()>0){
-            Content content1=contentRepository.getOne(content.getId());
-            content1.setText(content.getText());
+            Content content1=question.getContent();
+            content1.setText(text);
             contentRepository.save(content1);
             questionRepository.save(question);
         }
-        return "redirect: /question/"+question.getId()+"/view";
+        else if(question.getId()>0){
+            Content content1=question.getContent();
+            content1.setText(text);
+            contentRepository.save(content1);
+            questionRepository.save(question);
+        }
+        return "redirect:/question/"+question.getId()+"/view";
     }
 
     @PostMapping("/question/{id}/delete")

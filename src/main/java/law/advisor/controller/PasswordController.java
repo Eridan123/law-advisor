@@ -141,7 +141,7 @@ public class PasswordController {
     @RequestMapping(value = {"/changePassword"})
     public String getChangePassword(ModelMap model){
 
-        User user= (User) userRepository.findUserByUsername((String) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        User user= (User) userRepository.findUserByUsername((String) SecurityContextHolder.getContext().getAuthentication().getName());
         model.addAttribute("id",user.getId());
         model.addAttribute("message","");
 
@@ -149,11 +149,13 @@ public class PasswordController {
     }
 
     @RequestMapping(value = {"/changePassword/{id}"})
-    public String postChangePassword(@PathVariable("id") Long id, String password,ModelMap model){
+    public String postChangePassword(@PathVariable("id") Long id, String current_password,String new_password,ModelMap model){
 
         User user=userRepository.getOne(id);
-        if (bCryptPasswordEncoder.encode(password)==user.getEncryted_password()){
-            return "/user/cahngetonew";
+        if (bCryptPasswordEncoder.encode(current_password).equals(user.getEncryted_password())){
+            user.setEncryted_password(bCryptPasswordEncoder.encode(new_password));
+            userRepository.save(user);
+            return "redirect:/user/"+user.getId()+"/view";
         }
         else{
             model.addAttribute("message","wrong password!");

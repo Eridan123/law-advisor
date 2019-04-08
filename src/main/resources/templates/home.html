@@ -17,9 +17,34 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Question list</h2>
-
+                <h2><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
+                </h2>
+                <!-- Ask Question Modal -->
+                <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form th:action="@{/question/save}" th:object="${question}" method="post">
+                                    <input type="text" name="id" class="form-control hidden" />
+                                    Subject:<br>
+                                    <input type="text" name="title" class="form-control" placeholder="Title" required/><br>
+                                    Question:<br>
+                                    <textarea name="content" rows="5" class="form-control" placeholder="Question content" required></textarea><br>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ask Question Modal End -->
                 <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+
                     <div class="input-group input-search">
                         <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
                         <span class="input-group-btn">

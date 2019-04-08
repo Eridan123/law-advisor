@@ -1,10 +1,7 @@
 package law.advisor.controller;
 
 import law.advisor.model.*;
-import law.advisor.repository.RoleRepository;
-import law.advisor.repository.LawyerRepository;
-import law.advisor.repository.UserRepository;
-import law.advisor.repository.UserRoleRepository;
+import law.advisor.repository.*;
 import law.advisor.service.CategoryService;
 import law.advisor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +11,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 public class LawyerController {
+
+    @Autowired
+    ContentRepository contentRepository;
 
     @Autowired
     LawyerRepository lawyerRepository;
@@ -47,6 +46,9 @@ public class LawyerController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    EntityManager entityManager;
+
 
     @RequestMapping("/lawyer/list")
     public String list(ModelMap model){
@@ -65,10 +67,12 @@ public class LawyerController {
         if(id==null||id<=0){
             User lawyer=new User();
             lawyer.setUserType(UserType.LAWYER);
+            model.addAttribute("content",new Content());
             model.addAttribute("lawyer",lawyer);
         }
         else{
             User lawyer=userRepository.getOne(id);
+            model.addAttribute("content",lawyer.getLawyer_degree_id());
             model.addAttribute("lawyer",lawyer);
         }
 
@@ -76,6 +80,47 @@ public class LawyerController {
 
 
         return "/lawyer/form";
+    }
+
+    @PostMapping("/lawyer/save")
+    public String  save(ModelMap model,User lawyer,String content,String optionsRadios){
+
+        if (optionsRadios.equals("option1")){
+            lawyer.setGender(1);
+        }
+        else{
+            lawyer.setGender(2);
+        }
+        if(lawyer.getId()==null){
+            Role role=roleRepository.getOne(Long.valueOf(2));
+            UserRole userRole=new UserRole();
+            userRole.setRole(role);
+            Content content1=new Content();
+            content1.setText(content);
+            userRole.setUser(lawyer);
+            contentRepository.save(content1);
+            lawyer.setLawyer_degree_id(content1);
+            lawyer.setEncryted_password(bCryptPasswordEncoder.encode(lawyer.getEncryted_password()));
+            userRepository.save(lawyer);
+            userRoleRepository.save(userRole);
+
+        }
+
+        else if(lawyer.getId()>0){
+
+            User lawyer1=userRepository.getOne(lawyer.getId());
+            Content content1=lawyer1.getLawyer_degree_id();
+            content1.setText(content);
+            contentRepository.save(content1);
+            lawyer1.setEmail(lawyer.getEmail());
+            lawyer1.setName(lawyer.getName());
+            lawyer1.setPhone_number(lawyer.getPhone_number());
+            lawyer1.setSurname(lawyer.getSurname());
+
+            userRepository.save(lawyer1);
+        }
+
+        return "redirect:/lawyer/"+lawyer.getId()+"/view";
     }
 
     @RequestMapping("/lawyer/{id}/view")
@@ -115,6 +160,24 @@ public class LawyerController {
         userRepository.delete(lawyer);
 
         return "redirect: /lawyer/list";
+    }
+
+    @GetMapping("/lawyer/{searchStr}/search")
+    public String search(@PathVariable(value = "searchStr",required = false) String searchStr,ModelMap model){
+
+        if(searchStr.equals(" ")){
+            searchStr="";
+        }
+        String baseQuery="select *\n" +
+                "from user u where u.user_type='LAWYER' and (u.name like '%"+searchStr+"%' or \n" +
+                "                  u.surname like '%"+searchStr+"%' or \n" +
+                "                  u.username like '%"+searchStr+"%')";
+        Query query=entityManager.createNativeQuery(baseQuery,User.class);
+        List<User> users=query.getResultList();
+
+        model.addAttribute("users",users);
+
+        return "/lawyer/lawyers";
     }
 
 }
