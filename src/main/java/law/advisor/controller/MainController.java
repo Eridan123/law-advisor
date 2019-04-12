@@ -79,5 +79,38 @@ public class MainController {
         model.addAttribute("categories",categoryRepository.findAll());
 
         return "/aboutus";
-}
+    }
+
+    @RequestMapping("/category")
+    public String category(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/admin/category";
+    }
+
+    @RequestMapping("/rating")
+    public String rating(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/lawyer/rating";
+    }
+    @RequestMapping("/top")
+    public String top(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/lawyer/top";
+    }
+    @RequestMapping("/form")
+    public String form(ModelMap model){
+
+        model.addAttribute("categories",categoryRepository.findAll());
+
+        return "/lawyer/rating";
+    }
+
+
+
 }

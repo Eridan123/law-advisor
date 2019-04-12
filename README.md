@@ -1,5 +1,5 @@
-   # Online Law Consultant
-![logo2](https://user-images.githubusercontent.com/43117184/54251549-cb8ac100-4571-11e9-9e50-d8570b3c1fe3.png)
+# Online Law Consultant
+
 
 ## Description
 
