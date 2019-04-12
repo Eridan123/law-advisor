@@ -175,6 +175,38 @@ public class Sprint1 {
         }
     }
 
+    /*Open About Us page from News page Test*/
+    public static boolean aboutUs3(WebDriver driver){
+        driver.get("http://localhost:8080/news");
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
+        if(!driver.getTitle().contentEquals("About Us")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println("failed about us");
+            return false;
+        }
+    }
+
+    /*Open About Us page from News page Test*/
+    public static boolean aboutUs4(WebDriver driver){
+        driver.get("http://localhost:8080/news");
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
+        if(!driver.getTitle().contentEquals("About Us")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println("failed about us");
+            return false;
+        }
+    }
+
     /*Open News page Test*/
     public static boolean news(WebDriver driver){
         driver.get(baseURL);
@@ -266,5 +298,10 @@ public class Sprint1 {
             System.out.println("failed logout");
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        WebDriver dr = new ChromeDriver();
+
     }
 }

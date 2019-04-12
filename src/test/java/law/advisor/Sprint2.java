@@ -23,6 +23,22 @@ public class Sprint2 {
         }
     }
 
+    /*Open About Us page from Lowyers page Test*/
+    public static boolean aboutUs2(WebDriver driver){
+        driver.get("http://localhost:8080/lawyer/list");
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
+        if(!driver.getTitle().contentEquals("About Us")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println("failed about us");
+            return false;
+        }
+    }
+
     /*Open Lawyers Test*/
     public static boolean openLawyers(WebDriver driver){
         driver.get(baseURL);
