@@ -92,6 +92,11 @@ public class Sprint1 {
         }
     }
 
+    /* Registration for Lawyers Test*/
+    public static boolean registerLaw(WebDriver driver){
+        return false;
+    }
+
     /*Open register page from login page Test*/
     public static boolean openReg2(WebDriver driver){
         driver.get(baseURL);
@@ -104,7 +109,6 @@ public class Sprint1 {
             System.out.println("Failed :"+driver.getCurrentUrl());
             return false;
         }
-
     }
 
     /*Login Test*/

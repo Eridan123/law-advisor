@@ -55,5 +55,69 @@ public class Sprint2 {
         }
     }
 
+    /*Use search bar Test*/
+    public static boolean search(WebDriver driver){
+        return true;
+    }
+
+    /*Search by category*/
+    public static boolean category(WebDriver driver){
+        return true;
+    }
+
+    /*See Top 10 Lawyers Test*/
+    public static boolean top(WebDriver driver){
+        return true;
+    }
+
+    /*Delete questions Test*/
+    public static boolean delQuestion(WebDriver driver){
+        return true;
+    }
+
+    /*Rating near answer Test*/
+    public static boolean rating(WebDriver driver){
+        return true;
+    }
+
+    /*Who answered Test*/
+    public static boolean whoanswer(WebDriver driver){
+        return true;
+    }
+
+    /*Date of answer Test*/
+    public static boolean dateAns(WebDriver driver){
+        return true;
+    }
+
+    /*Add category Test*/
+    public static boolean addCat(WebDriver driver){
+        return true;
+    }
+
+    /*Delete category Test*/
+    public static boolean deleteCat(WebDriver driver){
+        return true;
+    }
+
+    /*Edit category Test*/
+    public static boolean editCat(WebDriver driver){
+        return true;
+    }
+
+    /*Add lawyer Test*/
+    public static boolean addLaw(WebDriver driver){
+        return true;
+    }
+
+    /*Delete lawyer Test*/
+    public static boolean deleteLaw(WebDriver driver){
+        return true;
+    }
+
+    /*Date of question Test*/
+    public static boolean dateQuestion(WebDriver driver){
+        return true;
+    }
 
 }
