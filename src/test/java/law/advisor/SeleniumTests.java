@@ -130,6 +130,40 @@ public class SeleniumTests {
         }
     }
 
+    /*Login Lawyer Test*/
+    public static boolean loginLaw(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("lawyer");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("123");
+        driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
+        if(driver.getCurrentUrl().contentEquals(baseURL)){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println( "failed login");
+            return false;
+        }
+    }
+
+    /*Login Admin Test*/
+    public static boolean loginAdm(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("admin");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("123");
+        driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
+        if(driver.getCurrentUrl().contentEquals(baseURL)){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println( "failed login");
+            return false;
+        }
+    }
+
     /*Login Test*/
     public static boolean login2(WebDriver driver){
         driver.get(baseURL);
@@ -197,9 +231,9 @@ public class SeleniumTests {
         }
     }
 
-    /*Open About Us page from News page Test*/
+    /*Open About Us page from Questions page Test*/
     public static boolean aboutUs4(WebDriver driver){
-        driver.get("http://localhost:8080/news");
+        driver.get("http://localhost:8080/question/list");
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
         if(!driver.getTitle().contentEquals("About Us")){
             System.out.println("title failed");
@@ -421,7 +455,23 @@ public class SeleniumTests {
     }
     //############End of Sprint2############
 
+
+
     //############Sprint3############
+    /*Answer Test*/
+    public static boolean answer(WebDriver driver){
+        loginLaw(driver);
+        ((JavascriptExecutor)driver).executeScript("scroll(0,400)");
+        driver.findElement(By.cssSelector("#content > ul > li > div > div:nth-child(9) > section > header > a > h2")).click();
+        driver.findElement(By.xpath("/html/body/section/div[2]/section/div[2]/div/section/header/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div/textarea")).sendKeys("It is answer");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/question/125/view") ){
+            System.out.println(1);
+            return true;
+        }
+        return false;
+    }
     /*Leave review Test*/
     public static boolean review(WebDriver driver){
         return true;
@@ -474,6 +524,8 @@ public class SeleniumTests {
     //############End of Sprint3############
     public static void main(String[] args) {
         WebDriver dr = new ChromeDriver();
+        dr.manage().window().maximize();
+        answer(dr);
 
     }
 }
