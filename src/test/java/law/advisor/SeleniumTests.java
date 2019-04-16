@@ -4,8 +4,10 @@ package law.advisor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Sprint1 {
+public class SeleniumTests {
     static String baseURL = "http://localhost:8080/";
+
+    //############Sprint1############
     /*Open site Test*/
     public static boolean open(WebDriver driver){
         driver.get(baseURL);
@@ -303,7 +305,173 @@ public class Sprint1 {
             return false;
         }
     }
+    //############End of Sprint1############
 
+    //############Sprint2############
+    /*Ask Question Test*/
+    public static boolean ask(WebDriver driver){
+        driver.findElement(By.xpath("/html/body/section/div/section/header/h2/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("Hello world");
+        driver.findElement(By.xpath("//*[@id=\"category.id\"]")).click();
+        driver.findElement(By.xpath("//*[@id=\"category.id\"]/option[2]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[3]/textarea")).sendKeys("It's my question");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        if(driver.getTitle().contentEquals("Question View")){
+            System.out.println(1);
+            return true;
+        } else{
+            System.out.println("failed ask");
+            return false;
+        }
+    }
+
+    /*Open About Us page from Lowyers page Test*/
+    public static boolean aboutUs2(WebDriver driver){
+        driver.get("http://localhost:8080/lawyer/list");
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
+        if(!driver.getTitle().contentEquals("About Us")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")){
+            System.out.println(1);
+            return true;
+        }else {
+            System.out.println("failed about us");
+            return false;
+        }
+    }
+
+    /*Open Lawyers Test*/
+    public static boolean openLawyers(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[2]/a")).click();
+        if(!driver.getTitle().contentEquals("Lawyers")){
+            System.out.println("title failed");
+        }
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/lawyer/list")){
+            System.out.println(1);
+            return true;
+        } else {
+            System.out.println("failed lawyer");
+            return false;
+        }
+    }
+
+    /*Use search bar Test*/
+    public static boolean search(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"q\"]")).sendKeys("Hello");
+        driver.findElement(By.xpath("/html/body/section/header/div[2]/form/div/span/button")).click();
+        return driver.getCurrentUrl().contentEquals("http://localhost:8080/pages-search-results.html?q=Hello");
+    }
+
+    /*Search by category*/
+    public static boolean category(WebDriver driver){
+        return true;
+    }
+
+    /*See Top 10 Lawyers Test*/
+    public static boolean top(WebDriver driver){
+        return true;
+    }
+
+    /*Delete questions Test*/
+    public static boolean delQuestion(WebDriver driver){
+        return true;
+    }
+
+    /*Rating near answer Test*/
+    public static boolean rating(WebDriver driver){
+        return true;
+    }
+
+    /*Who answered Test*/
+    public static boolean whoanswer(WebDriver driver){
+        return true;
+    }
+
+    /*Date of answer Test*/
+    public static boolean dateAns(WebDriver driver){
+        return true;
+    }
+
+    /*Add category Test*/
+    public static boolean addCat(WebDriver driver){
+        return true;
+    }
+
+    /*Delete category Test*/
+    public static boolean deleteCat(WebDriver driver){
+        return true;
+    }
+
+    /*Edit category Test*/
+    public static boolean editCat(WebDriver driver){
+        return true;
+    }
+
+    /*Add lawyer Test*/
+    public static boolean addLaw(WebDriver driver){
+        return true;
+    }
+
+    /*Delete lawyer Test*/
+    public static boolean deleteLaw(WebDriver driver){
+        return true;
+    }
+    //############End of Sprint2############
+
+    //############Sprint3############
+    /*Leave review Test*/
+    public static boolean review(WebDriver driver){
+        return true;
+    }
+
+    /*Inform about mistake Test*/
+    public static boolean mistake(WebDriver driver){
+        return true;
+    }
+
+    /*See the rate of answer Test*/
+    public static boolean rateAnswer(WebDriver driver){
+        return true;
+    }
+
+    /*Status of questions Test*/
+    public static boolean status(WebDriver driver){
+        return true;
+    }
+
+    /*See date of question Test*/
+    public static boolean dateQuestion(WebDriver driver){
+        return true;
+    }
+
+    /*Similar questions Test*/
+    public static boolean similar(WebDriver driver){
+        return true;
+    }
+
+    /*Like Test*/
+    public static boolean seeLike(WebDriver driver){
+        return true;
+    }
+
+    /*View Test*/
+    public static boolean view(WebDriver driver){
+        return true;
+    }
+
+    /*Notification when get answer Test*/
+    public static boolean isAnswered(WebDriver driver){
+        return true;
+    }
+
+    /*Put like to question Test*/
+    public static boolean putLike(WebDriver driver){
+        return true;
+    }
+    //############End of Sprint3############
     public static void main(String[] args) {
         WebDriver dr = new ChromeDriver();
 
