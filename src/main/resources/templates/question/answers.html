@@ -1,3 +1,4 @@
+
 <ul th:each="answer:${answers}" style="list-style-type: none;padding:0"
     xmlns:th="http://www.w3.org/1999/xhtml">
     <li>
@@ -34,6 +35,16 @@
                             <label th:text="${answer.user.username}"></label>
                         </div>
                     </div>
+                    <div class="row justify-content-around">
+                        <div class="row row center-block">
+                            <button type="button" id="commentButton">
+                                <i class="fa fa-comment"></i>
+                            </button>
+                        </div>
+                        <div class="row center-block">
+                            <label>Comment</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-11 rightSideOfTab">
                     <h4 th:text="${answer.content.text}">
@@ -42,6 +53,161 @@
                 </div>
             </div>
         </div>
+<!--        ====================== Add comment form (default hidden) ==============================-->
+        <div id="addCommentForm" class="row " style="display: none;" >
+            <br>
+            <div class="col-xs-2 col-md-1"></div>
+            <div class="col-xs-8 col-md-10">
+                <form>
+                    <section class="panel">
+                        <header class="panel-heading">
+                            <div class="panel-actions">
+                                <a href="#" class="fa fa-caret-down"></a>
+                                <a href="#" class="fa fa-times"></a>
+                            </div>
+
+                            <h2 class="panel-title">Leave review</h2>
+
+                        </header>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <textarea class="form-control" rows="5" placeholder="Type your message"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer">
+                            <button class="btn btn-primary">Submit</button>
+                        </footer>
+                    </section>
+                </form>
+            </div>
+            <div class="col-xs-2 col-md-1"></div>
+        </div>
+<!--       ===================== Comments for the answers =============================-->
+        <ul style="list-style-type: none;">
+            <br>
+            <li>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-xs-12 col-md-11" >
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <h5>Name Surname</h5>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <h6>10/10/10</h6>
+                                    </div>
+                                </div>
+                            </header>
+                            <div>
+                                <div class="panel-body ">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                    <div class="container">
+                                        <div class="row justify-content-around">
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                </button>
+                                                <label >1325</label>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-thumbs-o-down"></i>
+                                                </button>
+                                                <label>232</label>
+                                            </div>
+                                            <!--<div class="col-xs-2 col-md-2">-->
+                                            <!--<button>-->
+                                            <!--<i class="fa fa-check-square-o"></i>-->
+                                            <!--</button>-->
+                                            <!--<label for="">53 Answers</label>-->
+                                            <!--</div>-->
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-calendar-o"></i>
+                                                </button>
+                                                <label>12/12/12</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-xs-12 col-md-11" >
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="row">
+                                    <div class="col-sm-4 col-md-4">
+                                        <h5>Name Surname</h5>
+                                    </div>
+                                    <div class="col-sm-4 col-md-4">
+                                        <h6>10/10/10</h6>
+                                    </div>
+                                </div>
+                            </header>
+                            <div>
+                                <div class="panel-body ">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
+                                    <div class="container">
+                                        <div class="row justify-content-around">
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                </button>
+                                                <label >1325</label>
+                                            </div>
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-thumbs-o-down"></i>
+                                                </button>
+                                                <label>232</label>
+                                            </div>
+                                            <!--<div class="col-xs-2 col-md-2">-->
+                                            <!--<button>-->
+                                            <!--<i class="fa fa-check-square-o"></i>-->
+                                            <!--</button>-->
+                                            <!--<label for="">53 Answers</label>-->
+                                            <!--</div>-->
+                                            <div class="col-xs-2 col-md-2">
+                                                <button>
+                                                    <i class="fa fa-calendar-o"></i>
+                                                </button>
+                                                <label>12/12/12</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>c
+            </li>
+        </ul>
+
     </li>
-    <hr>
 </ul>
+<hr>
+<script type="text/javascript">
+
+    document.getElementById("commentButton").onclick = function() {
+        var x = document.getElementById("addCommentForm");
+        if (x.style.display == "none") {
+            x.style.display = "block";
+        }
+        else{
+            x.style.display = "none";
+        }
+    }
+
+
+</script>
