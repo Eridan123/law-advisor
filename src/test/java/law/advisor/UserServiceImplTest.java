@@ -12,12 +12,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.testng.annotations.ITestAnnotation;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
-import static org.testng.AssertJUnit.assertEquals;
+
 
 public @RunWith(MockitoJUnitRunner.class)
  class UserServiceImplTest {
