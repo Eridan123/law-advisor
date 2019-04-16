@@ -1,4 +1,4 @@
-package law.advisor.test;
+package law.advisor;
 
 import law.advisor.model.User;
 import law.advisor.repository.UserRepository;
