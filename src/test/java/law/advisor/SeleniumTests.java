@@ -477,6 +477,7 @@ public class SeleniumTests {
         return true;
     }
 
+
     /*Inform about mistake Test*/
     public static boolean mistake(WebDriver driver){
         return true;
