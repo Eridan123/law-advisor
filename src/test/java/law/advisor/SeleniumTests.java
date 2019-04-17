@@ -117,8 +117,8 @@ public class SeleniumTests {
     public static boolean login(WebDriver driver){
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("zhamiila.kartanbaeva");
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("12345");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("user");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("123");
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if(driver.getCurrentUrl().contentEquals(baseURL)){
@@ -480,7 +480,15 @@ public class SeleniumTests {
 
     /*Inform about mistake Test*/
     public static boolean mistake(WebDriver driver){
-        return true;
+        login(driver);
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[8]/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div/div/textarea")).sendKeys("I have a mistake");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/technicalSupport")){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /*See the rate of answer Test*/
@@ -490,12 +498,26 @@ public class SeleniumTests {
 
     /*Status of questions Test*/
     public static boolean status(WebDriver driver){
-        return true;
+        driver.get(baseURL);
+        if(driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/div/div/div/div/div[3]/label")).getText().contentEquals("1")){
+            System.out.println(1);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /*See date of question Test*/
     public static boolean dateQuestion(WebDriver driver){
-        return true;
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/header/a/h2")).click();
+        if(driver.findElement(By.xpath("/html/body/section/div[2]/section/div[1]/div/section/div/div/div/div/div[4]/label")).getText().contentEquals("08-04-2019")){
+            System.out.println(1);
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     /*Similar questions Test*/
@@ -523,10 +545,5 @@ public class SeleniumTests {
         return true;
     }
     //############End of Sprint3############
-    public static void main(String[] args) {
-        WebDriver dr = new ChromeDriver();
-        dr.manage().window().maximize();
-        answer(dr);
 
-    }
 }
