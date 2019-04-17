@@ -13,32 +13,33 @@
                     </header>
                     <div>
                         <div class="panel-body ">
-                            <p th:text="${question.content.text}"></p>
+                            <p th:text="${question.content}"></p>
                             <div class="container">
                                 <div class="row justify-content-around">
+                                    <input hidden="hidden" th:value="${question.id}" id="questionId">
                                     <div class="col-xs-2 col-md-2">
                                         <button>
-                                            <i class="fa fa-thumbs-o-up"></i>
+                                            <i class="fa fa-thumbs-o-up" id="likeQuestion"></i>
                                         </button>
-                                        <label for="">1325</label>
+                                        <label id="totalLike" th:value="${question.likes}" th:text="${question.likes}">1325</label>
                                     </div>
                                     <div class="col-xs-2 col-md-2">
                                         <button>
-                                            <i class="fa fa-thumbs-o-down"></i>
+                                            <i class="fa fa-thumbs-o-down" id="disLikeQuestion"></i>
                                         </button>
-                                        <label for="">232</label>
+                                        <label id="totalDisLike" th:value="${question.dislikes}" th:text="${question.dislikes}">232</label>
                                     </div>
-                                    <!--<div class="col-xs-2 col-md-2">-->
-                                        <!--<button>-->
-                                            <!--<i class="fa fa-check-square-o"></i>-->
-                                        <!--</button>-->
-                                        <!--<label for="">53 Answers</label>-->
-                                    <!--</div>-->
+                                    <div class="col-xs-2 col-md-2">
+                                        <button>
+                                            <i class="fa fa-check-square-o"></i>
+                                        </button>
+                                        <label th:text="${question.answers}">53 Answers</label>
+                                    </div>
                                     <div class="col-xs-2 col-md-2">
                                         <button>
                                             <i class="fa fa-user"></i>
                                         </button>
-                                        <label th:text="${question.user.username}">53 Answers</label>
+                                        <label th:text="${question.user}">53 Answers</label>
                                     </div>
                                     <div class="col-xs-2 col-md-2">
                                         <button>
@@ -54,5 +55,4 @@
             </div>
         </div>
     </li>
-
 </ul>

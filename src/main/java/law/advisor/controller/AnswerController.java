@@ -8,7 +8,9 @@ import law.advisor.repository.AnswerRepository;
 import law.advisor.repository.ContentRepository;
 import law.advisor.repository.QuestionRepository;
 import law.advisor.repository.UserRepository;
+import law.advisor.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +43,9 @@ public class AnswerController {
 
     @Autowired
     ContentRepository contentRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping("/question/{questionId}/answer/{answerId}/save")
     public String addAnswer(ModelMap model, @PathVariable("questionId") Long questionId,
@@ -69,21 +75,41 @@ public class AnswerController {
     }
 
     @PostMapping("/answer/save")
-    public String saveAnswer(Answer answer,String text){
+    public String saveAnswer(Answer answer, String text, HttpServletRequest request){
 
 
+        String appUrl= request.getScheme() + "://" + request.getServerName()+":8080";
         if(answer.getId()==null||answer.getId()==0){
             Content content=answer.getContent();
             content.setText(text);
             contentRepository.save(content);
             answer.setContent(content);
             answerRepository.save(answer);
+
+            SimpleMailMessage answeredEmail = new SimpleMailMessage();
+            answeredEmail.setFrom("saryguloveridan@gmail.com");
+            answeredEmail.setTo(answer.getQuestion().getUser().getEmail());
+            answeredEmail.setSubject("Your question has been answered");
+            answeredEmail.setText("To see answer to your question, click the link below:\n" + appUrl
+                    + "/question/" +answer.getQuestion().getId()+"/view");
+
+            emailService.sendEmail(answeredEmail);
         }
         else if(answer.getId()>0){
+
             Content content1=answer.getContent();
             content1.setText(text);
             contentRepository.save(content1);
             answerRepository.save(answer);
+
+            SimpleMailMessage answeredEmail = new SimpleMailMessage();
+            answeredEmail.setFrom("saryguloveridan@gmail.com");
+            answeredEmail.setTo(answer.getQuestion().getUser().getEmail());
+            answeredEmail.setSubject("Your question's answer has been edited");
+            answeredEmail.setText("To see editted answer to your question, click the link below:\n" + appUrl
+                    + "/question/" +answer.getQuestion().getId()+"/view");
+
+            emailService.sendEmail(answeredEmail);
         }
 
         return "redirect:/question/"+answer.getQuestion().getId()+"/view";

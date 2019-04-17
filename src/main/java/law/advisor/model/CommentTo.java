@@ -1,6 +1,5 @@
 package law.advisor.model;
 
 public enum CommentTo {
-    QUESTION,
-    LAWYER,ANSWER
+    LAWYER,ANSWER,DEVELOPER
 }

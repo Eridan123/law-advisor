@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "comment")
@@ -26,17 +27,18 @@ public class Comment {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name="lawyer_id", nullable=true)
-    private User lawyer;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private Set<User> lawyers;
 
-    @ManyToOne
-    @JoinColumn(name="question_id", nullable=true)
-    private Question question;
+    @OneToMany
+    @JoinColumn(name = "answer_id")
+    private Set<Answer> answers;
 
-    @Column(columnDefinition = "varchar(20) default 'QUESTION'")
+
+    @Column(columnDefinition = "varchar(20) default 'ANSWER'")
     @Enumerated(EnumType.STRING)
-    private CommentTo comment_to = CommentTo.QUESTION;
+    private CommentTo comment_to = CommentTo.ANSWER;
 
     public Long getId() {
         return id;
@@ -70,20 +72,12 @@ public class Comment {
         this.user = user;
     }
 
-    public User getLawyer() {
-        return lawyer;
+    public Set<User> getLawyers() {
+        return lawyers;
     }
 
-    public void setLawyer(User lawyer) {
-        this.lawyer = lawyer;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setLawyers(Set<User> lawyers) {
+        this.lawyers = lawyers;
     }
 
     public CommentTo getComment_to() {
@@ -92,5 +86,13 @@ public class Comment {
 
     public void setComment_to(CommentTo comment_to) {
         this.comment_to = comment_to;
+    }
+
+    public Set<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(Set<Answer> answers) {
+        this.answers = answers;
     }
 }

@@ -3,8 +3,7 @@ package law.advisor.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "question")
@@ -37,12 +36,12 @@ public class Question {
     private Content content;
 
     @OneToMany
-    @JoinColumn(name = "question_id") // we need to duplicate the physical information
+    @JoinColumn(name = "question_id")
     private Set<Answer> answers;
 
-//    @OneToOne
-//    @JoinColumn(name="like_id")
-//    Like like;
+    @OneToMany( cascade = CascadeType.ALL,
+            mappedBy = "question" )
+    public Set<Grade> grades;
 
     public Long getId() {
         return id;
@@ -108,11 +107,11 @@ public class Question {
         this.answers = answers;
     }
 
-//    public Like getLike() {
-//        return like;
-//    }
-//
-//    public void setLike(Like like) {
-//        this.like = like;
-//    }
+    public Set<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Set<Grade> grades) {
+        this.grades = grades;
+    }
 }

@@ -43,8 +43,9 @@ public class User {
 
     private int gender;
 
-//    @OneToMany(mappedBy = "usera")
-//    private List<Like> likes;
+    @OneToMany( cascade = CascadeType.ALL,
+            mappedBy = "user" )
+    public Set<Grade> grades;
 
     public Long getId() {
         return id;
@@ -143,11 +144,11 @@ public class User {
         this.gender = gender;
     }
 
-//    public List<Like> getLikes() {
-//        return likes;
-//    }
-//
-//    public void setLikes(List<Like> likes) {
-//        this.likes = likes;
-//    }
+    public Set<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Set<Grade> grades) {
+        this.grades = grades;
+    }
 }
