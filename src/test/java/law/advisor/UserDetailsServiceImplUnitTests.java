@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,10 +27,10 @@ import static org.mockito.Mockito.when;
 public @RunWith(MockitoJUnitRunner.class)
     class UserDetailsServiceImplUnitTests {
 
-    @Mock
+    @MockBean
     UserRepository userRepository;
 
-    @Mock
+    @MockBean
     UserRoleRepository userRoleRepository;
 
     @InjectMocks
