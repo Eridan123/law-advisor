@@ -110,7 +110,12 @@ public class MainController {
 
         return "/lawyer/rating";
     }
+    @RequestMapping("/technicalSupport")
+    public String technicalSupport(ModelMap model){
 
+        model.addAttribute("categories",categoryRepository.findAll());
 
+        return "/technicalSupport";
+    }
 
 }
