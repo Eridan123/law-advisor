@@ -99,39 +99,6 @@
         });
     </script>
 </section>
-<script th:inline="javascript">
-    var userId=[[${@userService.findUserByUsername(#authentication.name).getId()}]];
-    var questionId=$("#questionId").val();
-    $("#likeQuestion").on("click",function () {
-        alert("like");
-        $.ajax({
-            type:'post',
-            data:{questionId:questionId,userId:userId},
-            url:"/api/question/like",
-            success:function (data) {
-                if(data=="ok"){
-                    $("#totalLike").text($("#totalLike").val()+1);
-                    $("#totalDisLike").text($("#totalDisLike").val()-1);
-                }
-            }
-        });
-    });
-
-    $("#disLikeQuestion").on("click",function () {
-        alert("dis");
-        $.ajax({
-            type:'post',
-            data:{questionId:questionId,userId: userId},
-            url:"/api/question/dislike",
-            success:function (data) {
-                if(data=="ok"){
-                    $("#totalDisLike").text($("#totalDisLike").val()+1);
-                    $("#totalLike").text($("#totalLike").val()-1);
-                }
-            }
-        });
-    });
-</script>
 </body>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
