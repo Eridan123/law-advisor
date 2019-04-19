@@ -77,7 +77,14 @@ public class QuestionController {
             role="none";
         }
 
-        Question question=questionRepository.getOne(id);
+        String baseQuery="select q.id,u.username as user,q.title,q.date,c.name as category,con.text as content,\n" +
+                "       (select count(1) from answer where question_id=q.id) as answers,               (select count(1) from grade where question_id=q.id and type=1) as likes,\n" +
+                "       (select count(1) from grade where question_id=q.id and type=2) as disLikes\n" +
+                "from question q,category c,content con,user u where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id and q.id="+id;
+        Query query=entityManager.createNativeQuery(baseQuery,QuestionModel.class);
+        QuestionModel question= (QuestionModel) query.getSingleResult();
+
+
 
         model.addAttribute("role", role);
         model.addAttribute("question",question);
@@ -177,13 +184,14 @@ public class QuestionController {
 
     @PostMapping("/api/question/like")
     @ResponseBody
-    public String setLike(Long questionId,Long userId){
+    public String setLike(Long questionId){
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByUsername(auth.getName());
         Question question=questionRepository.getOne(questionId);
-        Grade like=gradeRepository.findByUserIdAndQuestionId(userId,questionId);
+        Grade like=gradeRepository.findByUserIdAndQuestionId(user.getId(),questionId);
         if(like==null){
 
-            User user=userRepository.getOne(userId);
             Grade likes=new Grade();
             likes.setType(1);
             likes.setQuestion(question);
@@ -194,19 +202,25 @@ public class QuestionController {
             like.setType(1);
             gradeRepository.save(like);
         }
-        return "ok";
+        Set<Grade> likes=gradeRepository.findByTypeAndQuestion(1,question);
+        Set<Grade> disLikes=gradeRepository.findByTypeAndQuestion(2,question);
+
+        return likes.size()+"="+disLikes.size();
     }
+
+    // var userId=[[${@userService.findUserByUsername(#authentication.name).getId()}]];
 
     @PostMapping("/api/question/dislike")
     @ResponseBody
-    public String setDisLike(Long questionId,Long userId){
+    public String setDisLike(Long questionId){
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByUsername(auth.getName());
         Question question=questionRepository.getOne(questionId);
-        Grade disLike=gradeRepository.findByUserIdAndQuestionId(userId,questionId);
+        Grade disLike=gradeRepository.findByUserIdAndQuestionId(user.getId(),questionId);
         if(disLike==null){
             Grade disLikes=new Grade();
             disLikes.setType(2);
-            User user=userRepository.getOne(userId);
             disLikes.setQuestion(question);
             disLikes.setUser(user);
             gradeRepository.save(disLikes);
@@ -215,6 +229,9 @@ public class QuestionController {
             disLike.setType(2);
             gradeRepository.save(disLike);
         }
-        return "ok";
+        Set<Grade> likes=gradeRepository.findByTypeAndQuestion(1,question);
+        Set<Grade> disLikes=gradeRepository.findByTypeAndQuestion(2,question);
+
+        return likes.size()+"="+disLikes.size();
     }
 }

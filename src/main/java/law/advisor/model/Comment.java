@@ -27,9 +27,9 @@ public class Comment {
     @JoinColumn(name="user_id", nullable=false)
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private Set<User> lawyers;
+    @ManyToOne
+    @JoinColumn(name="lawyer_id", nullable=false)
+    private User lawyer;
 
     @OneToMany
     @JoinColumn(name = "answer_id")
@@ -38,7 +38,7 @@ public class Comment {
 
     @Column(columnDefinition = "varchar(20) default 'ANSWER'")
     @Enumerated(EnumType.STRING)
-    private CommentTo comment_to = CommentTo.ANSWER;
+    private CommentTo commentTo = CommentTo.ANSWER;
 
     public Long getId() {
         return id;
@@ -72,20 +72,20 @@ public class Comment {
         this.user = user;
     }
 
-    public Set<User> getLawyers() {
-        return lawyers;
+    public User getLawyer() {
+        return lawyer;
     }
 
-    public void setLawyers(Set<User> lawyers) {
-        this.lawyers = lawyers;
+    public void setLawyer(User lawyer) {
+        this.lawyer = lawyer;
     }
 
-    public CommentTo getComment_to() {
-        return comment_to;
+    public CommentTo getCommentTo() {
+        return commentTo;
     }
 
-    public void setComment_to(CommentTo comment_to) {
-        this.comment_to = comment_to;
+    public void setCommentTo(CommentTo commentTo) {
+        this.commentTo = commentTo;
     }
 
     public Set<Answer> getAnswers() {

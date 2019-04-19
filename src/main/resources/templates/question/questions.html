@@ -19,15 +19,15 @@
                                     <input hidden="hidden" th:value="${question.id}" id="questionId">
                                     <div class="col-xs-2 col-md-2">
                                         <button>
-                                            <i class="fa fa-thumbs-o-up" id="likeQuestion"></i>
+                                            <i class="fa fa-thumbs-o-up"></i>
                                         </button>
-                                        <label id="totalLike" th:value="${question.likes}" th:text="${question.likes}">1325</label>
+                                        <label th:text="${question.likes}">1325</label>
                                     </div>
                                     <div class="col-xs-2 col-md-2">
                                         <button>
-                                            <i class="fa fa-thumbs-o-down" id="disLikeQuestion"></i>
+                                            <i class="fa fa-thumbs-o-down"></i>
                                         </button>
-                                        <label id="totalDisLike" th:value="${question.dislikes}" th:text="${question.dislikes}">232</label>
+                                        <label th:text="${question.dislikes}">232</label>
                                     </div>
                                     <div class="col-xs-2 col-md-2">
                                         <button>
@@ -55,41 +55,4 @@
             </div>
         </div>
     </li>
-
-    <script th:inline="javascript">
-        var userExist=[[${@userService.findUserByUsername(#authentication.name)}]];
-        if(userExist!=null){
-        var userId=[[${@userService.findUserByUsername(#authentication.name).getId()}]];
-        var questionId=$("#questionId").val();
-        $("#likeQuestion").on("click",function () {
-            alert("like");
-            $.ajax({
-                type:'post',
-                data:{questionId:questionId,userId:userId},
-                url:"/api/question/like",
-                success:function (data) {
-                    if(data=="ok"){
-                        $("#totalLike").text($("#totalLike").val()+1);
-                        $("#totalDisLike").text($("#totalDisLike").val()-1);
-                    }
-                }
-            });
-        });
-
-        $("#disLikeQuestion").on("click",function () {
-            alert("dis");
-            $.ajax({
-                type:'post',
-                data:{questionId:questionId,userId: userId},
-                url:"/api/question/dislike",
-                success:function (data) {
-                    if(data=="ok"){
-                        $("#totalDisLike").text($("#totalDisLike").val()+1);
-                        $("#totalLike").text($("#totalLike").val()-1);
-                    }
-                }
-            });
-        });
-        }
-    </script>
 </ul>
