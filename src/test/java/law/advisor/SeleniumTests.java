@@ -527,7 +527,7 @@ public class SeleniumTests {
 
     /*Like Test*/
     public static boolean seeLike(WebDriver driver){
-        return true;
+        return driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("1");
     }
 
     /*View Test*/
@@ -542,8 +542,16 @@ public class SeleniumTests {
 
     /*Put like to question Test*/
     public static boolean putLike(WebDriver driver){
-        return true;
+        login(driver);
+        driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[2]/section/div/div/div/div/div[1]/button")).click();
+        return driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("1");
     }
     //############End of Sprint3############
+    public static void main(String[] args) {
+        WebDriver dr = new ChromeDriver();
+        dr.manage().window().maximize();
+        putLike(dr);
+        dr.close();
 
+    }
 }
