@@ -43,6 +43,8 @@ public class Question {
             mappedBy = "question" )
     public Set<Grade> grades;
 
+    private int views;
+
     public Long getId() {
         return id;
     }
@@ -113,5 +115,13 @@ public class Question {
 
     public void setGrades(Set<Grade> grades) {
         this.grades = grades;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 }

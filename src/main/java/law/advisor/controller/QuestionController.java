@@ -77,6 +77,9 @@ public class QuestionController {
             role="none";
         }
 
+        Question question1=questionRepository.getOne(id);
+        question1.setViews(question1.getViews()+1);
+        questionRepository.save(question1);
         String baseQuery="select q.id,u.username as user,q.title,q.date,c.name as category,con.text as content,\n" +
                 "       (select count(1) from answer where question_id=q.id) as answers,               (select count(1) from grade where question_id=q.id and type=1) as likes,\n" +
                 "       (select count(1) from grade where question_id=q.id and type=2) as disLikes\n" +
@@ -233,5 +236,20 @@ public class QuestionController {
         Set<Grade> disLikes=gradeRepository.findByTypeAndQuestion(2,question);
 
         return likes.size()+"="+disLikes.size();
+    }
+
+    @GetMapping("/question/most/viewed")
+    public String getMostVieweds(ModelMap model){
+
+        String baseQuery="select q.id,q.views,u.username as user,q.title,q.date,c.name as category,con.text as content,\n" +
+                "       (select count(1) from answer where question_id=q.id) as answers,               (select count(1) from grade where question_id=q.id and type=1) as likes,\n" +
+                "       (select count(1) from grade where question_id=q.id and type=2) as disLikes\n" +
+                "from question q,category c,content con,user u where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id order by q.views desc";
+
+        Query query=entityManager.createNativeQuery(baseQuery,QuestionModel.class);
+        List<QuestionModel> questions=query.getResultList();
+
+        model.addAttribute("questions",questions);
+        return "question/mostviewed";
     }
 }

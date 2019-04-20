@@ -19,10 +19,10 @@
                 <tbody>
                 <tr th:each="user:${users}">
                     <td th:text="${user.id}">1</td>
-                    <td th:text="${user.name}">Mark</td>
+                    <td> <a th:href="@{/lawyer/__${user.id}__/view}" th:text="${user.name}"></a></td>
                     <td th:text="${user.surname}">Otto</td>
                     <td th:text="${user.username}">@mdo</td>
-                    <td class="actions" th:if="${role}=='ADMIN'">
+                    <td class="actions">
                         <a th:href="@{/lawyer/__${user.id}__/save}"><i class="fa fa-pencil"></i></a>
                         <a href="" class="delete-row">
                             <form th:action="@{/lawyer/__${user.id}__/delete}" method="post">

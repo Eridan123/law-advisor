@@ -78,7 +78,6 @@ public class LawyerController {
 
         if(id==null||id<=0){
             User lawyer=new User();
-            lawyer.setUserType(UserType.LAWYER);
             model.addAttribute("content",new Content());
             model.addAttribute("lawyer",lawyer);
         }
@@ -111,6 +110,7 @@ public class LawyerController {
             content1.setText(content);
             userRole.setUser(lawyer);
             contentRepository.save(content1);
+            lawyer.setUserType(UserType.LAWYER);
             lawyer.setLawyer_degree_id(content1);
             lawyer.setEncryted_password(bCryptPasswordEncoder.encode(lawyer.getEncryted_password()));
             userRepository.save(lawyer);

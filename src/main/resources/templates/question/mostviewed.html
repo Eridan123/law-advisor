@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <title>Questions</title>
+    <div th:replace="fragment/header :: header-css"/>
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <div th:replace="layout/header"/>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <div th:replace="layout/sidebar"/>
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>Most Viewed Questions</h2>
+
+                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="catSearch" placeholder="Search...">
+                        <span class="input-group-btn">
+              </span>
+                    </div>
+
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <ul>
+                <li>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12" th:each="question:${questions}">
+                            <section class="panel panel-featured panel-featured-primary">
+                                <header class="panel-heading">
+                                    <div class="panel-actions">
+                                        <a href="#" class="fa fa-caret-down"></a>
+                                        <a href="#" class="fa fa-times"></a>
+                                    </div>
+
+                                    <a th:href="@{/question/__${question.id}__/view}"><h2 class="panel-title" th:text="${question.title}"></h2></a>
+                                </header>
+                                <div>
+                                    <div class="panel-body ">
+                                        <p th:text="${question.content}"></p>
+                                        <div class="container">
+                                            <div class="row justify-content-around">
+                                                <input hidden="hidden" th:value="${question.id}" id="questionId">
+                                                <div class="col-xs-2 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-thumbs-o-up"></i>
+                                                    </button>
+                                                    <label th:text="${question.likes}">1325</label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-thumbs-o-down"></i>
+                                                    </button>
+                                                    <label th:text="${question.dislikes}">232</label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-check-square-o"></i>
+                                                    </button>
+                                                    <label th:text="${question.answers}">53 Answers</label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-user"></i>
+                                                    </button>
+                                                    <label th:text="${question.user}">53 Answers</label>
+                                                </div>
+                                                <div class="col-xs-2 col-md-2">
+                                                    <button>
+                                                        <i class="fa fa-calendar-o"></i>
+                                                    </button>
+                                                    <label th:text="${#dates.format(question.date,'dd-MM-yyyy')}"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- end: page -->
+        </section>
+    </div>
+
+    <!-- Vendor -->
+    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.js}"></script>
+    <script th:src="@{/assets/vendor/nanoscroller/nanoscroller.js}"></script>
+    <script th:src="@{/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+    <script th:src="@{/assets/vendor/magnific-popup/magnific-popup.js}"></script>
+    <script th:src="@{/assets/vendor/jquery-placeholder/jquery.placeholder.js}"></script>
+
+    <!-- Specific Page Vendor -->
+
+    <!-- Theme Base, Components and Settings -->
+    <script th:src="@{/assets/javascripts/theme.js}"></script>
+
+    <!-- Theme Custom -->
+    <script th:src="@{/assets/javascripts/theme.custom.js}"></script>
+
+    <!-- Theme Initialization Files -->
+    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+
+</section>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© Copyright 2019 - All Rights Reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</html>

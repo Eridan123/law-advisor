@@ -24,7 +24,7 @@ public class MIstakeController {
     public String saveMistake(ModelMap model, @PathVariable("id") Long id){
         if (id==null ||id==0){
             Comment comment=new Comment();
-            comment.setComment_to(CommentTo.DEVELOPER);
+            comment.setCommentTo(CommentTo.DEVELOPER);
             model.addAttribute("mistake",comment);
         }
         else{
@@ -37,7 +37,7 @@ public class MIstakeController {
     @PostMapping("/mistake/save")
     public String savePostMistake(Comment comment, String text){
         if (comment.getId()==null ||comment.getId()==0){
-            comment.setComment_to(CommentTo.DEVELOPER);
+            comment.setCommentTo(CommentTo.DEVELOPER);
             Content content=new Content();
             content.setText(text);
             contentRepository.save(content);
