@@ -3,6 +3,7 @@
  import law.advisor.model.Category;
  import law.advisor.repository.CategoryRepository;
  import law.advisor.service.CategoryService;
+ import law.advisor.service.CategoryServiceImpl;
  import org.junit.After;
  import org.junit.Before;
  import org.junit.Test;
@@ -24,7 +25,7 @@
      CategoryRepository categoryRepositoryMock;
 
      @InjectMocks
-     CategoryService categoryServiceTest;
+     CategoryServiceImpl categoryServiceTest;
 
      @Before
      public void setUp() {
@@ -58,6 +59,19 @@
          when(categoryRepositoryMock.findAll()).thenReturn(list);
          assertEquals(list,categoryServiceTest.findAll());
      }
+
+
+     @Test
+     public void findById() {
+         Category category=new Category();
+         category.setId(8L);
+         category.setName("Category find by id");
+
+         when(categoryRepositoryMock.getOne(8L)).thenReturn(category);
+         assertEquals(category,categoryServiceTest.findById(8L));
+
+     }
+     
 
      @After
      public void terminate(){
