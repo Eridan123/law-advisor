@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -28,7 +29,7 @@ public class MistakeController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/mistake/{id}/save")
+    @GetMapping("/mistake/{id}/save")
     public String saveMistake(ModelMap model, @PathVariable("id") Long id){
         if (id==null ||id==0){
             Comment comment=new Comment();
@@ -45,6 +46,7 @@ public class MistakeController {
     @PostMapping("/mistake/save")
     public String savePostMistake(Comment comment, String text){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.getName()!="anonymousUser"){
         if (comment.getId()==null ||comment.getId()==0){
             comment.setCommentTo(CommentTo.DEVELOPER);
             Content content=new Content();
@@ -64,6 +66,7 @@ public class MistakeController {
             Comment comment1=commentRepository.getOne(comment.getId());
             comment1.getContent().setText(text);
             contentRepository.save(comment1.getContent());
+        }
         }
         return "redirect:/";
     }
