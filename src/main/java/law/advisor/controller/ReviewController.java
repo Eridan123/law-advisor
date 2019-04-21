@@ -60,6 +60,7 @@ public class ReviewController {
             User lawyer=userRepository.getOne(lawyerId);
             review.setLawyer(lawyer);
             commentRepository.save(review);
+
         }
 
         return "redirect:/lawyer/"+lawyerId+"/view";
