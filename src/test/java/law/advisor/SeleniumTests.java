@@ -474,7 +474,19 @@ public class SeleniumTests {
 
     /*Leave review Test*/
     public static boolean review(WebDriver driver) {
-        return true;
+        driver.get(baseURL);
+        driver.findElement(By.linkText("Reviews")).click();
+        ((JavascriptExecutor) driver).executeScript("scroll(0,400)");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[1]/input")).sendKeys("Alina");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[3]/input")).sendKeys("Zhakypova");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[5]/input")).sendKeys("alina@mail.ru");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[2]/div/textarea")).sendKeys("kdbclaibvlaivbalhba");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/footer/button")).click();
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/reviews")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
