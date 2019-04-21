@@ -1,6 +1,7 @@
 package law.advisor.controller;
 
 import law.advisor.model.Category;
+import law.advisor.model.Comment;
 import law.advisor.model.Question;
 import law.advisor.model.User;
 import law.advisor.repository.CategoryRepository;
@@ -114,6 +115,7 @@ public class MainController {
     public String technicalSupport(ModelMap model){
 
         model.addAttribute("categories",categoryRepository.findAll());
+        model.addAttribute("mistake",new Comment());
 
         return "/technicalSupport";
     }

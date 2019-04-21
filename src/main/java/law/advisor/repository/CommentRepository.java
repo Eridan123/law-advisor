@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment,Long> {
     public List<Comment> findByLawyerAndCommentTo(User lawyer, CommentTo commentTo);
+
 }

@@ -33,14 +33,9 @@
             <div class="row">
                 <div class="col-xs-2 col-md-1"></div>
                 <div class="col-xs-8 col-md-10">
-                    <form th:object="${mistake}" th:action="@{/mistake/save}">
-                        <input type="text" name="id" th:value="${mistake.id}">
+                    <form th:action="@{/mistake/save}" method="post">
                         <section class="panel">
                             <header class="panel-heading">
-                                <div class="panel-actions">
-                                    <a href="#" class="fa fa-caret-down"></a>
-                                    <a href="#" class="fa fa-times"></a>
-                                </div>
 
                                 <h2 class="panel-title">Inform about mistakes on website</h2>
 
