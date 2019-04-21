@@ -31,6 +31,10 @@ public class Answer {
     @JoinColumn(name="content_id")
     private Content content;
 
+    @OneToMany( cascade = CascadeType.ALL,
+            mappedBy = "answer" )
+    public Set<Grade> grades;
+
     public Long getId() {
         return id;
     }
@@ -69,5 +73,13 @@ public class Answer {
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    public Set<Grade> getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Set<Grade> grades) {
+        this.grades = grades;
     }
 }

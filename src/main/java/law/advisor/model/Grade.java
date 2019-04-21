@@ -26,8 +26,14 @@ public class Grade {
     @ManyToOne
     @JoinColumn( name = "question_id",
             referencedColumnName = "id",
-            nullable = false )
+            nullable = true )
     public Question question;
+
+    @ManyToOne
+    @JoinColumn( name = "answer_id",
+            referencedColumnName = "id",
+            nullable = true )
+    public Answer answer;
 
 
     public Long getId() {
@@ -60,5 +66,13 @@ public class Grade {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 }
