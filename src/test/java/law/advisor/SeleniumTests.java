@@ -554,4 +554,25 @@ public class SeleniumTests {
         dr.close();
 
     }
-}
+    public static boolean registerlaw(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.linkText("Sign up!")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("begemotkyz");
+        driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("123");
+        driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("123");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[4]/input")).sendKeys("alina@mail.ru");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[5]/input")).sendKeys("Alina");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[6]/input")).sendKeys("Zhakypova");
+        driver.findElement(By.xpath("<input name=\"phone_number\" type=\"text\" class=\"form-control\" placeholder=\"Phone number\" value=\"\">")).sendKeys("0703673027");
+        driver.findElement(By.xpath("//*[@id=\"optionsRadios1\"]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        if(!driver.getCurrentUrl().contentEquals(baseURL)){
+            return true;
+
+        }else {
+            return false;
+        }
+
+
+
+    }
