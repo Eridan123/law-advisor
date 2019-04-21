@@ -584,4 +584,22 @@ public class SeleniumTests {
             return false;
         }
     }
+    public static boolean editUser(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("user");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("123");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
+        driver.findElement(By.xpath("/html/body/section/header/div[2]/div/div")).click();
+        driver.findElement(By.xpath("/html/body/section/header/div[2]/div/div/div/ul/li[2]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div[1]/section[1]/div/div/div[2]/div[4]/a")).click();
+        driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("1234");
+        driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("1234");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/user/12/view")){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
