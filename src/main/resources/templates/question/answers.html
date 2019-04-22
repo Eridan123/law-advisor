@@ -7,22 +7,22 @@
                 <div class="col-md-1 leftSideOfTab">
                     <div class="row justify-content-around">
                         <div class="row center-block">
-                            <button>
+                            <button th:id="'likea='+${answer.id}" onClick="reply_click(this.id)">
                                 <i class="fa fa-thumbs-o-up"></i>
                             </button>
                         </div>
                         <div class="row center-block">
-                            <label >1325</label>
+                            <label id="totalLike" th:value="${answer.likes}" th:text="${answer.likes}">1325</label>
                         </div>
                     </div>
                     <div class="row justify-content-around">
                         <div class="row row center-block">
-                            <button>
+                            <button th:id="'dislike='+${answer.id}" onclick="reply_click(this.id)">
                                 <i class="fa fa-thumbs-o-down"></i>
                             </button>
                         </div>
                         <div class="row center-block">
-                            <label >143</label>
+                            <label id="totalDisLike" th:value="${answer.dislikes}" th:text="${answer.dislikes}">143</label>
                         </div>
                     </div>
                     <div class="row justify-content-around">
@@ -32,7 +32,7 @@
                             </button>
                         </div>
                         <div class="row center-block">
-                            <label th:text="${answer.user.username}"></label>
+                            <label th:text="${answer.user}"></label>
                         </div>
                     </div>
                     <div class="row justify-content-around">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-md-11 rightSideOfTab">
-                    <h4 th:text="${answer.content.text}">
+                    <h4 th:text="${answer.content}">
 
                     </h4>
                 </div>
@@ -210,4 +210,37 @@
     }
 
 
+</script>
+<script>
+    function reply_click(clicked_id)
+    {
+        alert(clicked_id);
+        var splitted=clicked_id.split("=");
+        var answerId=splitted[1];
+        if(splitted[0]=='likea'){
+            $.ajax({
+                type:'post',
+                data:{answerId:answerId},
+                url:"/api/answer/like",
+                success:function (data) {
+                    var sm=data.split("=");
+                    $("#totalLike").text(sm[0]);
+                    $("#totalDisLike").text(sm[1]);
+                }
+            });
+        }
+        else if(splitted[0]=='dislike'){
+            $.ajax({
+                type:'post',
+                data:{answerId:answerId},
+                url:"/api/answer/dislike",
+                success:function (data) {
+                    var sm=data.split("=");
+                    $("#totalLike").text(sm[0]);
+                    $("#totalDisLike").text(sm[1]);
+                }
+            });
+        }
+
+    }
 </script>

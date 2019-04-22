@@ -1,13 +1,7 @@
 package law.advisor.controller;
 
-import law.advisor.model.Answer;
-import law.advisor.model.Content;
-import law.advisor.model.Question;
-import law.advisor.model.User;
-import law.advisor.repository.AnswerRepository;
-import law.advisor.repository.ContentRepository;
-import law.advisor.repository.QuestionRepository;
-import law.advisor.repository.UserRepository;
+import law.advisor.model.*;
+import law.advisor.repository.*;
 import law.advisor.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,16 +9,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AnswerController {
@@ -46,6 +38,9 @@ public class AnswerController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    GradeRepository gradeRepository;
 
     @RequestMapping("/question/{questionId}/answer/{answerId}/save")
     public String addAnswer(ModelMap model, @PathVariable("questionId") Long questionId,
@@ -131,14 +126,66 @@ public class AnswerController {
             searchStr="";
         }
 
-        String baseQuery="select answer.*\n" +
-                "from answer, content c where answer.question_id="+id+" and c.id=answer.content_id and c.text  like '%"+searchStr+"%'";
-        Query query=entityManager.createNativeQuery(baseQuery,Answer.class);
-        List<Answer> answers=query.getResultList();
+        String baseQuery="select a.id,u.username as user,c.text as content,(select count(1) from grade where answer_id=a.id and type=1) as likes,\n" +
+                "       (select count(1) from grade where answer_id=a.id and type=2) as dislikes\n" +
+                "from answer a,content c,user u where u.id=a.user_id and c.id=a.content_id and a.question_id="+id+" and c.text  like '%"+searchStr+"%'";
+        Query query=entityManager.createNativeQuery(baseQuery,AnswerModel.class);
+        List<AnswerModel> answers=query.getResultList();
 
         model.addAttribute("answers",answers);
 
         return "/question/answers";
     }
 
+    @PostMapping("/api/answer/like")
+    @ResponseBody
+    public String setLike(Long answerId){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByUsername(auth.getName());
+        Answer answer=answerRepository.getOne(answerId);
+        Grade like=gradeRepository.findByUserIdAndAnswerId(user.getId(),answerId);
+        if(like==null){
+
+            Grade likes=new Grade();
+            likes.setType(1);
+            likes.setAnswer(answer);
+            likes.setUser(user);
+            gradeRepository.save(likes);
+        }
+        else{
+            like.setType(1);
+            gradeRepository.save(like);
+        }
+        Set<Grade> likes=gradeRepository.findByTypeAndAnswer(1,answer);
+        Set<Grade> disLikes=gradeRepository.findByTypeAndAnswer(2,answer);
+
+        return likes.size()+"="+disLikes.size();
+    }
+
+
+    @PostMapping("/api/answer/dislike")
+    @ResponseBody
+    public String setDisLike(Long answerId){
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user=userRepository.findUserByUsername(auth.getName());
+        Answer answer=answerRepository.getOne(answerId);
+        Grade disLike=gradeRepository.findByUserIdAndAnswerId(user.getId(),answerId);
+        if(disLike==null){
+            Grade disLikes=new Grade();
+            disLikes.setType(2);
+            disLikes.setAnswer(answer);
+            disLikes.setUser(user);
+            gradeRepository.save(disLikes);
+        }
+        else{
+            disLike.setType(2);
+            gradeRepository.save(disLike);
+        }
+        Set<Grade> likes=gradeRepository.findByTypeAndAnswer(1,answer);
+        Set<Grade> disLikes=gradeRepository.findByTypeAndAnswer(2,answer);
+
+        return likes.size()+"="+    disLikes.size();
+    }
 }
