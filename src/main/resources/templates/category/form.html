@@ -1,0 +1,125 @@
+<!doctype html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Online Law Consultant</title>
+    <div th:replace="fragment/header :: header-css"/>
+
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <div th:replace="layout/header"/>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <div th:replace="layout/sidebar"/>
+        <!-- end: sidebar -->
+        <section role="main" class="content-body">
+            <header class="page-header">
+                <h2>Sign Up</h2>
+
+                <div class="right-wrapper pull-right">
+                    <ol class="breadcrumbs">
+                        <li>
+                            <a th:href="@{/}">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li>
+
+                        </li>
+                    </ol>
+
+                    <!--<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>-->
+                </div>
+            </header>
+            <!--start content-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <div class="panel-body">
+                            <form class="form-horizontal form-bordered" th:object="${categories}" method="post" th:action="@{/categories/save}">
+                                <input hidden="hidden" type="text" name="id" th:field="*{id}">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-md">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+
+                                        <!--<i class="fa fa-envelope"></i>-->
+                                    </span>
+                                            <input name="name" type="text" class="form-control" placeholder="Name" th:value="${categories.name}" >
+                                        </div>
+                                        <div class="input-group mb-md">
+                                    <span class="input-group-addon">
+                                        <!--<i class="fa fa-envelope"></i>-->
+                                    </span>
+                                            <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="${categories.name}" >
+                                        </div>
+
+                                        <div>
+                                            <div class="panel-body">
+                                                <div class="form-horizontal form-bordered">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Category Information</label>
+                                                        <div class="col-md-9">
+                                                            <div class="md-editor" >
+                                                                <textarea type="text" name="content" rows="10" class="md-input" style="display: block; resize: none;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <!--end content-->
+    </div>
+
+
+    <!-- Vendor -->
+    <script src="/assets/vendor/jquery/jquery.js"></script>
+    <script src="/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="/assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/assets/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+    <!-- Specific Page Vendor -->
+
+    <!-- Theme Base, Components and Settings -->
+    <script th:src="@{/assets/javascripts/theme.js}"></script>
+
+    <!-- Theme Custom -->
+    <script th:src="@{/assets/javascripts/theme.custom.js}"></script>
+
+    <!-- Theme Initialization Files -->
+    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+
+</section>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© Copyright 2019 - All Rights Reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</html>
