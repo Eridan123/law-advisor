@@ -23,7 +23,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Username</th>
-                    <th>Actions</th>
+                    <th sec:authorize="hasRole('ADMIN')">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                     <td> <a th:href="@{/lawyer/__${user.id}__/view}" th:text="${user.name}"></a></td>
                     <td th:text="${user.surname}">Otto</td>
                     <td th:text="${user.username}">@mdo</td>
-                    <td class="actions">
+                    <td sec:authorize="hasRole('ADMIN')" class="actions">
                         <a th:href="@{/lawyer/__${user.id}__/save}"><i class="fa fa-pencil"></i></a>
                         <a href="" class="delete-row">
                             <form th:action="@{/lawyer/__${user.id}__/delete}" method="post">

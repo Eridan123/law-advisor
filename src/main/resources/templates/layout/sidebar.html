@@ -43,6 +43,13 @@
                             <i class="fa fa-th-list" aria-hidden="true"></i>
                             <span>Categories</span>
                         </a>
+                        <ul sec:authorize="hasRole('ADMIN')" class="nav nav-children">
+                            <li>
+                                <a th:href="@{/category/list}" >
+                                    Category list
+                                </a>
+                            </li>
+                        </ul>
                         <ul class="nav nav-children" th:each="category:${@categoryService.findAll()}">
                             <li>
                                 <a th:href="@{/question/__${category.id}__/list}" th:text="${category.name}">

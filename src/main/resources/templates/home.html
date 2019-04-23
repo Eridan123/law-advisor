@@ -1,5 +1,6 @@
 <!doctype html>
-<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
     <title>Online Law Consultant</title>
@@ -16,8 +17,9 @@
         <div th:replace="layout/sidebar"/>
 
         <section role="main" class="content-body">
+            <h1 sec:authorize="hasRole('ADMIN')">Something</h1>
             <header class="page-header">
-                <h2 th:if="${role}!='none'"><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
+                <h2 sec:authorize="hasAnyAuthority('ROLE_LAWYER','ROLE_USER')"><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
                 </h2>
                 <!-- Ask Question Modal -->
                 <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
