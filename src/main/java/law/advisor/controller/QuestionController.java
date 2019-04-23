@@ -155,7 +155,7 @@ public class QuestionController {
                 "       (select count(1) from answer where question_id=q.id) as answers,        " +
                 "       (select count(1) from grade where question_id=q.id and type=1) as likes,\n" +
                 "       (select count(1) from grade where question_id=q.id and type=2) as disLikes\n" +
-                "        from question q,category c,content con,user u where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id and q.title  like '%"+searchStr+"%'";
+                "        from question q,category c,content con,user u where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id and q.title  like '%"+searchStr+"%' order by q.id desc";
         Query query=entityManager.createNativeQuery(baseQuery,QuestionModel.class);
         List<QuestionModel> questions=query.getResultList();
 
@@ -175,7 +175,7 @@ public class QuestionController {
                 "       (select count(1) from answer where question_id=q.id) as answers,\n" +
                 "       (select count(1) from grade where question_id=q.id and type=1) as likes,\n" +
                 "       (select count(1) from grade where question_id=q.id and type=2) as disLikes\n" +
-                "        from question q,category c,content con,user u  where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id and q.category_id="+catId+" and  q.title  like '%"+searchStr+"%'";
+                "        from question q,category c,content con,user u  where q.user_id=u.id and  q.category_id=c.id and q.content_id=con.id and q.category_id="+catId+" and  q.title  like '%"+searchStr+"%' order by q.date desc";
         Query query=entityManager.createNativeQuery(baseQuery,QuestionModel.class);
         List<QuestionModel> questions=query.getResultList();
 
