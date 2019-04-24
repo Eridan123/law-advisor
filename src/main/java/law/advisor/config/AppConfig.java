@@ -1,15 +1,21 @@
 package law.advisor.config;
 
+import law.advisor.service.MessageResourceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.CacheControl;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
@@ -27,6 +33,10 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+
+    @Autowired
+    private MessageResourceService messageResourceService;
+
 
     private static final String UTF8 = "UTF-8";
 
@@ -55,10 +65,42 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
 
         engine.setTemplateResolver(templateResolver());
-//        engine.setMessageSource(getMessageSource());
+        engine.setMessageSource(getMessageSource());
 
         engine.setAdditionalDialects(dialects);
         return engine;
+    }
+
+    @Bean(name = "messageSource")
+    public DatabaseDrivenMessageSource getMessageSource() {
+        DatabaseDrivenMessageSource resource = new DatabaseDrivenMessageSource(messageResourceService);
+        ReloadableResourceBundleMessageSource databaseDrivenMessageSourceProperties = new ReloadableResourceBundleMessageSource();
+        databaseDrivenMessageSourceProperties.setBasename("classpath:/locales/messages");
+        databaseDrivenMessageSourceProperties.setDefaultEncoding("UTF-8");
+        databaseDrivenMessageSourceProperties.setCacheSeconds(0);
+        databaseDrivenMessageSourceProperties.setFallbackToSystemLocale(false);
+        resource.setParentMessageSource(databaseDrivenMessageSourceProperties);
+        return resource;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        localeChangeInterceptor.setParamName("language");
+        return localeChangeInterceptor;
+    }
+
+    @Bean(name = "localeResolver")
+    public CookieLocaleResolver localeResolver() {
+        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
+        Locale defaultLocale = new Locale("ru");
+        localeResolver.setDefaultLocale(defaultLocale);
+        return localeResolver;
     }
 
     private ITemplateResolver templateResolver() {
@@ -88,5 +130,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 //        registry.addResourceHandler("/stylesheets/**").addResourceLocations("/static/assets/stylesheets/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 //        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
 //    }
+
+
 
 }

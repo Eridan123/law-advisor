@@ -19,7 +19,7 @@
         <section role="main" class="content-body">
             <h1 sec:authorize="hasRole('ADMIN')">Something</h1>
             <header class="page-header">
-                <h2 sec:authorize="hasAnyAuthority('ROLE_LAWYER','ROLE_USER')"><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a>
+                <h2 sec:authorize="hasAnyAuthority('ROLE_LAWYER','ROLE_USER')"><a th:href="@{/question/0/save}" type="button" class="btn btn-success" th:text="#{label.ask.question}">Ask question</a>
                 </h2>
                 <!-- Ask Question Modal -->
                 <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
