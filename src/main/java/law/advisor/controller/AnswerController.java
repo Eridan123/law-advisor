@@ -42,6 +42,9 @@ public class AnswerController {
     @Autowired
     GradeRepository gradeRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
     @RequestMapping("/question/{questionId}/answer/{answerId}/save")
     public String addAnswer(ModelMap model, @PathVariable("questionId") Long questionId,
                             @PathVariable("answerId") Long answerId){
@@ -110,6 +113,7 @@ public class AnswerController {
         return "redirect:/question/"+answer.getQuestion().getId()+"/view";
     }
 
+
     @PostMapping("/answer/{id}/delete")
     public String delete(@PathVariable("id") Long id){
 
@@ -132,9 +136,79 @@ public class AnswerController {
         Query query=entityManager.createNativeQuery(baseQuery,AnswerModel.class);
         List<AnswerModel> answers=query.getResultList();
 
+
+
         model.addAttribute("answers",answers);
 
+
         return "/question/answers";
+    }
+
+    @RequestMapping("answer/{id}/comments")
+    public String showComments(@PathVariable("id") long id, ModelMap model){
+
+        String baseQuery="select co.id, u.username as user, c.text as content from comment co, user u, content c where co.answer_id="+id+" and c.id=co.content_id and u.id=co.user_id;";
+
+
+        Query query=entityManager.createNativeQuery(baseQuery,CommentModel.class);
+        List<CommentModel> comments=query.getResultList();
+
+        model.addAttribute("comments", comments);
+
+        return "/question/comments";
+    }
+
+    @RequestMapping("/answer/{answerId}/comment/{commentId}/save")
+    public String addComment(ModelMap model, @PathVariable("answerId") Long answerId,
+                            @PathVariable("commentId") Long commentId){
+
+        if(commentId==0 || commentId==null){
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user=userRepository.findUserByUsername(auth.getName());
+            Answer answer=answerRepository.getOne(answerId);
+            Comment comment=new Comment();
+            comment.setDate(new Date());
+            comment.setUser(user);
+            Content content1=new Content();
+            contentRepository.save(content1);
+            comment.setContent(content1);
+            model.addAttribute("answerId",answerId);
+            model.addAttribute("comment", comment);
+        }
+        else if(commentId>0){
+            Comment comment=commentRepository.getOne(commentId);
+            model.addAttribute("comment",comment);
+        }
+
+        return "/question/commentForm";
+
+    }
+
+    @PostMapping("/answer/comment/save")
+    public String saveComment(Comment comment, String text, HttpServletRequest request){
+
+
+        String appUrl= request.getScheme() + "://" + request.getServerName()+":8080";
+        if(comment.getId()==null||comment.getId()==0){
+            Content content=comment.getContent();
+            content.setText(text);
+            contentRepository.save(content);
+            comment.setContent(content);
+            commentRepository.save(comment);
+
+
+        }
+        else if(comment.getId()>0){
+
+            Content content1=comment.getContent();
+            content1.setText(text);
+            contentRepository.save(content1);
+            commentRepository.save(comment);
+
+
+        }
+
+        return "redirect:/question/"+comment.getAnswer().getQuestion().getId()+"/view";
     }
 
     @PostMapping("/api/answer/like")

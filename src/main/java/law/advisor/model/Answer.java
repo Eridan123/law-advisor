@@ -35,6 +35,10 @@ public class Answer {
             mappedBy = "answer" )
     public Set<Grade> grades;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "answer_id")
+    public Set<Comment> comments;
+
     public Long getId() {
         return id;
     }
@@ -81,5 +85,13 @@ public class Answer {
 
     public void setGrades(Set<Grade> grades) {
         this.grades = grades;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

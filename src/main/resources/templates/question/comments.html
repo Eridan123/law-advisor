@@ -1,0 +1,7 @@
+<ul th:each="comment:${comments}" style="list-style-type: none;padding:0"
+    xmlns:th="http://www.w3.org/1999/xhtml">
+    <li>
+        <p th:text="${comment.content}" style="border-bottom: #2f3139 solid 1px"></p>
+    </li>
+
+</ul>

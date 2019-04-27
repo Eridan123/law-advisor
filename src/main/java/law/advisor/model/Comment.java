@@ -31,9 +31,9 @@ public class Comment {
     @JoinColumn(name="lawyer_id", nullable=false)
     private User lawyer;
 
-    @OneToMany
-    @JoinColumn(name = "answer_id")
-    private Set<Answer> answers;
+    @OneToOne
+    @JoinColumn(name = "answer_id", nullable = false)
+    private Answer answer;
 
 
     @Column(columnDefinition = "varchar(20) default 'ANSWER'")
@@ -88,11 +88,11 @@ public class Comment {
         this.commentTo = commentTo;
     }
 
-    public Set<Answer> getAnswers() {
-        return answers;
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public void setAnswers(Set<Answer> answers) {
-        this.answers = answers;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 }
