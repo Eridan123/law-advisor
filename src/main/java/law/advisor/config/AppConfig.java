@@ -114,7 +114,6 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return resolver;
     }
 
-
     @Bean(name = "multipartResolver")
     public MultipartResolver createMultipartResolver() {
         return new StandardServletMultipartResolver();

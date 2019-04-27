@@ -10,8 +10,8 @@ public class MessageResource {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="messageKey", nullable=false)
-    private String messageKey;
+    @Column(name="message_key", nullable=false)
+    private String message_key;
 
     @Column(name="eng")
     private String eng;
@@ -31,13 +31,12 @@ public class MessageResource {
     }
 
 
-
-    public String getMessageKey() {
-        return messageKey;
+    public String getMessage_key() {
+        return message_key;
     }
 
-    public void setMessageKey(String messageKey) {
-        this.messageKey = messageKey;
+    public void setMessage_key(String message_key) {
+        this.message_key = message_key;
     }
 
     public String getEng() {

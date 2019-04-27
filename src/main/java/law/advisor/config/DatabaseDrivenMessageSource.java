@@ -77,7 +77,7 @@ public class DatabaseDrivenMessageSource extends AbstractMessageSource implement
             v.put("en", text.getEng());
             v.put("ru", text.getRus());
             v.put("kg", text.getKgz());
-            m.put(text.getMessageKey(), v);
+            m.put(text.getMessage_key(), v);
         }
         return m;
     }
