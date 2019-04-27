@@ -8,6 +8,7 @@ import law.advisor.repository.CommentRepository;
 import law.advisor.repository.ContentRepository;
 import law.advisor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MistakeController {
@@ -70,4 +72,15 @@ public class MistakeController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/mistake/list")
+    public String mistakeList(ModelMap model){
+        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC,"date"));
+        List<Comment> comments = commentRepository.findAllByCommentTo(CommentTo.DEVELOPER,sort);
+
+        model.addAttribute("comments",comments);
+
+        return "/admin/FAQ";
+    }
+
 }

@@ -18,20 +18,30 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2 sec:authorize="hasRole('ADMIN')"><a th:href="@{/lawyer/0/save}" type="button" class="btn btn-success">Add Lawyer</a></h2>
 
-                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
-                    <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
-                        <span class="input-group-btn">
-              </span>
-                    </div>
+<!--                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">-->
 
-                </div>
+<!--                    <div class="input-group input-search">-->
+<!--                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">-->
+<!--                        <span class="input-group-btn"></span>-->
+<!--                    </div>-->
+
+<!--                </div>-->
             </header>
 
             <!-- start: page -->
             <div id="content"></div>
+            <ul style="list-style-type: none;" th:each="comment:${comments}" >
+                <section class="panel panel-featured panel-featured-primary">
+                    <header class="panel-heading">
+
+                        <h2 class="panel-title" th:text="${#dates.format(comment.date,'dd-MM-yy yy')}">Date</h2>
+                    </header>
+                    <div class="panel-body">
+                        <p th:text="${comment.content.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, ratione.</p>
+                    </div>
+                </section>
+            </ul>
             <!-- end: page -->
         </section>
     </div>
@@ -56,27 +66,27 @@
 
     <!-- Theme Initialization Files -->
     <script th:src="@{/assets/javascripts/theme.init.js}"></script>
-    <script>
-        var str=$("#search").val();
-        if($("#search").val()==""){
-            str=" ";
-        }
-        var sUrl ="/lawyer/"+str+"/search";
-        $("#search").on("input",function () {
-            var str=$("#search").val();
-            if($("#search").val()==""){
-                str=" ";
-            }
-            sUrl ="/lawyer/" +str+"/search";
-            $.get(sUrl, function(data) {
-                $('#content').html(data);
-            });
-        });
+<!--    <script>-->
+<!--        var str=$("#search").val();-->
+<!--        if($("#search").val()==""){-->
+<!--            str=" ";-->
+<!--        }-->
+<!--        var sUrl ="/question/"+str+"/search";-->
+<!--        $("#search").on("input",function () {-->
+<!--            var str=$("#search").val();-->
+<!--            if($("#search").val()==""){-->
+<!--                str=" ";-->
+<!--            }-->
+<!--            sUrl ="/question/" +str+"/search";-->
+<!--            $.get(sUrl, function(data) {-->
+<!--                $('#content').html(data);-->
+<!--            });-->
+<!--        });-->
 
-        $.get(sUrl, function(data) {
-            $('#content').html(data);
-        });
-    </script>
+<!--        $.get(sUrl, function(data) {-->
+<!--            $('#content').html(data);-->
+<!--        });-->
+<!--    </script>-->
 
 </section>
 </body>

@@ -757,6 +757,16 @@
 		});
 	});
 
+	$('#position-n-success').click(function(message) {
+		var notice = new PNotify({
+			title: 'Notification',
+			text: message,
+			type: 'success',
+			addclass: 'stack-bottomright',
+			stack: stack_bottomright
+		});
+	});
+
 	$('#position-3-info').click(function() {
 		var notice = new PNotify({
 			title: 'Notification',
@@ -965,3 +975,39 @@
 	});
 
 }).apply( this, [ jQuery ]);
+
+var stack_topleft = {"dir1": "down", "dir2": "right", "push": "top"};
+var stack_bottomleft = {"dir1": "right", "dir2": "up", "push": "top"};
+var stack_bottomright = {"dir1": "up", "dir2": "left", "firstpos1": 15, "firstpos2": 15};
+var stack_bar_top = {"dir1": "down", "dir2": "right", "push": "top", "spacing1": 0, "spacing2": 0};
+var stack_bar_bottom = {"dir1": "up", "dir2": "right", "spacing1": 0, "spacing2": 0};
+
+function showNotification(status,message) {
+	if(status == "success") {
+		var notice = new PNotify({
+			title: 'Notification',
+			text: message,
+			type: 'success',
+			addclass: 'stack-bottomright',
+			stack: stack_bottomright
+		});
+	}
+	else if(status == "error"){
+		var notice = new PNotify({
+			title: 'Notification',
+			text: 'Some notification text.',
+			type: 'error',
+			addclass: 'stack-bottomright',
+			stack: stack_bottomright
+		});
+	}
+}
+function showNotification() {
+	var notice = new PNotify({
+		title: 'Your massage successfully sended',
+		text: 'Thank you for help.',
+		type: 'success',
+		addclass: 'stack-bottomright',
+		stack: stack_bottomright
+	});
+}
