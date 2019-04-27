@@ -76,6 +76,12 @@
                             <span>Technical support</span>
                         </a>
                     </li>
+                    <li sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/messageResource/list}">
+                            <i class="fa fa-language" aria-hidden="true"></i>
+                            <span>Translations</span>
+                        </a>
+                    </li>
 
 
                 </ul>
