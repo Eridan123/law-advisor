@@ -1,0 +1,39 @@
+<form th:action="@{/messageResource/save}" th:object="${message}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="modal-header">
+        <h3 class="modal-title">Add/Edit Translation</h3>
+    </div>
+    <div class="modal-body">
+        <input hidden="true" type="text" id="id" name="id" th:field="*{id}" />
+        <input type="text" name="message_key" class="form-control" placeholder="Type subject..." th:value="${message.message_key}"/><br>
+        <input type="text" name="kgz" class="form-control" placeholder="Type subject..." th:value="${message.kgz}"/><br>
+        <input type="text" name="rus" class="form-control" placeholder="Type subject..." th:value="${message.rus}"/><br>
+        <input type="text" name="eng" class="form-control" placeholder="Type subject..." th:value="${message.eng}"/><br>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</form>
+
+<!--<div class="modal fade" id="addTranslation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+    <!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--<form th:action="@{/messageResource/save}" th:object="${message}" method="post">-->
+                <!--<div class="modal-header">-->
+                    <!--<h3 class="modal-title">Add/Edit Translation</h3>-->
+                <!--</div>-->
+                <!--<div class="modal-body">-->
+                    <!--<input hidden="true" type="text" id="id" name="id" th:field="*{id}" />-->
+                    <!--<input type="text" name="message_key" class="form-control" placeholder="Type subject..." required/><br>-->
+                    <!--<input type="text" name="kgz" class="form-control" placeholder="Type subject..." required/><br>-->
+                    <!--<input type="text" name="rus" class="form-control" placeholder="Type subject..." required/><br>-->
+                    <!--<input type="text" name="eng" class="form-control" placeholder="Type subject..." required/><br>-->
+                <!--</div>-->
+                <!--<div class="modal-footer">-->
+                    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

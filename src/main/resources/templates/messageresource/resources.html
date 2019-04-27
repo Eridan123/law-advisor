@@ -1,0 +1,46 @@
+<section class="panel" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <header class="panel-heading">
+        <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+                <h2 class="panel-title">Translations</h2>
+            </div>
+        </div>
+    </header>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table mb-none">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Key</th>
+                    <th>Kg</th>
+                    <th>Ru</th>
+                    <th>En</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="l:${list}">
+                    <td th:text="${l.id}">1</td>
+                    <td th:text="${l.message_key}">Otto</td>
+                    <td th:text="${l.kgz}"></td>
+                    <td th:text="${l.rus}"></td>
+                    <td th:text="${l.eng}"></td>
+                    <td sec:authorize="hasRole('ADMIN')" class="actions">
+                        <a sec:authorize="hasRole('ADMIN')" data-remote="false" data-toggle="modal"
+                           data-target="#addTranslationModal"
+                           th:href="@{/messageResource/__${l.id}__/save}" role="button"
+                           class="btn btn-reset"><i class="fa fa-pencil"></i></a>
+                        <a href="" class="delete-row">
+                            <form th:action="@{/messageResource/__${l.id}__/delete}" method="post">
+                                <input hidden="true" type="text" id="id" name="id" th:value="${l.id}" />
+                                <button type="submit" class="btn btn-reset" ><i class="fa fa-trash-o"></i></button>
+                            </form>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
