@@ -1,0 +1,116 @@
+<!doctype html>
+<html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+    <title>Online Law Consultant</title>
+    <div th:replace="fragment/header :: header-css"/>
+</head>
+<body>
+<section class="body">
+
+    <!-- start: header -->
+    <div th:replace="layout/header"/>
+    <!-- end: header -->
+
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        <div th:replace="layout/sidebar"/>
+
+        <section role="main" class="content-body">
+            <header class="page-header">
+
+                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                        <span class="input-group-btn">
+              </span>
+                    </div>
+
+                </div>
+            </header>
+
+            <!-- start: page -->
+            <div id="content">
+                <section class="panel" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+                    <header class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <h2 class="panel-title">Active Lawyers</h2>
+                            </div>
+
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="btn-group btn-group-justified">
+                                    <a th:href="@{/lawyer/list}" class="btn btn-default" role="button">All</a>
+                                    <a th:href="@{/lawyer/top}" class="btn btn-default" role="button">Top Lawyers</a>
+                                    <a th:href="@{/lawyer/active}" class="btn btn-default" role="button">Active Lawyers</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table mb-none">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.id}">1</td>
+                                    <td> <a th:href="@{/lawyer/__${user.id}__/view}" th:text="${user.name}"></a></td>
+                                    <td th:text="${user.surname}">Otto</td>
+                                    <td th:text="${user.username}">@mdo</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <!-- end: page -->
+        </section>
+
+
+    </div>
+
+
+    <!-- Vendor -->
+    <script src="assets/vendor/jquery/jquery.js"></script>
+    <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+    <!-- Specific Page Vendor -->
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="assets/javascripts/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="assets/javascripts/theme.custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="assets/javascripts/theme.init.js"></script>
+
+</section>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© Copyright 2019 - All Rights Reserved
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</html>
