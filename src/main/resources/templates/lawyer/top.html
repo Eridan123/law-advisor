@@ -2,215 +2,104 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <!-- Basic -->
-    <meta charset="UTF-8">
 
-    <title>Online Law Consultant Top Lawyers</title>
-    <meta name="keywords" content="HTML5 Admin Template" />
-    <meta name="description" content="Porto Admin - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <!-- Web Fonts  -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
-
-    <!-- Vendor CSS -->
+    <title>Online Law Consultant</title>
     <div th:replace="fragment/header :: header-css"/>
-
-    <div th:replace="layout/header"/>
-
-    
-
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-    </style>
-
 </head>
 <body>
 <section class="body">
 
     <!-- start: header -->
-    <header class="header">
-        <div class="logo-container">
-            <a href="../" class="logo">
-                <img src="assets/images/logo2.png" height="35" alt="Porto Admin" />
-            </a>
-            <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
-                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-            </div>
-        </div>
-
-        <!-- start: search & user box -->
-        <div class="header-right">
-
-            <form action="pages-search-results.html" class="search nav-form">
-                <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
-                    <span class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              </span>
-                </div>
-            </form>
-
-            <span class="separator"></span>
-
-            <!-- Ask Question Modal -->
-            <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/action_page.php">
-                                Subject:<br>
-                                <input type="text" name="subject" class="form-control" placeholder="Type subject..." required/><br>
-                                Question:<br>
-                                <textarea rows="5" class="form-control" placeholder="Type your question..." required></textarea><br>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Ask Question Modal End -->
-
-            <span class="separator"></span>
-
-            <div id="userbox" class="userbox">
-                <div th:if="${user}!=null">
-                    <a href="#" data-toggle="dropdown">
-                        <figure class="profile-picture">
-                            <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-                        </figure>
-                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                            <span class="name" th:text="${user.name}+' '+${user.surname}"></span>
-                            <span class="role" th:text="${user.userType}"></span>
-                        </div>
-
-                        <i class="fa custom-caret"></i>
-                    </a>
-
-                    <div class="dropdown-menu">
-                        <ul class="list-unstyled">
-                            <li class="divider"></li>
-                            <li>
-                                <a role="menuitem" tabindex="-1" th:href="@{/user/__${user.id}__/view}"><i class="fa fa-user"></i> My Profile</a>
-                            </li>
-                            <!--<li>-->
-                            <!--<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>-->
-                            <!--</li>-->
-                            <li>
-                                <a role="menuitem" tabindex="-1" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div th:unless="${user}!=null">
-                    <a th:href="@{/login}" type="button" class="btn btn-success" >Login</a>
-                    <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a>
-                </div>
-            </div>
-        </div>
-        <!-- end: search & user box -->
-    </header>
+    <div th:replace="layout/header"/>
     <!-- end: header -->
 
     <div class="inner-wrapper">
         <!-- start: sidebar -->
-       <div th:replace="layout/sidebar"/>
-        <!-- end: sidebar -->
+        <div th:replace="layout/sidebar"/>
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Top Lawyers</h2>
 
-                <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
-                    <button type="button" class="btn btn-secondary">All questions</button>
-                    <button type="button" class="btn btn-secondary">Most Liked</button>
-                    <button type="button" class="btn btn-secondary">Newest</button>
-                    <button type="button" class="btn btn-secondary">Unanswered</button>
+                <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
+                    <div class="input-group input-search">
+                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                        <span class="input-group-btn">
+              </span>
+                    </div>
 
                 </div>
             </header>
 
             <!-- start: page -->
-            <ul style="list-style-type: none;" >
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
+            <div id="content">
+                <section class="panel" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+                    <header class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8 col-lg-8">
+                                <h2 class="panel-title">Top Lawyers</h2>
+                            </div>
 
-                                    <h2 class="panel-title" >Top Lawyers</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <table>
-                                            <tr>
-                                                <th>Firstname</th>
-                                                <th>Lastname</th>
-                                                <th>Number of answers</th>
-
-                                            </tr>
-                                            <tr th:each="lawyer:${lawyers}">
-                                                <td th:text="${lawyer.name}"><a th:href="@{/lawyer/__${lawyer.id}__/view}"></a></td>
-                                                <td th:text="${lawyer.surname}">Ibragimov</td>
-                                                <td th:text="${lawyer.num_answers}">ababakri.ibragimov@iaau.edu.kg</td>
-
-                                            </tr>
-                                        </table>
-
-                                    </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+                                <div class="btn-group btn-group-justified">
+                                    <a th:href="@{/lawyer/list}" class="btn btn-default" role="button">All</a>
+                                    <a th:href="@{/lawyer/top}" class="btn btn-default" role="button">Top Lawyers</a>
+                                    <a th:href="@{/lawyer/active}" class="btn btn-default" role="button">Active Lawyers</a>
                                 </div>
-                            </section>
+                            </div>
+
+                        </div>
+                    </header>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table mb-none">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user:${users}">
+                                    <td th:text="${user.id}">1</td>
+                                    <td> <a th:href="@{/lawyer/__${user.id}__/view}" th:text="${user.name}"></a></td>
+                                    <td th:text="${user.surname}">Otto</td>
+                                    <td th:text="${user.username}">@mdo</td>
+
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </li>
-
-            </ul>
+                </section>
+            </div>
             <!-- end: page -->
         </section>
+
+
     </div>
 
 
-    <script th:src="@{/assets/vendor/jquery/jquery.js}"></script>
-    <script th:src="@{/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js}"></script>
-    <script th:src="@{/assets/vendor/bootstrap/js/bootstrap.js}"></script>
-    <script th:src="@{/assets/vendor/nanoscroller/nanoscroller.js}"></script>
-    <script th:src="@{/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
-    <script th:src="@{/assets/vendor/magnific-popup/magnific-popup.js}"></script>
-    <script th:src="@{/assets/vendor/jquery-placeholder/jquery.placeholder.js}"></script>
+    <!-- Vendor -->
+    <script src="assets/vendor/jquery/jquery.js"></script>
+    <script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="assets/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="assets/vendor/magnific-popup/magnific-popup.js"></script>
+    <script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
 
     <!-- Specific Page Vendor -->
 
     <!-- Theme Base, Components and Settings -->
-    <script th:src="@{/assets/javascripts/theme.js}"></script>
+    <script src="assets/javascripts/theme.js"></script>
 
     <!-- Theme Custom -->
-    <script th:src="@{/assets/javascripts/theme.custom.js}"></script>
+    <script src="assets/javascripts/theme.custom.js"></script>
 
     <!-- Theme Initialization Files -->
-    <script th:src="@{/assets/javascripts/theme.init.js}"></script>
+    <script src="assets/javascripts/theme.init.js"></script>
 
 </section>
 </body>
