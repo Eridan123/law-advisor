@@ -444,12 +444,12 @@ public class SeleniumTests {
     /*Answer Test*/
     public static boolean answer(WebDriver driver) {
         loginLaw(driver);
-        ((JavascriptExecutor) driver).executeScript("scroll(0,400)");
-        driver.findElement(By.cssSelector("#content > ul > li > div > div:nth-child(9) > section > header > a > h2")).click();
+        driver.get(baseURL);
+        driver.findElement(By.cssSelector("#content > ul > li > div > div:nth-child(2) > section > header > a > h2")).click();
         driver.findElement(By.xpath("/html/body/section/div[2]/section/div[2]/div/section/header/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div/textarea")).sendKeys("It is answer");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/question/125/view")) {
+        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/question/147/view")) {
             System.out.println(1);
             return true;
         }
@@ -527,13 +527,14 @@ public class SeleniumTests {
         return driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("1");
     }
 
-    /*View Test*/
-    public static boolean view(WebDriver driver) {
-        return true;
-    }
-
     /*Notification when get answer Test*/
     public static boolean isAnswered(WebDriver driver) {
+        driver.get("https://mail.google.com");
+        driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("jama.98.jk@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/content/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input")).sendKeys("password");
+        driver.findElement(By.xpath("//*[@id=\"passwordNext\"]/content/span")).click();
+        driver.findElement(By.xpath("//*[text() = 'Your question has been answered']")).click();
         return true;
     }
 
@@ -558,7 +559,13 @@ public class SeleniumTests {
 
     /*See rate of answer for Lawyer Test*/
     public static boolean helpful(WebDriver driver){
-        return true;
+        driver.get("http://localhost:8080/question/147/view");
+        if(driver.findElements(By.xpath("//*[@id=\"likea=149\"]")).size()!=0){
+            return true;
+        } else {
+            System.out.println("helpful failed");
+            return false;
+        }
     }
 
     /*Notification about new questions Test*/
@@ -589,7 +596,7 @@ public class SeleniumTests {
     public static void main(String[] args) {
         WebDriver dr = new ChromeDriver();
         dr.manage().window().maximize();
-        top(dr);
+        helpful(dr);
         dr.close();
 
     }
