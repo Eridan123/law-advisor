@@ -17,35 +17,35 @@
                     <li>
                         <a th:href="@{/}">
                             <i class="fa fa-home" aria-hidden="true"></i>
-                            <span>Home</span>
+                            <span th:text="#{label.home}">Home</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/lawyer/list}">
                             <i class="fa fa-gavel" aria-hidden="true"></i>
-                            <span>Lawyers</span>
+                            <span th:text="#{label.lawyers}">Lawyers</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/news}">
                             <i class="fa fa-book" aria-hidden="true"></i>
-                            <span>News</span>
+                            <span th:text="#{label.news}">News</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/question/list}">
                             <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                            <span>Questions</span>
+                            <span th:text="#{label.questions}">Questions</span>
                         </a>
                     </li>
                     <li class="nav-parent">
                         <a >
                             <i class="fa fa-th-list" aria-hidden="true"></i>
-                            <span>Categories</span>
+                            <span th:text="#{label.categories}">Categories</span>
                         </a>
                         <ul sec:authorize="hasRole('ADMIN')" class="nav nav-children">
                             <li>
-                                <a th:href="@{/category/list}" >
+                                <a th:href="@{/category/list}" th:text="#{label.category_list}">
                                     Category list
                                 </a>
                             </li>
@@ -61,25 +61,25 @@
                     <li>
                         <a th:href="@{/aboutus}">
                             <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span>About us</span>
+                            <span th:text="#{label.aboutus}">About us</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/reviews}">
                             <i class="fa fa-comments-o" aria-hidden="true"></i>
-                            <span>Reviews</span>
+                            <span th:text="#{label.reviews}">Reviews</span>
                         </a>
                     </li>
                     <li>
                         <a th:href="@{/mistake/0/save}">
                             <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span>Technical support</span>
+                            <span th:text="#{label.technical_support}">Technical support</span>
                         </a>
                     </li>
                     <li sec:authorize="hasRole('ADMIN')">
                         <a th:href="@{/messageResource/list}">
                             <i class="fa fa-language" aria-hidden="true"></i>
-                            <span>Translations</span>
+                            <span th:text="#{label.translations}">Translations</span>
                         </a>
                     </li>
                     <li>
