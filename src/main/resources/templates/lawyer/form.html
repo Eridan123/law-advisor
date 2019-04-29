@@ -2,7 +2,7 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Online Law Consultant</title>
+    <title th:text="#{label.title}">Online Law Consultant</title>
     <div th:replace="fragment/header :: header-css"/>
 
 </head>
@@ -19,7 +19,7 @@
         <!-- end: sidebar -->
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Sign Up</h2>
+                <h2 th:text="#{label.signup}">Sign Up</h2>
 
                 <div class="right-wrapper pull-right">
                     <ol class="breadcrumbs">
@@ -50,49 +50,49 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                            <input name="username" type="text" class="form-control" placeholder="Username" th:value="${lawyer.username}" >
+                                            <input name="username" type="text" class="form-control" th:placeholder="#{label.username}" th:value="${lawyer.username}" >
                                         </div>
                                         <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </span>
-                                            <input id="pass" name="encryted_password" type="text" class="form-control" placeholder="Password">
+                                            <input id="pass" name="encryted_password" type="text" class="form-control" th:placeholder="#{label.password}">
                                         </div>
                                         <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </span>
-                                            <input id="confirm" type="text" class="form-control" placeholder="Confirm password">
+                                            <input id="confirm" type="text" class="form-control" th:placeholder="#{label.confirm_password}">
                                         </div>
                                         <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                            <input name="email" type="email" class="form-control" placeholder="Email" th:value="${lawyer.email}" >
+                                            <input name="email" type="email" class="form-control" th:placeholder="#{label.email}" th:value="${lawyer.email}" >
                                         </div>
                                         <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                            <input name="name" type="text" class="form-control" placeholder="Name" th:value="${lawyer.name}" >
+                                            <input name="name" type="text" class="form-control" th:placeholder="#{label.name}" th:value="${lawyer.name}" >
                                         </div>
                                         <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                            <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="${lawyer.name}" >
+                                            <input name="surname" type="text" class="form-control" th:placeholder="#{label.surname}" th:value="${lawyer.name}" >
                                         </div>
                                         <div class="input-group mb-md">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-mobile"></i>
                                             </span>
-                                            <input name="phone_number" type="text" class="form-control" placeholder="Phone number" th:value="${lawyer.phone_number}" >
+                                            <input name="phone_number" type="text" class="form-control" th:placeholder="#{label.phone}" th:value="${lawyer.phone_number}" >
                                         </div>
                                         <div>
                                             <div class="panel-body">
                                                 <div class="form-horizontal form-bordered">
                                                     <div class="form-group">
-                                                        <label class="col-md-3 control-label">Lawyer Information</label>
+                                                        <label class="col-md-3 control-label" th:text="#{label.lawyer_info}">Lawyer Information</label>
                                                         <div class="col-md-9">
                                                             <div class="md-editor" >
                                                                 <textarea type="text" name="content" rows="10" class="md-input" style="display: block; resize: none;"></textarea>
@@ -107,13 +107,13 @@
                                             <div class="radio">
                                                 <label>
                                                     <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"  checked="">
-                                                    Male
+                                                    <span th:text="#{label.male}"></span>
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
                                                     <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                                    Female
+                                                    <span th:text="#{label.female}"></span>
                                                 </label>
                                             </div>
                                         </div>

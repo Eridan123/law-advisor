@@ -47,12 +47,12 @@
 
 				<div class="panel panel-sign">
 					<div class="panel-title-sign mt-xl text-right">
-						<h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
+						<h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> <span th:text="#{label.login}"></span></h2>
 					</div>
 					<div class="panel-body">
 						<form th:action="@{/j_spring_security_check}" method="post">
 							<div class="form-group mb-lg">
-								<label>Username</label>
+								<label th:text="#{label.username}">Username</label>
 								<div class="input-group input-group-icon">
 									<input name="username" type="text" class="form-control input-lg" />
 									<span class="input-group-addon">
@@ -65,7 +65,7 @@
 
 							<div class="form-group mb-lg">
 								<div class="clearfix">
-									<label class="pull-left">Password</label>
+									<label class="pull-left" th:text="#{label.password}">Password</label>
 									<a th:href="@{/forgot}" class="pull-right">Lost Password?</a>
 								</div>
 								<div class="input-group input-group-icon">
@@ -82,12 +82,12 @@
 								<div class="col-sm-8">
 									<div class="checkbox-custom checkbox-default">
 										<input id="RememberMe" name="rememberme" type="checkbox"/>
-										<label for="RememberMe">Remember Me</label>
+										<label for="RememberMe" th:text="#{label.remember}">Remember Me</label>
 									</div>
 								</div>
 								<div class="col-sm-4 text-right">
-									<button type="submit" class="btn btn-primary hidden-xs">Sign In</button>
-									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Sign In</button>
+									<button type="submit" class="btn btn-primary hidden-xs" th:text="#{label.login}">Sign In</button>
+									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg" th:text="#{label.login}">Sign In</button>
 								</div>
 							</div>
 
@@ -96,7 +96,7 @@
 							</span>
 
 							<div class="mb-xs text-center">
-								<a class="btn btn-danger">Connect with <i class="fa fa-google"></i></a>
+								<a class="btn btn-danger" th:text="#{label.connect_with}">Connect with <i class="fa fa-google"></i></a>
 							</div>
 
 							<p class="text-center">Don't have an account yet? <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a></p>

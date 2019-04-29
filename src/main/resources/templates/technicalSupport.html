@@ -4,7 +4,7 @@
 <head>
 
 
-    <title>Technical Support</title>
+    <title th:text="#{label.techincal_support}">Technical Support</title>
     <div th:replace="fragment/header :: header-css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link th:href="@{/assets/stylesheets/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
                         <section class="panel">
                             <header class="panel-heading">
 
-                                <h2 class="panel-title">Inform about mistakes on website</h2>
+                                <h2 class="panel-title" th:text="#{label.add.technical}">Inform about mistakes on website</h2>
 
                             </header>
 

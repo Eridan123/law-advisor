@@ -2,7 +2,7 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Online Law Consultant</title>
+    <title th:text="#{label.title}">Online Law Consultant</title>
     <div th:replace="fragment/header :: header-css"/>
 
 
@@ -21,7 +21,7 @@
         <!--start content-->
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>User Profile</h2>
+                <h2 th:text="#{label.profile}">User Profile</h2>
 
                 <div class="right-wrapper pull-right">
                     <!--<ol class="breadcrumbs">-->
@@ -43,7 +43,7 @@
 
             <div class="row">
                 <!--<div class="col-md-6 col-lg-6 col-xl-6">-->
-                <h5 class="text-semibold text-dark text-uppercase mb-md mt-lg">Lawyer Profile</h5>
+                <h5 class="text-semibold text-dark text-uppercase mb-md mt-lg" th:text="#{label.lawyer_profile}">Lawyer Profile</h5>
 
 
                 <section class="panel panel-featured-left panel-featured-quartenary">
@@ -56,25 +56,25 @@
                             </div>
                             <div class="widget-summary-col">
                                 <div class="summary">
-                                    <h4 class="title">Name Surname:</h4>
+                                    <h4 class="title" th:text="#{label.name}">Name Surname:</h4>
                                     <div class="info">
                                         <strong class="amount" th:text="${lawyer.name}+' '+${lawyer.surname}"></strong>
                                     </div>
                                 </div>
                                 <div class="summary">
-                                    <h4 class="title">Email:</h4>
+                                    <h4 class="title" th:text="#{label.email}">Email:</h4>
                                     <div class="info">
                                         <strong class="amount" th:text="${lawyer.email}"></strong>
                                     </div>
                                 </div>
                                 <div class="summary">
-                                    <h4 class="title">Phone Number:</h4>
+                                    <h4 class="title" th:text="#{label.phone}">Phone Number:</h4>
                                     <div class="info">
                                         <strong class="amount" th:text="${lawyer.phone_number}"></strong>
                                     </div>
                                 </div>
                                 <div class="summary-footer">
-                                    <a class="text-muted text-uppercase" th:href="@{/lawyer/__${lawyer.id}__/save}">Edit</a>
+                                    <a class="text-muted text-uppercase" th:href="@{/lawyer/__${lawyer.id}__/save}" th:text="#{label.edit}">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -90,14 +90,14 @@
                             </div>
                             <div class="widget-summary-col">
                                 <div class="summary">
-                                    <h6 class="title">Lawyer Information</h6>
+                                    <h6 class="title" th:text="#{label.lawyer_info}">Lawyer Information</h6>
                                     <div class="info">
                                         <strong class="amount" th:text="${lawyer.lawyer_degree_id.text}">1281</strong>
                                     </div>
                                 </div>
-                                <div class="summary-footer">
-                                    <a class="text-muted text-uppercase">(view all)</a>
-                                </div>
+                                <!--<div class="summary-footer">-->
+                                    <!--<a class="text-muted text-uppercase">(view all)</a>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                             <section class="panel">
                                 <form th:action="@{/changePassword}">
                                     <div class="widget-summary widget-summary-sm">
-                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-warning">CHANGE PASSWORD</button>
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-warning" th:text="#{label.change_password}">CHANGE PASSWORD</button>
                                     </div>
                                 </form>
                             </section>
@@ -117,7 +117,7 @@
                             <section class="panel">
                                 <form th:action="@{/lawyer/__${lawyer.id}__/delete}" METHOD="post">
                                     <div class="widget-summary widget-summary-sm">
-                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-danger">DELETE ACCOUNT</button>
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-danger" th:text="#{label.delete}">DELETE ACCOUNT</button>
                                     </div>
                                 </form>
                             </section>
@@ -136,7 +136,7 @@
                         <section class="panel">
                             <header class="panel-heading">
 
-                                <h2 class="panel-title">Leave review</h2>
+                                <h2 class="panel-title" th:text="#{label.leave_review}">Leave review</h2>
 
                             </header>
                             <div class="panel-body">
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                             <footer class="panel-footer">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit" th:text="#{label.submit}">Submit</button>
                             </footer>
                         </section>
                     </form>

@@ -6,8 +6,8 @@
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <div class="btn-group btn-group-justified">
-                    <a th:href="@{/lawyer/list}" class="btn btn-default" role="button">All</a>
-                    <a th:href="@{/lawyer/top}" class="btn btn-default" role="button">Top Lawyers</a>
+                    <a th:href="@{/lawyer/list}" class="btn btn-default" role="button" th:text="#{label.lawyers}">All</a>
+                    <a th:href="@{/lawyer/top}" class="btn btn-default" role="button" th:text="#{label.top_lawyers}">Top Lawyers</a>
                 </div>
             </div>
 
@@ -20,10 +20,10 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th sec:authorize="hasRole('ADMIN')">Actions</th>
+                    <th th:text="#{label.name}">First Name</th>
+                    <th th:text="#{label.surname}">Last Name</th>
+                    <th th:text="#{label.username}">Username</th>
+                    <th sec:authorize="hasRole('ADMIN')" th:text="#{label.actions}">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

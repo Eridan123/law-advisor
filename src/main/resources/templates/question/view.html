@@ -2,7 +2,7 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Question View</title>
+    <title th:text="#{label.title}">Question View</title>
     <div th:replace="fragment/header :: header-css"/>
 
     <script>
@@ -27,7 +27,7 @@
     <div class="header-right">
         <form action="pages-search-results.html" class="search nav-form">
             <div class="input-group input-search">
-                <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+                <input type="text" class="form-control" name="q" id="q" th:placeholder="#{label.search}">
                 <span class="input-group-btn">
 								<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 							</span>
@@ -37,14 +37,14 @@
         <span class="separator"></span>
 
         <button type="button" class="btn btn-success" data-toggle="modal"
-                data-target="#askQuestionModal">Ask question</button>
+                data-target="#askQuestionModal" th:text="#{label.ask.question}">Ask question</button>
 
         <!-- Ask Question Modal -->
         <div class="modal fade" id="askQuestionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
+                        <h3 class="modal-title" id="exampleModalLongTitle" th:text="#{label.ask.question}">Ask question</h3>
                     </div>
                     <div class="modal-body">
                         <form action="/action_page.php">
@@ -105,7 +105,7 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Question</h2>
+                <h2 th:text="#{label.question}">Question</h2>
 
                 <div class="right-wrapper pull-right btn-group " style="padding: 8px 0px">
 
@@ -207,13 +207,13 @@
                     <section class="panel-featured panel-featured-success">
                         <header class="panel-heading">
 
-                            <h2 class="panel-title">Answers</h2>
+                            <h2 class="panel-title" th:text="#{label.answers}">Answers</h2>
                             <br>
                             <a th:if="${role}=='LAWYER'" th:href="@{/question/__${question.id}__/answer/0/save}" type="button" class="btn btn-success">Answer</a>
                             <a th:unless="${role}=='LAWYER'" th:href="@{/login}" type="button" class="btn btn-success">Login as lawyer to add your answer</a>
                             <br>
                             <div class="input-group input-search">
-                                <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                                <input type="text" class="form-control" name="q" id="search" th:placeholder="#{label.search}">
                                 <span class="input-group-btn"></span>
                             </div>
                         </header>
