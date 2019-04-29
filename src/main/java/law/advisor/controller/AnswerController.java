@@ -126,19 +126,48 @@ public class AnswerController {
     @GetMapping("/question/{id}/answer/{searchStr}/search")
     public String search(@PathVariable("id") long id,ModelMap model,@PathVariable("searchStr") String searchStr){
 
-        if(searchStr.equals(" ")){
-            searchStr="";
+
+        try{
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user=userRepository.findUserByUsername(auth.getName());
+            Comment comment=new Comment();
+            comment.setDate(new Date());
+            comment.setUser(user);
+            Content content1=new Content();
+            contentRepository.save(content1);
+            comment.setContent(content1);
+
+            if(searchStr.equals(" ")){
+                searchStr="";
+            }
+
+            String baseQuery="select a.id,u.username as user,c.text as content,(select count(1) from grade where answer_id=a.id and type=1) as likes,\n" +
+                    "       (select count(1) from grade where answer_id=a.id and type=2) as dislikes\n" +
+                    "from answer a,content c,user u where u.id=a.user_id and c.id=a.content_id and a.question_id="+id+" and c.text  like '%"+searchStr+"%'";
+            Query query=entityManager.createNativeQuery(baseQuery,AnswerModel.class);
+            List<AnswerModel> answers=query.getResultList();
+
+            model.addAttribute("answers",answers);
+            model.addAttribute("comment", comment);
+
+        }
+        catch (Exception e){
+            if(searchStr.equals(" ")){
+                searchStr="";
+            }
+
+            String baseQuery="select a.id,u.username as user,c.text as content,(select count(1) from grade where answer_id=a.id and type=1) as likes,\n" +
+                    "       (select count(1) from grade where answer_id=a.id and type=2) as dislikes\n" +
+                    "from answer a,content c,user u where u.id=a.user_id and c.id=a.content_id and a.question_id="+id+" and c.text  like '%"+searchStr+"%'";
+            Query query=entityManager.createNativeQuery(baseQuery,AnswerModel.class);
+            List<AnswerModel> answers=query.getResultList();
+
+            model.addAttribute("answers",answers);
+
         }
 
-        String baseQuery="select a.id,u.username as user,c.text as content,(select count(1) from grade where answer_id=a.id and type=1) as likes,\n" +
-                "       (select count(1) from grade where answer_id=a.id and type=2) as dislikes\n" +
-                "from answer a,content c,user u where u.id=a.user_id and c.id=a.content_id and a.question_id="+id+" and c.text  like '%"+searchStr+"%'";
-        Query query=entityManager.createNativeQuery(baseQuery,AnswerModel.class);
-        List<AnswerModel> answers=query.getResultList();
 
 
-
-        model.addAttribute("answers",answers);
 
 
         return "/question/answers";

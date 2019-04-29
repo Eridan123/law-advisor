@@ -64,8 +64,40 @@
             </div>
         </div>
 <!--        ====================== Add comment form (default hidden) ==============================-->
-        <div id="addCommentForm" class="row "  >
+        <div id="addCommentForm" class="row " style="display: none">
+            <div>
+                <div class="col-xs-8 col-md-10" xmlns:th="http://www.w3.org/1999/xhtml">
+                    <form th:object="${comment}" method="post" th:action="@{/answer/comment/save}">
+                        <input hidden="hidden" type="text" name="id" th:field="*{id}">
+                        <input hidden="hidden" type="text" name="date" th:field="*{date}">
+                        <input hidden="hidden" type="text" name="user" th:field="*{user}">
+                        <input hidden="hidden" type="text" name="questionId" th:field="*{answer}">
+                        <input hidden="hidden" type="text" name="contentId" th:field="*{content}">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <div class="panel-actions">
+                                    <a href="#" class="fa fa-caret-down"></a>
+                                    <a href="#" class="fa fa-times"></a>
+                                </div>
 
+                                <h2 class="panel-title">Leave a Comment</h2>
+
+                            </header>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <textarea class="form-control" rows="5" placeholder="Type here ..." th:text="${comment.content.text}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <button class="btn btn-primary">Submit</button>
+                            </footer>
+                        </section>
+                    </form>
+                </div>
+            </div>
         </div>
 <!--       ===================== Comments for the answers =============================-->
         <script th:inline="javascript">
@@ -76,26 +108,21 @@
                 $('#comments').html(data);
             });
         </script>
+<!--
         <script th:inline="javascript">
             var answerId=[[${answer.id}]]
             var sUrl ="/answer/"+answerId+"/comment/0/save";
-            $("#commentButton").on("click",function () {
-                sUrl ="/answer/"+answerId+"/comment/0/save";
-                $.get(sUrl, function(data) {
-                    $('#addCommentForm').html(data);
-                });
-            });
-
             $.get(sUrl, function(data) {
                 $('#addCommentForm').html(data);
             });
         </script>
+-->
     </li>
 
 
 </ul>
 <hr>
-<!--<script type="text/javascript">
+<script type="text/javascript">
 
     document.getElementById("commentButton").onclick = function() {
         var x = document.getElementById("addCommentForm");
@@ -108,7 +135,7 @@
     }
 
 
-</script>-->
+</script>
 
 <script>
     function reply_click(clicked_id)
