@@ -56,39 +56,44 @@ class QuestionServiceTest {
 
     }
 
-//    @Test
-//    public void findByUser(){
-//        Question question = new Question();
-//        User user = new User();
-//        user.setUsername("User");
-//        when(userRepository.findUserByUsername("user")).thenReturn(user);
-//        assertEquals(user,questionService.findByUser(user));
-//    }
-//    public void testFindByUser(){
-//        ArrayList<Question> list=new ArrayList<>();
-//        Question question = new Question();
-//        User user1=new User();
-//        String name = "Aba-Bakri";
-//        user1.setUsername(name);
-//        question.setUser(user1);
-//        User user=new User();
-//        user.setName("Aba-Bakri Ibragimov");
-//        list.add(question);
-//        when(questionRepository.findByUser(user)).thenReturn(list);
-//        assertEquals(list,questionService.findByUser(user));
-//    }
+    @Test
+    public void findByUser(){
+        Question question = new Question();
+        User user = new User();
+        user.setId(1L);
+        List<Question> list=new ArrayList<>();
+        list.add(question);
+        question.setUser(user);
+        when(questionRepository.findByUser(user)).thenReturn(list);
+        assertEquals(list,questionService.findByUser(user));
+    }
+    public void testFindByUser(){
+        ArrayList<Question> list=new ArrayList<>();
+        Question question = new Question();
+        User user1=new User();
+        String name = "Aba-Bakri";
+        user1.setUsername(name);
+        question.setUser(user1);
+        User user=new User();
+        user.setName("Aba-Bakri Ibragimov");
+        list.add(question);
+        when(questionRepository.findByUser(user)).thenReturn(list);
+        assertEquals(list,questionService.findByUser(user));
+    }
 
-//    @Test
-//    public void findByCategory(){
-//        ArrayList<Question> list=new ArrayList<>();
-//        Question question = new Question();
-//        Category category = new Category();
-//        Long id = 8L;
-//        category.setId(id);
-//        list.add(question);
-//        when(questionRepository.findByCategory_Id(id)).thenReturn(list);
-//        assertEquals(question,questionService.findByCategory(id));
-//    }
+    @Test
+    public void findByCategory(){
+        ArrayList<Question> list=new ArrayList<>();
+        Question question = new Question();
+        Category category = new Category();
+        question.setCategory(category);
+        Long id = 8L;
+        category.setId(id);
+        list.add(question);
+        when(questionRepository.findByCategory_Id(id)).thenReturn(list);
+        assertEquals(list,questionService.findByCategory(id));
+    }
+
 
 
     @Test
