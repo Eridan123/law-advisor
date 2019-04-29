@@ -287,19 +287,20 @@ public class SeleniumTests {
 
     /*Reset password Test*/
     public static boolean resetPassword(WebDriver driver) {
-        driver.get(baseURL);
+        login(driver);
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[2]/a")).click();
+        String expectedURL = driver.getCurrentUrl();
         driver.findElement(By.xpath("/html/body/section/div/section/div[1]/div/div/div[1]/section/form/div/button")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("12345");
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("password");
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/input")).sendKeys("password");
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[4]/div/button[1]")).click();
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/user/57/view")) {
+        if (driver.getCurrentUrl().contentEquals(expectedURL)) {
             System.out.println(1);
             return true;
         } else {
-            System.out.println(0);
+            System.out.println("change password failed");
             return false;
         }
     }
@@ -459,25 +460,25 @@ public class SeleniumTests {
     /*Leave review Test*/
     public static boolean review(WebDriver driver) {
         driver.get(baseURL);
-        driver.findElement(By.linkText("Reviews")).click();
-        ((JavascriptExecutor) driver).executeScript("scroll(0,400)");
-        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[1]/input")).sendKeys("Alina");
-        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[3]/input")).sendKeys("Zhakypova");
-        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[1]/div[5]/input")).sendKeys("alina@mail.ru");
-        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div[2]/div/textarea")).sendKeys("kdbclaibvlaivbalhba");
-        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/footer/button")).click();
-        if(driver.getCurrentUrl().contentEquals("http://localhost:8080/reviews")){
-            return true;
-        }else{
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[7]/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[1]/input")).sendKeys("Alina");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[3]/input")).sendKeys("Zhakypova");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[5]/input")).sendKeys("alina@mail.ru");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[2]/div/textarea")).sendKeys("kdbclaibvlaivbalhba");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
+        if(driver.getPageSource().contains("Whitelabel Error Page")) {
+            System.out.println("review failed");
             return false;
+        }else {
+            return true;
         }
     }
 
 
     /*Inform about mistake Test*/
     public static boolean mistake(WebDriver driver) {
-        login(driver);
-        driver.findElement(By.linkText("Technical support")).click();
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[8]/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div/div/textarea")).sendKeys("I have a mistake");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
         if(driver.getPageSource().contains("Whitelabel Error Page")) {
@@ -547,12 +548,18 @@ public class SeleniumTests {
     //############End of Sprint3############
 
     //############Sprint4############
+    /*Notificatio about mistake Test*/
+    public static boolean notAdm(WebDriver driver){
+        loginAdm(driver);
+        return true;
+    }
+
     /*Give feedback Test*/
     public static boolean feedback(WebDriver driver){
-        login(driver);
-        driver.findElement(By.linkText("Technical support")).click();
-        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div/div/textarea")).sendKeys("My feedback");
-        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[8]/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/div/div/div/textarea")).sendKeys("5");
+        driver.findElement(By.xpath("/html/body/section/div/section/div[2]/div[2]/form/section/footer/button")).click();
         if(driver.getPageSource().contains("Whitelabel Error Page")) {
             System.out.println("feedback failed");
             return false;
@@ -573,14 +580,26 @@ public class SeleniumTests {
     }
 
     /*Switch language Test*/
-    public static boolean language(WebDriver driver){
+    public static boolean languageEn(WebDriver driver){
         driver.get(baseURL);
-        driver.findElement(By.linkText("Russian")).click();
-        if(driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[1]/a/span")).getText().contentEquals("Home")){
+        driver.findElement(By.linkText("АНГЛ")).click();
+        if(driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[1]/a/span")).getText().contentEquals("HOME")){
+            return true;
+        } else {
             System.out.println("language failed");
             return false;
-        } else {
+        }
+    }
+
+    /*Switch language Test*/
+    public static boolean languageKg(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.linkText("КЫРГ")).click();
+        if(driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[1]/a/span")).getText().contentEquals("БАШКЫ БЕТ")){
             return true;
+        } else {
+            System.out.println("language failed");
+            return false;
         }
     }
     //############End of Sprint4############
@@ -588,9 +607,13 @@ public class SeleniumTests {
     public static void main(String[] args) {
         WebDriver dr = new ChromeDriver();
         dr.manage().window().maximize();
-        helpful(dr);
+        languageKg(dr);
+        languageEn(dr);
+        resetPassword(dr);
+        feedback(dr);
+        mistake(dr);
+        review(dr);
         dr.close();
-
     }
 
     public static boolean registerlaw(WebDriver driver) {
