@@ -1,12 +1,7 @@
 package law.advisor.controller;
 
-import law.advisor.model.Comment;
-import law.advisor.model.CommentTo;
-import law.advisor.model.Content;
-import law.advisor.model.User;
-import law.advisor.repository.CommentRepository;
-import law.advisor.repository.ContentRepository;
-import law.advisor.repository.UserRepository;
+import law.advisor.model.*;
+import law.advisor.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
@@ -31,6 +26,12 @@ public class MistakeController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RatingRepository ratingRepository;
+
+    @Autowired
+    AnswerRepository answerRepository;
+
     @GetMapping("/mistake/{id}/save")
     public String saveMistake(ModelMap model, @PathVariable("id") Long id){
         if (id==null ||id==0){
@@ -42,13 +43,25 @@ public class MistakeController {
             Comment comment=commentRepository.getOne(id);
             model.addAttribute("mistake",comment);
         }
+        if(ratingRepository.findAll() == null){
+            model.addAttribute("rating",5);
+        }
+        else{
+            int sum=0;
+            int c = 0;
+            for (WebsiteRating r:ratingRepository.findAll()) {
+                sum +=r.getRating();
+                c=c+1;
+            }
+            model.addAttribute("rating", sum/c);
+        }
         return "/technicalSupport";
     }
 
     @PostMapping("/mistake/save")
     public String savePostMistake(Comment comment, String text){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.getName()!="anonymousUser"){
+
         if (comment.getId()==null ||comment.getId()==0){
             comment.setCommentTo(CommentTo.DEVELOPER);
             Content content=new Content();
@@ -62,13 +75,14 @@ public class MistakeController {
             User user=userRepository.findUserByUsername(auth.getName());
             comment.setUser(user);
 
+            comment.setAnswer(answerRepository.getOne((long) 1));
+
             commentRepository.save(comment);
         }
         else{
             Comment comment1=commentRepository.getOne(comment.getId());
             comment1.getContent().setText(text);
             contentRepository.save(comment1.getContent());
-        }
         }
         return "redirect:/";
     }
