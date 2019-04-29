@@ -50,6 +50,8 @@ public class MessageResourceController {
 
     @GetMapping("/message/{searchStr}/search")
     public String search(@PathVariable("searchStr") String searchStr,ModelMap model){
+        if(searchStr.equals(" "))
+            searchStr="";
         String baseQuesry="select * from message_resource where \n" +
                 "(message_key like '%"+searchStr+"%')\n" +
                 "or (kgz like '%"+searchStr+"%') or (rus like '%"+searchStr+"%') or (eng like '%"+searchStr+"%')";

@@ -2,7 +2,7 @@
 <html class="fixed" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title>Online Law Consultant</title>
+    <title th:text="#{label.title}">Online Law Consultant</title>
     <div th:replace="fragment/header :: header-css"/>
 
 </head>
@@ -50,59 +50,59 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                    <input name="username" type="text" class="form-control" placeholder="Username" th:value="${user.username}" >
+                                    <input name="username" type="text" class="form-control" th:placeholder="#{label.username}" th:value="${user.username}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </span>
-                                    <input id="pass" name="encryted_password" type="text" class="form-control" placeholder="Password">
+                                    <input id="pass" name="encryted_password" type="text" class="form-control" th:placeholder="#{label.password}">
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-key"></i>
                                     </span>
-                                    <input id="confirm" type="text" class="form-control" placeholder="Confirm password">
+                                    <input id="confirm" type="text" class="form-control" th:placeholder="#{label.confirm_password}">
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-envelope"></i>
                                     </span>
-                                    <input name="email" type="email" class="form-control" placeholder="Email" th:value="${user.email}" >
+                                    <input name="email" type="email" class="form-control" th:placeholder="#{label.email}" th:value="${user.email}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                    <input name="name" type="text" class="form-control" placeholder="Name" th:value="${user.name}" >
+                                    <input name="name" type="text" class="form-control" th:placeholder="#{label.name}" th:value="${user.name}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <!--<i class="fa fa-envelope"></i>-->
                                     </span>
-                                    <input name="surname" type="text" class="form-control" placeholder="Surname" th:value="${user.name}" >
+                                    <input name="surname" type="text" class="form-control" th:placeholder="#{label.surname}" th:value="${user.surname}" >
                                 </div>
                                 <div class="input-group mb-md">
                                     <span class="input-group-addon">
                                         <i class="fa fa-mobile"></i>
                                     </span>
-                                    <input name="phone_number" type="text" class="form-control" placeholder="Phone number" th:value="${user.phone_number}" >
+                                    <input name="phone_number" type="text" class="form-control" th:placeholder="#{label.phone}" th:value="${user.phone_number}" >
                                 </div>
                                 <div class="col-md-6">
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"  checked="">
-                                            Male
+                                            <span th:text="#{label.male}"></span>
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
                                             <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                            Female
+                                            <span th:text="#{label.female}"></span>
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">Submit</button>
+                                <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary" th:text="#{label.submit}">Submit</button>
                             </div>
                         </div>
                     </form>

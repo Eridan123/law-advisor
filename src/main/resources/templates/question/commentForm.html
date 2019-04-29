@@ -1,5 +1,6 @@
+<div>
 <div class="col-xs-8 col-md-10" xmlns:th="http://www.w3.org/1999/xhtml">
-    <form th:object="${comment}" method="post" th:action="@{/answer/comment/save}>
+    <form th:object="${comment}" method="post" th:action="@{/answer/comment/save}">
         <input hidden="hidden" type="text" name="id" th:field="*{id}">
         <input hidden="hidden" type="text" name="date" th:field="*{date}">
         <input hidden="hidden" type="text" name="user" th:field="*{user}">
@@ -28,4 +29,5 @@
             </footer>
         </section>
     </form>
+</div>
 </div>

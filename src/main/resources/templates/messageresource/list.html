@@ -3,7 +3,7 @@
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
 
-    <title>Online Law Consultant|Translations</title>
+    <title th:text="#{label.tite}">Online Law Consultant|Translations</title>
     <div th:replace="fragment/header :: header-css"/>
 </head>
 <body>
@@ -22,7 +22,7 @@
 
                 <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
                     <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="search" placeholder="Search...">
+                        <input type="text" class="form-control" name="q" id="search" th:placeholder="#{label.search}">
                         <span class="input-group-btn">
               </span>
                     </div>
@@ -42,14 +42,14 @@
                             </div>
                             <div class="modal-body">
                                 <input hidden="true" type="text" id="id" name="id" th:field="*{id}" />
-                                <input type="text" name="message_key" class="form-control" placeholder="Type subject..." required/><br>
-                                <input type="text" name="kgz" class="form-control" placeholder="Type subject..." required/><br>
-                                <input type="text" name="rus" class="form-control" placeholder="Type subject..." required/><br>
-                                <input type="text" name="eng" class="form-control" placeholder="Type subject..." required/><br>
+                                <input type="text" name="message_key" class="form-control" th:placeholder="#{label.key}" required/><br>
+                                <input type="text" name="kgz" class="form-control" th:placeholder="#{label.kg}" required/><br>
+                                <input type="text" name="rus" class="form-control" th:placeholder="#{label.ru}" required/><br>
+                                <input type="text" name="eng" class="form-control" th:placeholder="#{label.en}" required/><br>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" th:text="#{label.submit}">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{label.close}">Close</button>
                             </div>
                         </form>
                     </div>
@@ -68,7 +68,7 @@
             <a sec:authorize="hasRole('ADMIN')" data-remote="false" data-toggle="modal"
                data-target="#addTranslationModal"
                th:href="@{/messageResource/0/save}" role="button"
-               class="btn btn-large btn-primary"> Add translation</a>
+               class="btn btn-large btn-primary" th:text="#{label.add.translation}"> Add translation</a>
 
             <div id="content"></div>
             <!-- end: page -->

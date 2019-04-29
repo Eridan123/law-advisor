@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Online Law Consultant Rating Lawyers</title>
+    <title th:text="#{label.title}">Online Law Consultant Rating Lawyers</title>
     <meta name="keywords" content="HTML5 Admin Template" />
     <meta name="description" content="Porto Admin - Responsive HTML5 Template">
     <meta name="author" content="okler.net">
@@ -67,7 +67,7 @@ td, th {
 
             <form action="pages-search-results.html" class="search nav-form">
                 <div class="input-group input-search">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search...">
+                    <input type="text" class="form-control" name="q" id="q" th:placeholder="#{label.female}">
                     <span class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
               </span>
@@ -81,7 +81,7 @@ td, th {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="exampleModalLongTitle">Ask question</h3>
+                            <h3 class="modal-title" id="exampleModalLongTitle" >Ask question</h3>
                         </div>
                         <div class="modal-body">
                             <form action="/action_page.php">

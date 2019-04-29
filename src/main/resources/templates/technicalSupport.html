@@ -4,7 +4,7 @@
 <head>
 
 
-    <title>Technical Support</title>
+    <title th:text="#{label.techincal_support}">Technical Support</title>
     <div th:replace="fragment/header :: header-css"/>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link th:href="@{/assets/stylesheets/star-rating.css}" media="all" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
                         <section class="panel">
                             <header class="panel-heading">
 
-                                <h2 class="panel-title">Inform about mistakes on website</h2>
+                                <h2 class="panel-title" th:text="#{label.add.technical}">Inform about mistakes on website</h2>
 
                             </header>
 
@@ -55,6 +55,35 @@
                             </div>
                             <footer class="panel-footer">
                                 <button class="btn btn-primary" type="submit">Send</button>
+                            </footer>
+                        </section>
+                    </form>
+                </div>
+                <div class="col-xs-2 col-md-1"></div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-2 col-md-1"></div>
+                <div class="col-xs-8 col-md-10">
+                    <form th:object="${mistake}" th:action="@{/mistake/save}" method="post">
+                        <input hidden="hidden" type="text" name="id" th:value="${mistake.id}">
+                        <section class="panel">
+                            <header class="panel-heading">
+
+                                <h2 class="panel-title">Please Rate our site</h2>
+
+                            </header>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <textarea name="text" type="text" class="form-control" rows="5" placeholder="Please rate from 1-5 " required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <button class="btn btn-primary" type="submit">Evaluate</button>
                             </footer>
                         </section>
                     </form>

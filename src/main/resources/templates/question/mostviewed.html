@@ -5,7 +5,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Questions</title>
+    <title th:text="#{label.title}">Questions</title>
     <div th:replace="fragment/header :: header-css"/>
 </head>
 <body>
@@ -22,11 +22,11 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Most Viewed Questions</h2>
+                <h2 th:text="#{label.most.questions}">Most Viewed Questions</h2>
 
                 <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
                     <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="catSearch" placeholder="Search...">
+                        <input type="text" class="form-control" name="q" id="catSearch" th:placeholder="#{label.search}">
                         <span class="input-group-btn">
               </span>
                     </div>

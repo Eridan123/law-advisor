@@ -2,7 +2,7 @@
     <header class="panel-heading">
         <div class="row">
             <div class="col-sm-8 col-md-8 col-lg-8">
-                <h2 class="panel-title">Translations</h2>
+                <h2 class="panel-title" th:text="#{label.translations}">Translations</h2>
             </div>
         </div>
     </header>
@@ -12,11 +12,11 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Key</th>
-                    <th>Kg</th>
-                    <th>Ru</th>
-                    <th>En</th>
-                    <th>Actions</th>
+                    <th th:text="#{label.key}">Key</th>
+                    <th th:text="#{label.kg}">Kg</th>
+                    <th th:text="#{label.ru}">Ru</th>
+                    <th th:text="#{label.en}">En</th>
+                    <th th:text="#{label.actions}">Actions</th>
                 </tr>
                 </thead>
                 <tbody>

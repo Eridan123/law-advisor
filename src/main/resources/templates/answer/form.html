@@ -3,7 +3,7 @@
 <head>
 
 
-    <title>Online Law Consultant</title>
+    <title th:text="#{label.title}">Online Law Consultant</title>
     <div th:replace="fragment/header :: header-css"/>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <!-- end: sidebar -->
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2>Ask Question</h2>
+                <h2></h2>
 
                 <div class="right-wrapper pull-right">
                     <ol class="breadcrumbs">
@@ -54,9 +54,9 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-pencil-square-o"></i>
                                             </span>
-                                            <textarea name="text" rows="5" class="form-control" placeholder="Question content" required th:text="${answer.content.text}"></textarea>
+                                            <textarea name="text" rows="5" class="form-control" th:placeholder="#{label.question.content}" required th:text="${answer.content.text}"></textarea>
                                         </div>
-                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary">Submit</button>
+                                        <button type="submit" class="mb-xs mt-xs mr-xs btn btn-primary" th:text="#{label.submit}">Submit</button>
                                     </div>
                                 </div>
                             </form>

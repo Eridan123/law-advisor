@@ -56,20 +56,21 @@
 
         <span class="separator"></span>
         <a th:href="'?language=kg'">
-            <span >
+            <span th:text="#{label.kg}">
                 Kyrgyz
             </span>
         </a>
         <a th:href="'?language=en'">
-            <span >
+            <span th:text="#{label.en}">
                 English
             </span>
         </a>
         <a th:href="'?language=ru'" >
-            <span >
+            <span th:text="#{label.ru}">
                 Russian
             </span>
         </a>
+        <span class="separator"></span>
 
 
         <div id="userbox" class="userbox">
@@ -92,20 +93,20 @@
                     <ul class="list-unstyled">
                         <li class="divider"></li>
                         <li>
-                            <a role="menuitem" tabindex="-1" th:href="@{/user/__${@userService.findUserByUsername(#authentication.name).getId()}__/view}"><i class="fa fa-user"></i> My Profile</a>
+                            <a role="menuitem" tabindex="-1" th:href="@{/user/__${@userService.findUserByUsername(#authentication.name).getId()}__/view}"><i class="fa fa-user"></i> <span th:text="#{label.myprofile}"></span></a>
                         </li>
                         <!--<li>-->
                         <!--<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>-->
                         <!--</li>-->
                         <li>
-                            <a role="menuitem" tabindex="-1" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
+                            <a role="menuitem" tabindex="-1" th:href="@{/logout}" th:text="#{label.logout}"><i class="fa fa-power-off"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div th:unless="${@userService.findUserByUsername(#authentication.name)}!=null">
-                <a th:href="@{/login}" type="button" class="btn btn-success" >Login</a>
-                <a th:href="@{/user/0/save}" type="button" class="btn btn-success" >Sign up!</a>
+                <a th:href="@{/login}" type="button" class="btn btn-success" th:text="#{label.login}">Login</a>
+                <a th:href="@{/user/0/save}" type="button" class="btn btn-success" th:text="#{label.signup}">Sign up!</a>
             </div>
         </div>
     </div>

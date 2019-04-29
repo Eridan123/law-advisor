@@ -3,7 +3,7 @@
 <head>
 
 
-    <title>News</title>
+    <title th:text="#{label.title}">News</title>
     <div th:replace="fragment/header :: header-css"/>
 </head>
 <body>
@@ -26,57 +26,119 @@
             </header>
 
             <!-- start: page -->
-            <ul style="list-style-type: none;" th:each="question:${questions}">
-                <li>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12" >
-                            <section class="panel">
-                                <header class="panel-heading">
-                                    <div class="panel-actions">
-                                        <a href="#" class="fa fa-caret-down"></a>
-                                        <a href="#" class="fa fa-times"></a>
-                                    </div>
 
-                                    <h2 class="panel-title" th:text="${question.title}">Lorem ipsum dolor sit amet, consectetur</h2>
-                                </header>
-                                <div>
-                                    <div class="panel-body ">
-                                        <p th:text="${content.text}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur nostrum, sapiente magnam necessitatibus fuga! Dolor vel rem autem laboriosam architecto ipsa, eos impedit nihil dignissimos quidem optio aspernatur sit nobis consequuntur in, nostrum cupiditate inventore delectus facere quibusdam. Quaerat eligendi aliquam minus similique corrupti qui nihil sunt nisi eos sit.</p>
-                                        <div class="container">
-                                            <div class="row justify-content-around">
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-up"></i>
-                                                    </button>
-                                                    <label>1325</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-thumbs-o-down"></i>
-                                                    </button>
-                                                    <label>232</label>
-                                                </div>
-                                                <div class="col-xs-3 col-md-2">
-                                                    <button>
-                                                        <i class="fa fa-check-square-o"></i>
-                                                    </button>
-                                                    <label>53 Answers</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
             <!-- end: page -->
-            <div>
-                <h2>Latest News</h2>
-                <p>Lorem ipsum</p>
-            </div>
+
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="box-item col-lg-6 col-md-6">
+                        <div class="box-post">
+
+                            <h1 class="post-title" style="font-size: medium">
+                                <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5-%D0%B4%D0%B5%D0%BB%D0%B0-%D1%80%D0%B0%D1%81%D1%81%D0%BC%D0%B0%D1%82%D1%80%D0%B8%D0%B2%D0%B0%D0%B5%D1%82-%D1%82%D1%80%D0%B5%D1%82%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B9">
+                                    Какие дела рассматривает третейский суд?
+                                </a>
+                            </h1>
+                            <span class="meta">
+
+                    </span>
+                        </div>
+                        <img src="assets/images/news1.jpg" alt="Why Palladio is the world's favourite 16th-century architect"
+                             class="" style="width: 70%">
+                    </div>
+                        <div class="box-item col-lg-6 col-md-6">
+                            <div class="box-post">
+                   
+                                <h1 class="post-title" style="font-size: medium">
+                                    <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/14-%D0%B8%D1%8E%D0%BB%D1%8F-%D0%B4%D0%B5%D0%BD%D1%8C-%D0%B0%D0%B4%D0%B2%D0%BE%D0%BA%D0%B0%D1%82%D1%83%D1%80%D1%8B-%D0%BA%D1%8B%D1%80%D0%B3%D1%8B%D0%B7%D1%81%D0%BA%D0%BE%D0%B9-%D1%80%D0%B5%D1%81">
+                                        14 июля — День Адвокатуры Кыргызской Республики
+                                    </a>
+                                </h1>
+                                <span class="meta">
+                        
+                    </span>
+                            </div>
+                            <img src="assets/images/news2.jpg" alt="City in the sky: world's biggest hotel to open in Mecca"
+                                 class="" style="width: 70%">
+                        </div>
+
+
+
+                        <div class="box-item col-lg-6 col-md-6">
+                            <div class="box-post">
+
+                                <h1 class="post-title" style="font-size: medium">
+                                    <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/%D1%8E%D1%80%D0%B8%D1%81%D1%82%D1%8B-%D0%BA%D1%8B%D1%80%D0%B3%D1%8B%D0%B7%D1%81%D1%82%D0%B0%D0%BD%D0%B0-%D0%BF%D1%80%D0%B5%D0%B4%D0%BB%D0%B0%D0%B3%D0%B0%D1%8E%D1%82-%D0%BF%D1%80%D0%B8%D0%BD%D1%8F">
+                                        Юристы Кыргызстана предлагают принять декларацию для внедрения системы бесплатной юридической помощи
+                                    </a>
+                                </h1>
+                                <span class="meta">
+
+                    </span>
+                            </div>
+                            <img src="assets/images/news3.jpg" alt="Return of the prefabs: inside Richard Rogers' Y:Cube homes for homeless people"
+                                 class="" style="width: 70%">
+                        </div>
+
+                        <div class="box-item col-lg-6 col-md-6">
+                            <div class="box-post">
+                   
+                                <h1 class="post-title" style="font-size: medium">
+                                    <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/%D1%83%D1%87%D1%80%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9-%D1%81%D1%8A%D0%B5%D0%B7%D0%B4-%D0%B0%D0%B4%D0%B2%D0%BE%D0%BA%D0%B0%D1%82%D0%BE%D0%B2-%D0%BA%D1%8B%D1%80%D0%B3%D1%8B-2">
+                                        Учредительный Съезд адвокатов Кыргызской Республики
+                                    </a>
+                                </h1>
+                                <span class="meta">
+                        
+                    </span>
+                            </div>
+                            <img src="assets/images/news4.jpg" alt="The ‘sky pool’ is just the start: London prepares for a flood of bathing oligarchs"
+                                 class="" style="width: 70%">
+                        </div>
+
+                        <div class="box-item col-lg-6 col-md-6">
+                            <div class="box-post">
+                   
+                                <h1 class="post-title" style="font-size: medium">
+                                    <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/%D0%B3%D1%80%D0%B0%D0%B6%D0%B4%D0%B0%D0%BD%D0%B8%D0%BD-%D0%BB%D0%B0%D1%82%D0%B2%D0%B8%D0%B8-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D0%BB-%D0%BF%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%BD%D1%8B%D0%B9">
+                                        Гражданин Латвии получил постоянный вид на жительство в Кыргызской Республике
+                                    </a>
+                                </h1>
+                                <span class="meta">
+                        
+                    </span>
+                            </div>
+                            <img src="assets/images/news5.jpg" alt="Carbuncle Cup: Walkie Talkie wins prize for worst building of the year"
+                                 class="" style="width: 70%">
+                        </div>
+
+                    </div>
+
+                        <div class="box-item col-lg-6 col-md-6">
+                            <div class="box-post">
+                   
+                                <h1 class="post-title" style="font-size: medium">
+                                    <a href="http://sadanbekov.kg/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/2656">
+                                        В Бишкеке обсуждают внедрение культуры Pro bono – системы бесплатной юридической помощи
+                                    </a>
+                                </h1>
+                                <span class="meta">
+                        
+                    </span>
+                            </div>
+                            <img src="assets/images/news6.jpg" alt="'This design is total rubbish': Preston's majestic bus station gets a zombie makeover"
+                                 class="" style="width: 70%">
+                        </div>
+
+
+
+
+
+
+
+
         </section>
     </div>
 

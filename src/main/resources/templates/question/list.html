@@ -6,7 +6,7 @@
     <!-- Basic -->
     <meta charset="UTF-8">
 
-    <title>Questions</title>
+    <title th:text="#{label.title}">Questions</title>
     <div th:replace="fragment/header :: header-css"/>
 </head>
 <body>
@@ -23,11 +23,11 @@
 
         <section role="main" class="content-body">
             <header class="page-header">
-                <h2 sec:authorize="hasAnyAuthority('ROLE_LAWYER','ROLE_USER')"><a th:href="@{/question/0/save}" type="button" class="btn btn-success">Ask question</a></h2>
-                <a  class="btn btn-secondary btn-warning mt-sm" th:href="@{/question/most/viewed}">Most Viewed Questions</a>
+                <h2 sec:authorize="hasAnyAuthority('ROLE_LAWYER','ROLE_USER')"><a th:href="@{/question/0/save}" type="button" class="btn btn-success" th:text="#{label.ask.question}">Ask question</a></h2>
+                <a  class="btn btn-secondary btn-warning mt-sm" th:href="@{/question/most/viewed}" th:text="#{label.most.questions}">Most Viewed Questions</a>
                 <div class="right-wrapper pull-right btn-group col-sm-4" style="padding: 8px 0px">
                     <div class="input-group input-search">
-                        <input type="text" class="form-control" name="q" id="catSearch" placeholder="Search...">
+                        <input type="text" class="form-control" name="q" id="catSearch" th:placeholder="#{label.search}">
                         <span class="input-group-btn">
               </span>
                     </div>

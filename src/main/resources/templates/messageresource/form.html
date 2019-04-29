@@ -1,17 +1,17 @@
 <form th:action="@{/messageResource/save}" th:object="${message}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="modal-header">
-        <h3 class="modal-title">Add/Edit Translation</h3>
+        <h3 class="modal-title"></h3>
     </div>
     <div class="modal-body">
         <input hidden="true" type="text" id="id" name="id" th:field="*{id}" />
-        <input type="text" name="message_key" class="form-control" placeholder="Type subject..." th:value="${message.message_key}"/><br>
-        <input type="text" name="kgz" class="form-control" placeholder="Type subject..." th:value="${message.kgz}"/><br>
-        <input type="text" name="rus" class="form-control" placeholder="Type subject..." th:value="${message.rus}"/><br>
-        <input type="text" name="eng" class="form-control" placeholder="Type subject..." th:value="${message.eng}"/><br>
+        <input type="text" name="message_key" class="form-control" th:placeholder="#{label.key}" th:value="${message.message_key}"/><br>
+        <input type="text" name="kgz" class="form-control" th:placeholder="#{label.kg}" th:value="${message.kgz}"/><br>
+        <input type="text" name="rus" class="form-control" th:placeholder="#{label.ru}" th:value="${message.rus}"/><br>
+        <input type="text" name="eng" class="form-control" th:placeholder="#{label.en}" th:value="${message.eng}"/><br>
     </div>
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" th:text="#{label.submit}">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{label.close}">Close</button>
     </div>
 </form>
 
