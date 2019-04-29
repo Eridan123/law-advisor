@@ -70,6 +70,7 @@
                 Russian
             </span>
         </a>
+        <span class="separator"></span>
 
 
         <div id="userbox" class="userbox">
@@ -92,7 +93,7 @@
                     <ul class="list-unstyled">
                         <li class="divider"></li>
                         <li>
-                            <a role="menuitem" tabindex="-1" th:href="@{/user/__${@userService.findUserByUsername(#authentication.name).getId()}__/view}"><i class="fa fa-user"></i> My Profile</a>
+                            <a role="menuitem" tabindex="-1" th:href="@{/user/__${@userService.findUserByUsername(#authentication.name).getId()}__/view}"><i class="fa fa-user"></i> <span th:text="#{label.myprofile}"></span></a>
                         </li>
                         <!--<li>-->
                         <!--<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>-->
