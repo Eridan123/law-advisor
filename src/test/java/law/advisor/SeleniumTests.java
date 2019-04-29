@@ -547,14 +547,18 @@ public class SeleniumTests {
     //############End of Sprint3############
 
     //############Sprint4############
-    /*Notification about mistake admin*/
-    public static boolean notAdm(WebDriver driver){
-        return true;
-    }
-
     /*Give feedback Test*/
     public static boolean feedback(WebDriver driver){
-        return true;
+        login(driver);
+        driver.findElement(By.linkText("Technical support")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div/div/textarea")).sendKeys("My feedback");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
+        if(driver.getPageSource().contains("Whitelabel Error Page")) {
+            System.out.println("feedback failed");
+            return false;
+        }else {
+            return true;
+        }
     }
 
     /*See rate of answer for Lawyer Test*/
@@ -566,18 +570,6 @@ public class SeleniumTests {
             System.out.println("helpful failed");
             return false;
         }
-    }
-
-    /*Notification about new questions Test*/
-    public static boolean notLaw(WebDriver driver){
-        return true;
-    }
-
-    /*Sign in with google Test*/
-    public static boolean signinGoogle(WebDriver driver){
-        driver.findElement(By.linkText("Login")).click();
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[4]/a")).click();
-        return false;
     }
 
     /*Switch language Test*/
