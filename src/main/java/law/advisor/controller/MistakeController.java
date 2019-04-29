@@ -1,10 +1,7 @@
 package law.advisor.controller;
 
 import law.advisor.model.*;
-import law.advisor.repository.CommentRepository;
-import law.advisor.repository.ContentRepository;
-import law.advisor.repository.RatingRepository;
-import law.advisor.repository.UserRepository;
+import law.advisor.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
@@ -31,6 +28,9 @@ public class MistakeController {
 
     @Autowired
     RatingRepository ratingRepository;
+
+    @Autowired
+    AnswerRepository answerRepository;
 
     @GetMapping("/mistake/{id}/save")
     public String saveMistake(ModelMap model, @PathVariable("id") Long id){
@@ -61,7 +61,7 @@ public class MistakeController {
     @PostMapping("/mistake/save")
     public String savePostMistake(Comment comment, String text){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.getName()!="anonymousUser"){
+
         if (comment.getId()==null ||comment.getId()==0){
             comment.setCommentTo(CommentTo.DEVELOPER);
             Content content=new Content();
@@ -75,13 +75,14 @@ public class MistakeController {
             User user=userRepository.findUserByUsername(auth.getName());
             comment.setUser(user);
 
+            comment.setAnswer(answerRepository.getOne((long) 1));
+
             commentRepository.save(comment);
         }
         else{
             Comment comment1=commentRepository.getOne(comment.getId());
             comment1.getContent().setText(text);
             contentRepository.save(comment1.getContent());
-        }
         }
         return "redirect:/";
     }
