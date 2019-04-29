@@ -33,6 +33,43 @@
 
             <!-- end: page -->
 
+<!--            =========================================== rating form ======================================-->
+
+
+            <div class="row">
+                <div class="col-xs-2 col-md-1"></div>
+                <div class="col-xs-8 col-md-10">
+                    <form th:object="${mistake}" th:action="@{/rating/save}" method="post">
+                        <input hidden="hidden" type="text" name="id" th:value="${mistake.id}">
+                        <section class="panel">
+                            <header class="panel-heading">
+
+                                <h2 class="panel-title">Please Rate our site</h2>
+
+                            </header>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4">
+                                        <h1 th:text="${rating}"></h1>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="slider" type="range" name="rating" min="0" max="5" />
+                                        <p id="demo"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="panel-footer">
+                                <button class="btn btn-primary" type="submit">Send</button>
+                            </footer>
+                        </section>
+                    </form>
+                </div>
+                <div class="col-xs-2 col-md-1"></div>
+
+            </div>
+
             <!--            ============================== Leave reviews =======================================-->
             <div class="row">
                 <div class="col-xs-2 col-md-1"></div>
@@ -88,14 +125,23 @@
                         </section>
                     </form>
                 </div>
-                <div class="col-xs-2 col-md-1"></div>
+                <div class="col-xs-2 col-md-1"></div><textarea name="text" type="text" class="form-control" rows="5" placeholder="Please rate from 1-5 " required></textarea>
 
             </div>
 
         </section>
     </div>
 
+    <script>
+        var slider = document.getElementById("slider");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value; // Display the default slider value
 
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    </script>
 
 
     <!-- Vendor -->
