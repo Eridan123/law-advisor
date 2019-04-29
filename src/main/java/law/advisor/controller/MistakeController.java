@@ -1,11 +1,9 @@
 package law.advisor.controller;
 
-import law.advisor.model.Comment;
-import law.advisor.model.CommentTo;
-import law.advisor.model.Content;
-import law.advisor.model.User;
+import law.advisor.model.*;
 import law.advisor.repository.CommentRepository;
 import law.advisor.repository.ContentRepository;
+import law.advisor.repository.RatingRepository;
 import law.advisor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -31,6 +29,9 @@ public class MistakeController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RatingRepository ratingRepository;
+
     @GetMapping("/mistake/{id}/save")
     public String saveMistake(ModelMap model, @PathVariable("id") Long id){
         if (id==null ||id==0){
@@ -41,6 +42,18 @@ public class MistakeController {
         else{
             Comment comment=commentRepository.getOne(id);
             model.addAttribute("mistake",comment);
+        }
+        if(ratingRepository.findAll() == null){
+            model.addAttribute("rating",5);
+        }
+        else{
+            int sum=0;
+            int c = 0;
+            for (WebsiteRating r:ratingRepository.findAll()) {
+                sum +=r.getRating();
+                c=c+1;
+            }
+            model.addAttribute("rating", sum/c);
         }
         return "/technicalSupport";
     }
