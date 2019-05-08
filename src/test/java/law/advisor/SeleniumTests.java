@@ -431,7 +431,24 @@ public class SeleniumTests {
 
     /*Add lawyer Test*/
     public static boolean addLaw(WebDriver driver) {
-        return true;
+        loginAdm(driver);
+        openLawyers(driver);
+        driver.findElement(By.xpath("/html/body/section/div/section/header/h2/a")).click();
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("lawyer3");
+        driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("123");
+        driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("123");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[5]/input")).sendKeys("Alina");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[6]/input")).sendKeys("Lawyer");
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,500)");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
+        openLawyers(driver);
+        if(driver.getPageSource().contains("Alina")) {
+            return true;
+        }else {
+            System.out.println("addLaw failed");
+            return false;
+        }
     }
 
     /*Delete lawyer Test*/
@@ -604,17 +621,7 @@ public class SeleniumTests {
     }
     //############End of Sprint4############
 
-    public static void main(String[] args) {
-        WebDriver dr = new ChromeDriver();
-        dr.manage().window().maximize();
-        languageKg(dr);
-        languageEn(dr);
-        resetPassword(dr);
-        feedback(dr);
-        mistake(dr);
-        review(dr);
-        dr.close();
-    }
+
 
     public static boolean registerlaw(WebDriver driver) {
         driver.get(baseURL);
@@ -661,5 +668,11 @@ public class SeleniumTests {
         }else {
             return false;
         }
+    }
+    public static void main(String[] args) {
+        System. setProperty("webdriver.chrome.driver", "D:\\AIU\\CS-306\\chromedriver_win32\\chromedriver.exe");
+        WebDriver dr = new ChromeDriver();
+        dr.manage().window().maximize();
+        addLaw(dr);
     }
 }
