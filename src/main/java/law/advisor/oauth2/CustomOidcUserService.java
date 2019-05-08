@@ -1,9 +1,9 @@
 package law.advisor.oauth2;
 
-import law.advisor.model.GoogleOAuth2UserInfo;
-import law.advisor.model.User;
-import law.advisor.model.UserType;
+import law.advisor.model.*;
+import law.advisor.repository.RoleRepository;
 import law.advisor.repository.UserRepository;
+import law.advisor.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -18,6 +18,12 @@ public class CustomOidcUserService extends OidcUserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    UserRoleRepository userRoleRepository;
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
@@ -40,8 +46,13 @@ public class CustomOidcUserService extends OidcUserService {
         }
         user.setEmail(userInfo.getEmail());
         user.setName(userInfo.getName());
-        user.setUsername(userInfo.getName());
+        user.setUsername(userInfo.getId());
         user.setUserType(UserType.USER);
+        Role role=roleRepository.findByName("ROLE_USER");
+        UserRole userRole=new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
         userRepository.save(user);
+        userRoleRepository.save(userRole);
     }
 }

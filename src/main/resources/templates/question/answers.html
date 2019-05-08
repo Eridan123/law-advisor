@@ -67,7 +67,7 @@
         <div id="addCommentForm" class="row " style="display: none">
             <div>
                 <div class="col-xs-8 col-md-10" xmlns:th="http://www.w3.org/1999/xhtml">
-                    <form th:object="${comment}" method="post" th:action="@{/answer/comment/save}">
+                    <form th:object="${comment}" method="post" th:action="@{/answer/__${answer.id}__/comment/save}">
                         <input hidden="hidden" type="text" name="id" th:field="*{id}">
                         <input hidden="hidden" type="text" name="date" th:field="*{date}">
                         <input hidden="hidden" type="text" name="user" th:field="*{user}">
@@ -87,7 +87,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <textarea class="form-control" rows="5" placeholder="Type here ..." th:text="${comment.content.text}"></textarea>
+                                        <textarea class="form-control" rows="5" name="text" placeholder="Type here ..."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -167,6 +167,15 @@
                 }
             });
         }
+        // else if(splitted[0]=='comment'){
+        //     var x = document.getElementById("addCommentForm");
+        //     if (x.style.display == "none") {
+        //         x.style.display = "block";
+        //     }
+        //     else{
+        //         x.style.display = "none";
+        //     }
+        // }
 
     }
 </script>

@@ -47,7 +47,7 @@ public class QuestionController {
         model.addAttribute("questions",questions);
 
 
-        return "/question/list";
+        return "question/list";
 
     }
     
@@ -60,7 +60,7 @@ public class QuestionController {
         model.addAttribute("questions",questions);
         model.addAttribute("categoryId",category_id);
 
-        return "/question/list";
+        return "question/list";
     }
 
     @RequestMapping("/question/{id}/view")
@@ -91,7 +91,7 @@ public class QuestionController {
 
         model.addAttribute("role", role);
         model.addAttribute("question",question);
-        return "/question/view";
+        return "question/view";
     }
 
 
@@ -115,7 +115,7 @@ public class QuestionController {
             model.addAttribute("question",questionRepository.getOne(id));
         }
         model.addAttribute("categories",categoryRepository.findAll());
-        return "/question/form";
+        return "question/form";
     }
 
     @PostMapping("/question/save")
@@ -133,7 +133,7 @@ public class QuestionController {
             contentRepository.save(content1);
             questionRepository.save(question);
         }
-        return "redirect:/question/"+question.getId()+"/view";
+        return "redirect:question/"+question.getId()+"/view";
     }
 
     @PostMapping("/question/{id}/delete")
@@ -142,7 +142,7 @@ public class QuestionController {
         Question question=questionRepository.getOne(id);
         questionRepository.delete(question);
 
-        return "redirect: /";
+        return "redirect:/";
     }
 
     @GetMapping("/question/{searchStr}/search")
@@ -162,7 +162,7 @@ public class QuestionController {
         model.addAttribute("questions",questions);
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/question/questions";
+        return "question/questions";
     }
 
     @GetMapping("/question/category/{catId}/{searchStr}/search")
@@ -182,7 +182,7 @@ public class QuestionController {
         model.addAttribute("questions",questions);
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/question/questions";
+        return "question/questions";
     }
 
     @PostMapping("/api/question/like")
