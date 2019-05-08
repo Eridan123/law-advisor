@@ -414,20 +414,6 @@ public class SeleniumTests {
         return true;
     }
 
-    /*Add category Test*/
-    public static boolean addCat(WebDriver driver) {
-        return true;
-    }
-
-    /*Delete category Test*/
-    public static boolean deleteCat(WebDriver driver) {
-        return true;
-    }
-
-    /*Edit category Test*/
-    public static boolean editCat(WebDriver driver) {
-        return true;
-    }
 
     /*Add lawyer Test*/
     public static boolean addLaw(WebDriver driver) {
