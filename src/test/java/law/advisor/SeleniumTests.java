@@ -379,6 +379,7 @@ public class SeleniumTests {
 
     /*Search by category*/
     public static boolean category(WebDriver driver) {
+
         return true;
     }
 
@@ -436,7 +437,15 @@ public class SeleniumTests {
 
     /*Delete lawyer Test*/
     public static boolean deleteLaw(WebDriver driver) {
-        return true;
+        loginAdm(driver);
+        openLawyers(driver);
+        driver.findElement(By.xpath("//*[@id=\"content\"]/section/div/div/table/tbody/tr[2]/td[5]/a[2]/form/button"));
+        if (driver.getPageSource().contains("Whitelabel Error Page")) {
+            System.out.println("review failed");
+            return false;
+        } else {
+            return true;
+        }
     }
     //############End of Sprint2############
 
@@ -661,5 +670,8 @@ public class SeleniumTests {
         }else {
             return false;
         }
+    }
+    public static boolean search(WebDriver driver){
+
     }
 }
