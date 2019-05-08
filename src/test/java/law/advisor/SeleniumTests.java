@@ -361,7 +361,16 @@ public class SeleniumTests {
 
     /*Search by category*/
     public static boolean category(WebDriver driver) {
-        return true;
+        driver.get(baseURL);
+        driver.findElement(By.xpath("/html/body/section/div/aside/div[2]/div[1]/nav/ul/li[5]/a"));
+        driver.findElement(By.xpath("/html/body/section/div/aside/div[2]/div[1]/nav/ul/li[5]/ul[1]/li/a"));
+        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/question/1/list")) {
+            return true;
+        } else {
+            System.out.println("Category failed");
+            return false;
+        }
+
     }
 
     /*See Top 10 Lawyers Test*/
