@@ -186,6 +186,7 @@ public class AnswerController {
 
         return "/question/comments";
     }
+/*
 
     @RequestMapping("/answer/{answerId}/comment/{commentId}/save")
     public String addComment(ModelMap model, @PathVariable("answerId") Long answerId,
@@ -212,6 +213,7 @@ public class AnswerController {
         return "/question/commentForm";
 
     }
+*/
 
     @PostMapping("/answer/comment/save")
     public String saveComment(Comment comment, String text, HttpServletRequest request){

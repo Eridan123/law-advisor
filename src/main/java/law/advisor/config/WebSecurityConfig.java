@@ -1,6 +1,7 @@
 package law.advisor.config;
 
 
+import law.advisor.oauth2.CustomOidcUserService;
 import law.advisor.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -25,6 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private CustomOidcUserService oidcUserService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -74,11 +79,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
 //      OAUTH2 config
-//        http.authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .oauth2Login();
-        // Config Remember Me.
+        http.authorizeRequests().anyRequest().authenticated()
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
+                .redirectionEndpoint()
+                .baseUri("/oauth2/callback/*")
+                .and()
+                .userInfoEndpoint()
+                .oidcUserService(oidcUserService)
+                .and()
+                .authorizationEndpoint()
+                .baseUri("/oauth2/authorize");
+      // Config Remember Me.
         http.authorizeRequests().and() //
                 .rememberMe().tokenRepository(this.persistentTokenRepository()) //
                 .tokenValiditySeconds(1 * 24 * 60 * 60); // 24h
