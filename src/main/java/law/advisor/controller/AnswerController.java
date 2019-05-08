@@ -215,16 +215,17 @@ public class AnswerController {
     }
 */
 
-    @PostMapping("/answer/comment/save")
-    public String saveComment(Comment comment, String text, HttpServletRequest request){
+    @PostMapping("/answer/{id}/comment/save")
+    public String saveComment(@PathVariable("id") Long id,Comment comment, String text, HttpServletRequest request){
 
+        Answer answer=answerRepository.getOne(id);
 
-        String appUrl= request.getScheme() + "://" + request.getServerName()+":8080";
         if(comment.getId()==null||comment.getId()==0){
             Content content=comment.getContent();
             content.setText(text);
             contentRepository.save(content);
             comment.setContent(content);
+            comment.setAnswer(answer);
             commentRepository.save(comment);
 
 
