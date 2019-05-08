@@ -82,7 +82,7 @@
                     <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                         <!--<span class="name" th:text="${user.name}+' '+${user.surname}"></span>-->
                         <!--<span class="role" th:text="${user.userType}"></span>-->
-                        <span class="name" th:text="${@userService.findUserByUsername(#authentication.name).getUsername()}"></span>
+                        <span class="name" th:text="${@userService.findUserByUsername(#authentication.name).getName()}"></span>
                         <span class="role" th:text="${@userService.findUserByUsername(#authentication.name).getUserType()}"></span>
                     </div>
 

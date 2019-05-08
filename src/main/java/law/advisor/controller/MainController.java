@@ -61,7 +61,7 @@ public class MainController {
 
         model.addAttribute("questions",questions);
         model.addAttribute("categories",categories);
-        return "/home";
+        return "home";
     }
 
 //    return news page
