@@ -11,7 +11,7 @@ public class SeleniumTests {
     /*Open site Test*/
     public static boolean open(WebDriver driver) {
         driver.get(baseURL);
-        if (!driver.getTitle().contentEquals("Online Law Consultant")) {
+        if (!driver.getTitle().contentEquals("ОНЛАЙН ЮРИДИЧЕСКИЙ КОНСУЛЬТАНТ")) {
             System.out.println("open failed");
             return false;
         }
@@ -27,10 +27,9 @@ public class SeleniumTests {
         String actualURL = "";
         actualURL = driver.getCurrentUrl();
         if (actualURL.contentEquals(expectedURL)) {
-            System.out.println(1);
             return true;
         } else {
-            System.out.println("Failed open login :" + driver.getCurrentUrl());
+            System.out.println("openLogin failed");
             return false;
         }
     }
@@ -44,10 +43,9 @@ public class SeleniumTests {
 
         actualURL = driver.getCurrentUrl();
         if (actualURL.contentEquals(expectedURL)) {
-            System.out.println(1);
             return true;
         } else {
-            System.out.println("Failed open register:" + driver.getCurrentUrl());
+            System.out.println("openReg failed");
             return false;
         }
     }
@@ -61,10 +59,9 @@ public class SeleniumTests {
         driver.findElement(By.xpath("/html/body/section/div/a/img")).click();
         actualURL = driver.getCurrentUrl();
         if (actualURL.contentEquals(expectedURL)) {
-            System.out.println(1);
             return true;
         } else {
-            System.out.println("Failed home logo :" + driver.getCurrentUrl());
+            System.out.println("homeLogo failed");
             return false;
         }
     }
@@ -76,30 +73,16 @@ public class SeleniumTests {
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("selenium");
         driver.findElement(By.xpath("//*[@id=\"pass\"]")).sendKeys("password");
         driver.findElement(By.xpath("//*[@id=\"confirm\"]")).sendKeys("password");
-        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[4]/input")).sendKeys("jama.98.kjk@gmail.com");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[4]/input")).sendKeys("zhamiila.kartanbaeva@iaau.edu.kg");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[5]/input")).sendKeys("Selenium");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[6]/input")).sendKeys("Test");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[7]/input")).sendKeys("0700123456");
         driver.findElement(By.xpath("//*[@id=\"optionsRadios2\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
-        if (!driver.getCurrentUrl().contentEquals(baseURL)) {
-            System.out.println(1);
+        if (driver.getPageSource().contains("Selenium")){
             return true;
         } else {
-            return false;
-        }
-    }
-
-    /*Open register page from login page Test*/
-    public static boolean openReg2(WebDriver driver) {
-        driver.get(baseURL);
-        driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/a[1]")).click();
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/p/a")).click();
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/user/0/save")) {
-            System.out.println(1);
-            return true;
-        } else {
-            System.out.println("Failed :" + driver.getCurrentUrl());
+            System.out.println("failed register");
             return false;
         }
     }
@@ -113,7 +96,6 @@ public class SeleniumTests {
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed login");
@@ -130,10 +112,9 @@ public class SeleniumTests {
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
-            System.out.println(1);
             return true;
         } else {
-            System.out.println("failed login");
+            System.out.println("failed loginLaw");
             return false;
         }
     }
@@ -147,7 +128,22 @@ public class SeleniumTests {
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
+            return true;
+        } else {
+            System.out.println("failed loginAdm");
+            return false;
+        }
+    }
 
+    /*Login Test*/
+    public static boolean login3(WebDriver driver) {
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("selenium");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("password");
+        driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
+        if (driver.getCurrentUrl().contentEquals(baseURL)) {
             return true;
         } else {
             System.out.println("failed login");
@@ -159,15 +155,13 @@ public class SeleniumTests {
     public static boolean login2(WebDriver driver) {
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id='userbox']/div/a[1]")).click();
-        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("alina");
+        driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div/input")).sendKeys("jama");
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div[2]/input")).sendKeys("12345");
         driver.findElement(By.xpath("//*[@id=\"RememberMe\"]")).click();
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/button[1]")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
-           ;
             return true;
         } else {
-            System.out.println(0);
             return false;
         }
     }
@@ -176,37 +170,7 @@ public class SeleniumTests {
     public static boolean aboutUs(WebDriver driver) {
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
-
         if (driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")) {
-            System.out.println(1);
-            return true;
-        } else {
-            System.out.println("failed about us");
-            return false;
-        }
-    }
-
-    /*Open About Us page from News page Test*/
-    public static boolean aboutUs3(WebDriver driver) {
-        driver.get("http://localhost:8080/news");
-        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
-
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")) {
-            System.out.println(1);
-            return true;
-        } else {
-            System.out.println("failed about us");
-            return false;
-        }
-    }
-
-    /*Open About Us page from Questions page Test*/
-    public static boolean aboutUs4(WebDriver driver) {
-        driver.get("http://localhost:8080/question/list");
-        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
-
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed about us");
@@ -218,9 +182,7 @@ public class SeleniumTests {
     public static boolean news(WebDriver driver) {
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[3]/a")).click();
-
         if (driver.getCurrentUrl().contentEquals("http://localhost:8080/news")) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed news");
@@ -232,9 +194,7 @@ public class SeleniumTests {
     public static boolean reviews(WebDriver driver) {
         driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[7]/a")).click();
-
         if (driver.getCurrentUrl().contentEquals("http://localhost:8080/reviews")) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed review");
@@ -263,7 +223,6 @@ public class SeleniumTests {
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[2]/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div[1]/div/div/div[2]/section/form/div/button")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed delete");
@@ -283,7 +242,6 @@ public class SeleniumTests {
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[3]/div[2]/input")).sendKeys("password");
         driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[4]/div/button[1]")).click();
         if (driver.getCurrentUrl().contentEquals(expectedURL)) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("change password failed");
@@ -293,10 +251,10 @@ public class SeleniumTests {
 
     /*Logout Test*/
     public static boolean logout(WebDriver driver) {
+        driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div")).click();
         driver.findElement(By.xpath("//*[@id=\"userbox\"]/div/div/ul/li[3]/a")).click();
         if (driver.getCurrentUrl().contentEquals(baseURL)) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed logout");
@@ -308,14 +266,14 @@ public class SeleniumTests {
     //############Sprint2############
     /*Ask Question Test*/
     public static boolean ask(WebDriver driver) {
+        driver.get(baseURL);
         driver.findElement(By.xpath("/html/body/section/div/section/header/h2/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("Hello world");
         driver.findElement(By.xpath("//*[@id=\"category.id\"]")).click();
         driver.findElement(By.xpath("//*[@id=\"category.id\"]/option[2]")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[3]/textarea")).sendKeys("It's my question");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
-        if (driver.getTitle().contentEquals("Question View")) {
-
+        if (driver.getPageSource().contains("Вопрос")){
             return true;
         } else {
             System.out.println("failed ask");
@@ -323,27 +281,10 @@ public class SeleniumTests {
         }
     }
 
-    /*Open About Us page from Lowyers page Test*/
-    public static boolean aboutUs2(WebDriver driver) {
-        driver.get("http://localhost:8080/lawyer/list");
-        driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[6]/a")).click();
-
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/aboutus")) {
-            System.out.println(1);
-            return true;
-        } else {
-            System.out.println("failed about us");
-            return false;
-        }
-    }
-
     /*Open Lawyers Test*/
     public static boolean openLawyers(WebDriver driver) {
-        driver.get(baseURL);
         driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[2]/a")).click();
-
         if (driver.getCurrentUrl().contentEquals("http://localhost:8080/lawyer/list")) {
-            System.out.println(1);
             return true;
         } else {
             System.out.println("failed lawyer");
@@ -359,23 +300,9 @@ public class SeleniumTests {
         return driver.getCurrentUrl().contentEquals("http://localhost:8080/pages-search-results.html?q=Hello");
     }
 
-    /*Search by category*/
-    public static boolean category(WebDriver driver) {
-        driver.get(baseURL);
-        driver.findElement(By.xpath("/html/body/section/div/aside/div[2]/div[1]/nav/ul/li[5]/a"));
-        driver.findElement(By.xpath("/html/body/section/div/aside/div[2]/div[1]/nav/ul/li[5]/ul[1]/li/a"));
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/question/1/list")) {
-            return true;
-        } else {
-            System.out.println("Category failed");
-            return false;
-        }
-
-    }
 
     /*See Top 10 Lawyers Test*/
     public static boolean top(WebDriver driver) {
-        openLawyers(driver);
         driver.findElement(By.xpath("//*[@id=\"content\"]/section/header/div/div[2]/div/a[2]")).click();
         if(driver.findElement(By.xpath("//*[@id=\"content\"]/section/header/div/div[1]/h2")).getText().contentEquals("Top Lawyers")){
             return true;
@@ -385,29 +312,8 @@ public class SeleniumTests {
         }
     }
 
-    /*Delete questions Test*/
-    public static boolean delQuestion(WebDriver driver) {
-        return true;
-    }
-
-    /*Rating near answer Test*/
-    public static boolean rating(WebDriver driver) {
-        return true;
-    }
-
-    /*Who answered Test*/
-    public static boolean whoanswer(WebDriver driver) {
-        return true;
-    }
-
-    /*Date of answer Test*/
-    public static boolean dateAns(WebDriver driver) {
-        return true;
-    }
-
     /*Add lawyer Test*/
     public static boolean addLaw(WebDriver driver) {
-        loginAdm(driver);
         openLawyers(driver);
         driver.findElement(By.xpath("/html/body/section/div/section/header/h2/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div[1]/input")).sendKeys("lawyer3");
@@ -429,16 +335,14 @@ public class SeleniumTests {
 
     /*Delete lawyer Test*/
     public static boolean deleteLaw(WebDriver driver) {
-        loginAdm(driver);
         openLawyers(driver);
-        driver.findElement(By.xpath("//*[@id=\"content\"]/section/div/div/table/tbody/tr[2]/td[5]/a[2]/form/button"));
+        driver.findElement(By.xpath("//*[@id=\"content\"]/section/div/div/table/tbody/tr[2]/td[5]/a[2]/form/button")).click();
         if(driver.getPageSource().contains("Whitelabel Error Page")) {
             System.out.println("delete lawyer failed");
             return false;
         }else {
             return true;
         }
-
     }
     //############End of Sprint2############
 
@@ -448,15 +352,16 @@ public class SeleniumTests {
     public static boolean answer(WebDriver driver) {
         loginLaw(driver);
         driver.get(baseURL);
-        driver.findElement(By.cssSelector("#content > ul > li > div > div:nth-child(2) > section > header > a > h2")).click();
+        driver.findElement(By.cssSelector("#content > ul > li > div > div:nth-child(1) > section > header > a > h2")).click();
         driver.findElement(By.xpath("/html/body/section/div[2]/section/div[2]/div/section/header/a")).click();
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/div/textarea")).sendKeys("It is answer");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div/section/div/form/div/div/button")).click();
-        if (driver.getCurrentUrl().contentEquals("http://localhost:8080/question/147/view")) {
+        if(driver.getPageSource().contains("Whitelabel Error Page")) {
+            System.out.println("mistake failed");
+            return false;
+        }else {
             return true;
         }
-        System.out.println("answer failed");
-        return false;
     }
 
     /*Leave review Test*/
@@ -466,7 +371,7 @@ public class SeleniumTests {
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[1]/input")).sendKeys("Alina");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[3]/input")).sendKeys("Zhakypova");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[1]/div[5]/input")).sendKeys("alina@mail.ru");
-        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[2]/div/textarea")).sendKeys("kdbclaibvlaivbalhba");
+        driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/div/div[2]/div/textarea")).sendKeys("My review");
         driver.findElement(By.xpath("/html/body/section/div/section/div/div[2]/form/section/footer/button")).click();
         if(driver.getPageSource().contains("Whitelabel Error Page")) {
             System.out.println("review failed");
@@ -491,18 +396,13 @@ public class SeleniumTests {
         }
     }
 
-    /*See the rate of answer Test*/
-    public static boolean rateAnswer(WebDriver driver) {
-        return true;
-    }
-
     /*Status of questions Test*/
     public static boolean status(WebDriver driver) {
         driver.get(baseURL);
         if (driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/div/div/div/div/div[3]/label")).getText().contentEquals("1")) {
-            System.out.println(1);
             return true;
         } else {
+            System.out.println("status failed");
             return false;
         }
     }
@@ -510,51 +410,28 @@ public class SeleniumTests {
     /*See date of question Test*/
     public static boolean dateQuestion(WebDriver driver) {
         driver.get(baseURL);
-        driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/header/a/h2")).click();
-        if (driver.findElement(By.xpath("/html/body/section/div[2]/section/div[1]/div/section/div/div/div/div/div[4]/label")).getText().contentEquals("08-04-2019")) {
-            System.out.println(1);
+        if (driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/div/div/div/div/div[5]/label")).getText().contentEquals("16-05-2019")) {
             return true;
         } else {
+            System.out.println("dateQuestion failed");
             return false;
         }
 
     }
 
-    /*Similar questions Test*/
-    public static boolean similar(WebDriver driver) {
-        return true;
-    }
-
-    /*Like Test*/
-    public static boolean seeLike(WebDriver driver) {
-        return driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("1");
-    }
-
-    /*Notification when get answer Test*/
-    public static boolean isAnswered(WebDriver driver) {
-        driver.get("https://mail.google.com");
-        driver.findElement(By.xpath("//*[@id=\"identifierId\"]")).sendKeys("jama.98.jk@gmail.com");
-        driver.findElement(By.xpath("//*[@id=\"identifierNext\"]/content/span")).click();
-        driver.findElement(By.xpath("//*[@id=\"password\"]/div[1]/div/div[1]/input")).sendKeys("password");
-        driver.findElement(By.xpath("//*[@id=\"passwordNext\"]/content/span")).click();
-        driver.findElement(By.xpath("//*[text() = 'Your question has been answered']")).click();
-        return true;
-    }
-
     /*Put like to question Test*/
     public static boolean putLike(WebDriver driver) {
-        login(driver);
-        driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[2]/section/div/div/div/div/div[1]/button")).click();
-        return driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("1");
-    }
+        driver.get(baseURL);
+        driver.findElement(By.xpath("//*[@id=\"content\"]/ul/li/div/div[1]/section/div/div/div/div/div[1]/button")).click();
+        if(driver.findElement(By.xpath("//*[@id=\"totalLike\"]")).getText().contentEquals("0")){
+            return true;
+        }else {
+            System.out.println("putLike failed");
+            return false;
+        }    }
     //############End of Sprint3############
 
     //############Sprint4############
-    /*Notificatio about mistake Test*/
-    public static boolean notAdm(WebDriver driver){
-        loginAdm(driver);
-        return true;
-    }
 
     /*Give feedback Test*/
     public static boolean feedback(WebDriver driver){
@@ -604,9 +481,19 @@ public class SeleniumTests {
             return false;
         }
     }
+
+    /*Switch language Test*/
+    public static boolean languageRu(WebDriver driver){
+        driver.get(baseURL);
+        driver.findElement(By.linkText("RU")).click();
+        if(driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[1]/a/span")).getText().contentEquals("ГЛАВНАЯ")){
+            return true;
+        } else {
+            System.out.println("languageRU failed");
+            return false;
+        }
+    }
     //############End of Sprint4############
-
-
 
     public static boolean registerlaw(WebDriver driver) {
         driver.get(baseURL);
@@ -658,9 +545,43 @@ public class SeleniumTests {
         System. setProperty("webdriver.chrome.driver", "D:\\AIU\\CS-306\\chromedriver_win32\\chromedriver.exe");
         WebDriver dr = new ChromeDriver();
         dr.manage().window().maximize();
-        addLaw(dr);
-        open(dr);
-        logout(dr);
+        try{open(dr);} catch (Exception e){ System.out.println("open ignored"); }
+        try{openReg(dr);} catch (Exception e){ System.out.println("openReg ignored"); }
+        try{openLogin(dr);} catch (Exception e){ System.out.println("openLogin ignored"); }
+        try{homeLogo(dr);} catch (Exception e){ System.out.println("homeLogo ignored"); }
+        try{login(dr);} catch (Exception e){ System.out.println("login ignored"); }
+        try{openLawyers(dr);} catch (Exception e){ System.out.println("openLawyer ignored"); }
+        try{top(dr);} catch (Exception e){ System.out.println("top ignored"); }
+        try{aboutUs(dr);} catch (Exception e){ System.out.println("aboutUs ignored"); }
+        try{news(dr);} catch (Exception e){ System.out.println("news ignored"); }
+        try{dateQuestion(dr);} catch (Exception e){ System.out.println("date ignored"); }
+        try{mistake(dr);} catch (Exception e){ System.out.println("mistake ignored"); }
+        try{reviews(dr);} catch (Exception e){ System.out.println("reviews ignored"); }
+        try{languageKg(dr);} catch (Exception e){ System.out.println("languageKG ignored"); }
+        try{languageEn(dr);} catch (Exception e){ System.out.println("laguageEn ignored"); }
+        try{languageRu(dr);} catch (Exception e){ System.out.println("laguageRu ignored"); }
+        try{logout(dr);} catch (Exception e){ System.out.println("logout ignored"); }
+        try{loginAdm(dr);} catch (Exception e){ System.out.println("loginAdm ignored"); }
+        try{addLaw(dr);} catch (Exception e){ System.out.println("addLaw ignored"); }
+        try{deleteLaw(dr);} catch (Exception e){ System.out.println("delLaw ignored"); }
+        try{logout(dr);} catch (Exception e){ System.out.println("logout ignored"); }
+        try{login2(dr);} catch (Exception e){ System.out.println("login ignored"); }
+        try{feedback(dr);} catch (Exception e){ System.out.println("feedback ignored"); }
+        try{review(dr);} catch (Exception e){ System.out.println("review ignored"); }
+        try{ask(dr);} catch (Exception e){ System.out.println("ask ignored"); }
+        try{logout(dr);} catch (Exception e){ System.out.println("logout ignored"); }
+        try{answer(dr);} catch (Exception e){ System.out.println("answer ignored"); }
+        try{logout(dr);} catch (Exception e){ System.out.println("logout ignored"); }
+        try{register(dr);} catch (Exception e){ System.out.println("register ignored"); }
+
+        try{login3(dr);} catch (Exception e){ System.out.println("login ignored"); }
+        try{editUser(dr);} catch (Exception e){ System.out.println("edit ignored"); }
+        try{menuhover(dr);} catch (Exception e){ System.out.println("menu ignored"); }
+        try{search(dr);} catch (Exception e){ System.out.println("search ignored"); }
+        try{copyright(dr, baseURL);} catch (Exception e){ System.out.println("copy ignored"); }
+        try{deleteAcc(dr);} catch (Exception e){ System.out.println("deleteAcc ignored"); }
+
+        dr.close();
 
     }
 }
