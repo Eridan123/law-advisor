@@ -55,7 +55,7 @@ public class MistakeController {
             }
             model.addAttribute("rating", sum/c);
         }
-        return "/technicalSupport";
+        return "technicalSupport";
     }
 
     @PostMapping("/mistake/save")
@@ -94,7 +94,7 @@ public class MistakeController {
 
         model.addAttribute("comments",comments);
 
-        return "/admin/FAQ";
+        return "admin/FAQ";
     }
 
 }

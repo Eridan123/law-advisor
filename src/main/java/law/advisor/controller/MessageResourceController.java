@@ -28,7 +28,7 @@ public class MessageResourceController {
     public String list(ModelMap model){
 
         model.addAttribute("message",new MessageResource());
-        return "/messageresource/list";
+        return "messageresource/list";
     }
 
     @RequestMapping("/messageResource/{id}/save")
@@ -39,13 +39,13 @@ public class MessageResourceController {
         else{
             model.addAttribute("message",messageResourceRepository.getOne(id));
         }
-        return "/messageresource/form";
+        return "messageresource/form";
     }
 
     @PostMapping("/messageResource/save")
     public String postSave(MessageResource messageResource){
         messageResourceRepository.save(messageResource);
-        return "redirect:/messageResource/list";
+        return "redirect:messageResource/list";
     }
 
     @GetMapping("/message/{searchStr}/search")
@@ -61,13 +61,13 @@ public class MessageResourceController {
 
         model.addAttribute("list",list);
 
-        return "/messageresource/resources";
+        return "messageresource/resources";
     }
 
     @PostMapping("/messageResource/{id}/delete")
     public String delete(@PathVariable("id") Long id){
         MessageResource messageResource=messageResourceRepository.getOne(id);
         messageResourceRepository.delete(messageResource);
-        return "redirect:/messageResource/list";
+        return "redirect:messageResource/list";
     }
 }

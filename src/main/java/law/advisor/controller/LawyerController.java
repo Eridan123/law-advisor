@@ -70,7 +70,7 @@ public class LawyerController {
         }
         model.addAttribute("lawyers",lawyers);
 
-        return "/lawyer/list";
+        return "lawyer/list";
     }
 
     @RequestMapping("/lawyer/{id}/save")
@@ -90,7 +90,7 @@ public class LawyerController {
 
 
 
-        return "/lawyer/form";
+        return "lawyer/form";
     }
 
     @PostMapping("/lawyer/save")
@@ -132,7 +132,7 @@ public class LawyerController {
             userRepository.save(lawyer1);
         }
 
-        return "redirect:/lawyer/"+lawyer.getId()+"/view";
+        return "redirect:lawyer/"+lawyer.getId()+"/view";
     }
 
     @RequestMapping("/lawyer/{id}/view")
@@ -144,7 +144,7 @@ public class LawyerController {
         model.addAttribute("lawyer",lawyer);
         model.addAttribute("reviews",comments);
 
-        return "/lawyer/view";
+        return "lawyer/view";
     }
 
 
@@ -156,7 +156,7 @@ public class LawyerController {
         model.addAttribute("categories",categoryService.findAll());
         model.addAttribute("lawyers",list);
 
-        return "/lawyer/top";
+        return "lawyer/top";
     }
 
     @RequestMapping("/lawyer/{period}/active")
@@ -165,7 +165,7 @@ public class LawyerController {
         List<LawyerRateModel> list=userService.findActiveLawyersByPeriod(10);
         model.addAttribute("categories",categoryService.findAll());
         model.addAttribute("lawyers",list);
-        return "/lawyer/active";
+        return "lawyer/active";
     }
 
     @PostMapping("/lawyer/{id}/delete")
@@ -173,7 +173,7 @@ public class LawyerController {
         User lawyer=userRepository.getOne(id);
         userRepository.delete(lawyer);
 
-        return "redirect: /lawyer/list";
+        return "redirect:lawyer/list";
     }
 
     @GetMapping("/lawyer/{searchStr}/search")
@@ -191,7 +191,7 @@ public class LawyerController {
 
         model.addAttribute("users",users);
 
-        return "/lawyer/lawyers";
+        return "lawyer/lawyers";
     }
 
 }

@@ -43,20 +43,20 @@ public class UserController {
     public String signup(ModelMap model){
         model.addAttribute("user",new User());
 
-        return "/signup";
+        return "signup";
     }
 
     @PostMapping("/signup")
     public String signupPost(ModelMap model,User user){
 
         userRepository.save(user);
-        return "redirect : /login";
+        return "redirect :login";
     }
 
     @RequestMapping("/login")
     public String login(ModelMap model){
 
-        return "/login";
+        return "login";
     }
 
     @RequestMapping({"/user","/user/list"})
@@ -64,7 +64,7 @@ public class UserController {
 
 
         model.addAttribute("users",userRepository.findAll());
-        return "/user/list";
+        return "user/list";
     }
 
     @RequestMapping("/user/{userId}/view")
@@ -76,7 +76,7 @@ public class UserController {
         model.addAttribute("user",user);
         model.addAttribute("role",userRoles.get(0));
 
-        return "/user/view";
+        return "user/view";
     }
 
     @RequestMapping("/user/{userId}/save")
@@ -127,7 +127,7 @@ public class UserController {
             userRepository.save(user1);
         }
 
-        return "redirect:/user/"+user.getId()+"/view";
+        return "redirect:user/"+user.getId()+"/view";
     }
 
     @PostMapping("/user/{id}/delete")
@@ -156,6 +156,6 @@ public class UserController {
 
         model.addAttribute("users",users);
 
-        return "/user/users";
+        return "user/users";
     }
 }

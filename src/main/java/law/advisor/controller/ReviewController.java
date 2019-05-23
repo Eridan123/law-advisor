@@ -39,7 +39,7 @@ public class ReviewController {
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/reviews";
+        return "reviews";
     }
 
 
@@ -63,7 +63,7 @@ public class ReviewController {
 
         }
 
-        return "redirect:/lawyer/"+lawyerId+"/view";
+        return "redirect:lawyer/"+lawyerId+"/view";
     }
 
 }

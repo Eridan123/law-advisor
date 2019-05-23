@@ -25,7 +25,7 @@ public class CategoryController {
 
         model.addAttribute("categories",categories);
 
-        return "/category/list";
+        return "category/list";
     }
 
     @RequestMapping(value = {"/category/{id}/save"})
@@ -39,7 +39,7 @@ public class CategoryController {
             model.addAttribute("category",category);
         }
 
-        return "/category/form";
+        return "category/form";
     }
 
     @RequestMapping(value = {"/category/save"},method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class CategoryController {
             categoryRepository.save(category1);
         }
 
-        return "redirect: /category/list";
+        return "redirect:category/list";
     }
 
     @RequestMapping(value = {"/category/{id}/delete"},method = RequestMethod.POST)
@@ -67,6 +67,6 @@ public class CategoryController {
             categoryRepository.delete(category);
         }
 
-        return "redirect: /category/list";
+        return "redirect:category/list";
     }
 }

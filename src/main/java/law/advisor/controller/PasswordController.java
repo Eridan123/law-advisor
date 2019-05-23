@@ -33,7 +33,8 @@ public class PasswordController {
     private EmailService emailService;
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @Autowired
     UserRepository userRepository;
@@ -41,7 +42,7 @@ public class PasswordController {
     // Display forgotPassword page
     @RequestMapping(value = "/forgot", method = RequestMethod.GET)
     public String displayForgotPasswordPage() {
-        return "/user/reset";
+        return "user/reset";
     }
 
     // Process form submission from forgotPassword page
@@ -78,7 +79,7 @@ public class PasswordController {
             model.addAttribute("successMessage", "A password reset link has been sent to " + userEmail);
         }
 
-        return "/user/successfullreset";
+        return "user/successfullreset";
 
     }
 
@@ -90,10 +91,10 @@ public class PasswordController {
 
         if (user!=null) { // Token found in DB
             model.addAttribute("resetToken", token);
-            return "/user/newpassword";
+            return "user/newpassword";
         } else { // Token not found in DB
             model.addAttribute("errorMessage", "Oops!  This is an invalid password reset link.");
-            return "/user/reset";
+            return "user/reset";
         }
 
     }
@@ -145,21 +146,23 @@ public class PasswordController {
         model.addAttribute("id",user.getId());
         model.addAttribute("message","");
 
-        return "/user/changepassword";
+        return "user/changepassword";
     }
 
     @RequestMapping(value = {"/changePassword/{id}"})
     public String postChangePassword(@PathVariable("id") Long id, String current_password,String new_password,ModelMap model){
 
-        User user=userRepository.getOne(id);
-        if (bCryptPasswordEncoder.encode(current_password).equals(user.getEncryted_password())){
+        User user=userService.findById(id);
+        if (bCryptPasswordEncoder.matches(current_password, user.getEncryted_password())){
             user.setEncryted_password(bCryptPasswordEncoder.encode(new_password));
             userRepository.save(user);
             return "redirect:/user/"+user.getId()+"/view";
+//            $2a$10$8BoBMutTLTlR6TMXjfpde.h0F37NrpUmuw4QHN63MBIzyR6Y9N2va
+//            $2a$10$g2T5MakkXXmuYh.D67XkE.rYVBmz7GPxSrN85.f6ltNKmWxkWy2Ka
         }
         else{
             model.addAttribute("message","wrong password!");
-            return "/user/changepassword";
+            return "redirect:/changePassword";
         }
     }
 
@@ -169,7 +172,7 @@ public class PasswordController {
         User user=userRepository.getOne(id);
         user.setEncryted_password(bCryptPasswordEncoder.encode(password));
 
-        return "redirect: /";
+        return "redirect:/";
     }
 
 }

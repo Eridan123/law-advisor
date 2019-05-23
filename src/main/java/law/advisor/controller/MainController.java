@@ -70,7 +70,7 @@ public class MainController {
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/news";
+        return "news";
     }
 
     //    return about us page
@@ -79,7 +79,7 @@ public class MainController {
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/aboutus";
+        return "aboutus";
     }
 
     @RequestMapping("/category")
@@ -87,7 +87,7 @@ public class MainController {
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/admin/category";
+        return "admin/category";
     }
 
     @RequestMapping("/rating")
@@ -95,21 +95,21 @@ public class MainController {
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/lawyer/rating";
+        return "lawyer/rating";
     }
     @RequestMapping("/top")
     public String top(ModelMap model){
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/lawyer/top";
+        return "lawyer/top";
     }
     @RequestMapping("/form")
     public String form(ModelMap model){
 
         model.addAttribute("categories",categoryRepository.findAll());
 
-        return "/lawyer/rating";
+        return "lawyer/rating";
     }
 
 }

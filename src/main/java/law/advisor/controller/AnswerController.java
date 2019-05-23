@@ -68,7 +68,7 @@ public class AnswerController {
             model.addAttribute("answer",answer);
         }
 
-        return "/answer/form";
+        return "answer/form";
 
     }
 
@@ -110,7 +110,7 @@ public class AnswerController {
             emailService.sendEmail(answeredEmail);
         }
 
-        return "redirect:/question/"+answer.getQuestion().getId()+"/view";
+        return "redirect:question/"+answer.getQuestion().getId()+"/view";
     }
 
 
@@ -120,7 +120,7 @@ public class AnswerController {
         Answer answer=answerRepository.getOne(id);
         Long questionId=answer.getQuestion().getId();
         answerRepository.delete(answer);
-        return "redirect: /question/"+questionId+"/view";
+        return "redirect: question/"+questionId+"/view";
     }
 
     @GetMapping("/question/{id}/answer/{searchStr}/search")
@@ -170,7 +170,7 @@ public class AnswerController {
 
 
 
-        return "/question/answers";
+        return "question/answers";
     }
 
     @RequestMapping("answer/{id}/comments")
@@ -184,7 +184,7 @@ public class AnswerController {
 
         model.addAttribute("comments", comments);
 
-        return "/question/comments";
+        return "question/comments";
     }
 /*
 
@@ -240,7 +240,7 @@ public class AnswerController {
 
         }
 
-        return "redirect:/question/"+comment.getAnswer().getQuestion().getId()+"/view";
+        return "redirect:question/"+comment.getAnswer().getQuestion().getId()+"/view";
     }
 
     @PostMapping("/api/answer/like")
